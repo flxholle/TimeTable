@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.ulan.timetable"
+        applicationId "com.asdoi.timetable"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 10
