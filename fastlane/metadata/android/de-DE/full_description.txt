@@ -1,0 +1,4 @@
+Dies ist eine verbesserte Version der <a href="https://github.com/ulan17/TimeTable">App von ulan17</a>.
+Mit Hilfe dieser App kannst du deinen Stundenplan, deine Hausaufgaben, Klausuren, Lehrer oder Notizen verwalten.
+Außerdem schaltet die App dein Handy automatisch während dem Unterricht auf lautlos und danach wieder zurück.
+Darüber hinaus zeigt sie dir immer eine Benachrichtigung mit deinem nächsten Fach an.

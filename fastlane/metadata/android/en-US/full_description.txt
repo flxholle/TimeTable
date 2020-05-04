@@ -1,0 +1,7 @@
+This is an improved version of the <a href="https://github.com/ulan17/TimeTable">app from ulan17 </a>.
+With this app you can manage your timetable, your homework, exams, teachers or notes.
+The app also automatically switches your phone to do-not-disturb mode during classes and back again afterwards.
+In addition, it always shows you a notification with your next subject.
+
+Some other features I added:
+<ul><li>New Notifications (also about the current lesson)</li><li>Weekly View</li><li>Automatically turn on/off Do-Not-Disturb</li><li>Dark mode</li><li>Backup/Restore</li><li>Shortcuts</li><li>Splash Screen</li><li>And some onClick Intents, e.g. If you click the phone number in the teacher-activity the phone app will be opened</li><li>Some more little ui changes</li></ul>
