@@ -14,6 +14,7 @@ import com.ulan.timetable.utils.PreferenceUtil;
 
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class TimeSettingsFragment extends PreferenceFragmentCompat {
@@ -23,7 +24,7 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
         setPreferencesFromResource(R.xml.settings_time, rootKey);
 
         Preference myPref = findPreference("start_time");
-        myPref.setOnPreferenceClickListener((Preference p) -> {
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener((Preference p) -> {
             int[] oldTimes = PreferenceUtil.getStartTime(getContext());
             TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                     (view, hourOfDay, minute) -> {
@@ -39,12 +40,12 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
 
 
         myPref = findPreference("set_period_length");
-        myPref.setOnPreferenceClickListener((Preference p) -> {
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener((Preference p) -> {
             NumberPicker numberPicker = new NumberPicker(getContext());
             numberPicker.setMaxValue(180);
             numberPicker.setMinValue(1);
             numberPicker.setValue(PreferenceUtil.getPeriodLength(getContext()));
-            new MaterialDialog.Builder(getContext())
+            new MaterialDialog.Builder(requireContext())
                     .customView(numberPicker, false)
                     .positiveText(R.string.select)
                     .onPositive((d, w) -> {
@@ -58,7 +59,7 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
         myPref.setSummary(PreferenceUtil.getPeriodLength(getContext()) + " " + getString(R.string.minutes));
 
         myPref = findPreference("two_weeks");
-        myPref.setOnPreferenceClickListener((p) -> {
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener((p) -> {
             setTermStartVisibility();
             return true;
         });
@@ -71,7 +72,7 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
         int mMonth = calendar.get(Calendar.MONTH);
         int mDayofMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        myPref.setTitle(getString(R.string.start_of_term) + " (" + String.format(Locale.getDefault(), "%02d-%02d-%02d", mYear, mMonth + 1, mDayofMonth) + ")");
+        Objects.requireNonNull(myPref).setTitle(getString(R.string.start_of_term) + " (" + String.format(Locale.getDefault(), "%02d-%02d-%02d", mYear, mMonth + 1, mDayofMonth) + ")");
         myPref.setOnPreferenceClickListener((p) -> {
             Calendar calendar2 = PreferenceUtil.getTermStart(requireContext());
             int mYear2 = calendar2.get(Calendar.YEAR);

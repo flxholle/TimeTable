@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
@@ -22,11 +23,12 @@ import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class TeachersActivity extends AppCompatActivity {
 
-    private Context context = this;
+    private final Context context = this;
     private ListView listView;
     private DbHelper db;
     private TeachersAdapter adapter;
@@ -57,14 +59,14 @@ public class TeachersActivity extends AppCompatActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
             @Override
-            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+            public void onItemCheckedStateChanged(@NonNull ActionMode mode, int position, long id, boolean checked) {
                 final int checkedCount = listView.getCheckedItemCount();
                 mode.setTitle(checkedCount + " " + getResources().getString(R.string.selected));
                 if (checkedCount == 0) mode.finish();
             }
 
             @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            public boolean onCreateActionMode(@NonNull ActionMode mode, Menu menu) {
                 MenuInflater menuInflater = mode.getMenuInflater();
                 menuInflater.inflate(R.menu.toolbar_action_mode, menu);
                 return true;
@@ -76,7 +78,7 @@ public class TeachersActivity extends AppCompatActivity {
             }
 
             @Override
-            public boolean onActionItemClicked(final ActionMode mode, MenuItem item) {
+            public boolean onActionItemClicked(@NonNull final ActionMode mode, @NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_delete:
                         ArrayList<Teacher> removelist = new ArrayList<>();
@@ -84,7 +86,7 @@ public class TeachersActivity extends AppCompatActivity {
                         for (int i = 0; i < checkedItems.size(); i++) {
                             int key = checkedItems.keyAt(i);
                             if (checkedItems.get(key)) {
-                                db.deleteTeacherById(adapter.getItem(key));
+                                db.deleteTeacherById(Objects.requireNonNull(adapter.getItem(key)));
                                 removelist.add(adapter.getTeacherList().get(key));
                             }
                         }

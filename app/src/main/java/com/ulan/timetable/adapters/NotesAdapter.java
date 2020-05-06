@@ -96,8 +96,8 @@ public class NotesAdapter extends ArrayAdapter<Note> {
                     int itemId = item.getItemId();
                     if (itemId == R.id.delete_popup) {
                         AlertDialogsHelper.getDeleteDialog(getContext(), () -> {
-                            db.deleteNoteById(getItem(position));
-                            db.updateNote(getItem(position));
+                            db.deleteNoteById(Objects.requireNonNull(getItem(position)));
+                            db.updateNote(Objects.requireNonNull(getItem(position)));
                             notelist.remove(position);
                             notifyDataSetChanged();
                         }, getContext().getString(R.string.delete_note, note.getTitle()));

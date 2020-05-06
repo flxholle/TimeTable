@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
@@ -39,11 +40,13 @@ import java.util.Objects;
  */
 public class TeachersAdapter extends ArrayAdapter<Teacher> {
 
-    private AppCompatActivity mActivity;
-    private int mResource;
-    private ArrayList<Teacher> teacherlist;
+    @NonNull
+    private final AppCompatActivity mActivity;
+    private final int mResource;
+    @NonNull
+    private final ArrayList<Teacher> teacherlist;
     private Teacher teacher;
-    private ListView mListView;
+    private final ListView mListView;
 
     private static class ViewHolder {
         TextView name;
@@ -54,7 +57,7 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
         ImageView popup;
     }
 
-    public TeachersAdapter(AppCompatActivity activity, ListView listView, int resource, ArrayList<Teacher> objects) {
+    public TeachersAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Teacher> objects) {
         super(activity, resource, objects);
         mActivity = activity;
         mListView = listView;
@@ -64,7 +67,7 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
 
     @NonNull
     @Override
-    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String name = Objects.requireNonNull(getItem(position)).getName();
         String post = Objects.requireNonNull(getItem(position)).getPost();
         String phonenumber = Objects.requireNonNull(getItem(position)).getPhonenumber();
@@ -154,34 +157,31 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
         }
 
         holder.cardView.setCardBackgroundColor(teacher.getColor());
-        holder.popup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final DbHelper db = new DbHelper(mActivity);
-                ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);
-                final PopupMenu popup = new PopupMenu(theme, holder.popup);
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.delete_popup:
-                                db.deleteTeacherById(getItem(position));
-                                db.updateTeacher(getItem(position));
-                                teacherlist.remove(position);
-                                notifyDataSetChanged();
-                                return true;
+        holder.popup.setOnClickListener(v -> {
+            final DbHelper db = new DbHelper(mActivity);
+            ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);
+            final PopupMenu popup = new PopupMenu(theme, holder.popup);
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                public boolean onMenuItemClick(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.delete_popup:
+                            db.deleteTeacherById(Objects.requireNonNull(getItem(position)));
+                            db.updateTeacher(Objects.requireNonNull(getItem(position)));
+                            teacherlist.remove(position);
+                            notifyDataSetChanged();
+                            return true;
 
-                            case R.id.edit_popup:
-                                final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_teacher, null);
-                                AlertDialogsHelper.getEditTeacherDialog(mActivity, alertLayout, teacherlist, mListView, position);
-                                notifyDataSetChanged();
-                                return true;
-                            default:
-                                return onMenuItemClick(item);
-                        }
+                        case R.id.edit_popup:
+                            final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_teacher, null);
+                            AlertDialogsHelper.getEditTeacherDialog(mActivity, alertLayout, teacherlist, mListView, position);
+                            notifyDataSetChanged();
+                            return true;
+                        default:
+                            return onMenuItemClick(item);
                     }
-                });
-                popup.show();
-            }
+                }
+            });
+            popup.show();
         });
 
         hidePopUpMenu(holder);
@@ -189,6 +189,7 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
         return convertView;
     }
 
+    @NonNull
     public ArrayList<Teacher> getTeacherList() {
         return teacherlist;
     }
@@ -197,7 +198,7 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
         return teacher;
     }
 
-    private void hidePopUpMenu(ViewHolder holder) {
+    private void hidePopUpMenu(@NonNull ViewHolder holder) {
         SparseBooleanArray checkedItems = mListView.getCheckedItemPositions();
         if (checkedItems.size() > 0) {
             for (int i = 0; i < checkedItems.size(); i++) {

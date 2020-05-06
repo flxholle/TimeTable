@@ -109,9 +109,7 @@ public class ExamsAdapter extends ArrayAdapter<Exam> {
 
         holder.subject.setText(exam.getSubject());
         holder.teacher.setText(exam.getTeacher());
-        holder.teacher.setOnClickListener((View v) -> {
-            mActivity.startActivity(new Intent(mActivity, TeachersActivity.class));
-        });
+        holder.teacher.setOnClickListener((View v) -> mActivity.startActivity(new Intent(mActivity, TeachersActivity.class)));
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
         holder.teacher.setBackgroundResource(outValue.resourceId);
@@ -135,8 +133,8 @@ public class ExamsAdapter extends ArrayAdapter<Exam> {
                     int itemId = item.getItemId();
                     if (itemId == R.id.delete_popup) {
                         AlertDialogsHelper.getDeleteDialog(getContext(), () -> {
-                            db.deleteExamById(getItem(position));
-                            db.updateExam(getItem(position));
+                            db.deleteExamById(Objects.requireNonNull(getItem(position)));
+                            db.updateExam(Objects.requireNonNull(getItem(position)));
                             examlist.remove(position);
                             notifyDataSetChanged();
                         }, getContext().getString(R.string.delete_exam, exam.getSubject()));

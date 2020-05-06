@@ -32,8 +32,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.HomeworksActivity"
-            android:label="@string/homeworks"
+            android:name=".activities.HomeworkActivity"
+            android:label="@string/homework"
             android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.NotesActivity"

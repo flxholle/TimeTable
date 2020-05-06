@@ -9,13 +9,17 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+
 /**
  * Created by Ulan on 28.09.2018.
  */
 @SuppressLint("AppCompatCustomView")
 public class LinedEditText extends EditText {
-    private Rect mRect;
-    private Paint mPaint;
+    @NonNull
+    private final Rect mRect;
+    @NonNull
+    private final Paint mPaint;
 
     @SuppressLint("ResourceAsColor")
     public LinedEditText(Context context, AttributeSet attrs) {
@@ -28,7 +32,7 @@ public class LinedEditText extends EditText {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
 
         int height = getHeight();
         int line_height = getLineHeight();

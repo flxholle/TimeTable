@@ -30,7 +30,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.ulan.timetable.R
-import com.ulan.timetable.activities.HomeworksActivity
+import com.ulan.timetable.activities.HomeworkActivity
 import com.ulan.timetable.activities.NotesActivity
 import com.ulan.timetable.activities.SummaryActivity
 
@@ -71,7 +71,7 @@ class ShortcutUtils {
         }
 
         private fun createAddHomeworkShortcut(context: Context): ShortcutInfo {
-            return createShortcut(context, "add_homework", context.getString(R.string.add_homework), R.drawable.ic_book_black_24dp, Intent(context, HomeworksActivity::class.java).setAction(HomeworksActivity.ACTION_ADD_HOMEWORK))
+            return createShortcut(context, "add_homework", context.getString(R.string.add_homework), R.drawable.ic_book_black_24dp, Intent(context, HomeworkActivity::class.java).setAction(HomeworkActivity.ACTION_ADD_HOMEWORK))
         }
 
         private fun createNotesShortcut(context: Context): ShortcutInfo {

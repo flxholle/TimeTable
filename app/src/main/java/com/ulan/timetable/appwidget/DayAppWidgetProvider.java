@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
+
 import com.ulan.timetable.R;
 import com.ulan.timetable.activities.MainActivity;
 import com.ulan.timetable.appwidget.Dao.AppWidgetDao;
@@ -34,12 +36,12 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
     private static final int ONE_DAY_MILLIS = 86400000;
 
     @Override
-    public void onEnabled(Context context) {
+    public void onEnabled(@NonNull Context context) {
         registerNewDayBroadcast(context);
     }
 
     @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+    public void onUpdate(@NonNull Context context, @NonNull AppWidgetManager appWidgetManager, @NonNull int[] appWidgetIds) {
 
         if (isAlarmManagerNotSet(context)) {
             registerNewDayBroadcast(context);
@@ -79,20 +81,20 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
     }
 
     @Override
-    public void onDeleted(Context context, int[] appWidgetIds) {
+    public void onDeleted(Context context, @NonNull int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
             AppWidgetDao.deleteAppWidget(appWidgetId, context);
         }
     }
 
     @Override
-    public void onDisabled(Context context) {
+    public void onDisabled(@NonNull Context context) {
         unregisterNewDayBroadcast(context);
         AppWidgetDao.clear(context);
     }
 
     @Override
-    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+    public void onAppWidgetOptionsChanged(@NonNull Context context, @NonNull AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
         onUpdate(context, appWidgetManager, new int[]{appWidgetId});
     }
 
@@ -104,7 +106,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    static void updateAppWidgetConfig(AppWidgetManager appWidgetManager, int appWidgetId, int backgroundColor, int timeStyle, Context context) {
+    static void updateAppWidgetConfig(@NonNull AppWidgetManager appWidgetManager, int appWidgetId, int backgroundColor, int timeStyle, @NonNull Context context) {
         AppWidgetDao.saveAppWidgetConfig(appWidgetId, backgroundColor, timeStyle, context);
 
         Intent intent = new Intent(context, DayAppWidgetService.class);
@@ -120,7 +122,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(@NonNull Context context, @NonNull Intent intent) {
 
         String action = intent.getAction();
 
@@ -163,14 +165,14 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         super.onReceive(context, intent);
     }
 
-    public void notifyUpdate(Context context) {
+    public void notifyUpdate(@NonNull Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context,
                 DayAppWidgetProvider.class));
         onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
-    private void registerNewDayBroadcast(Context context) {
+    private void registerNewDayBroadcast(@NonNull Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         if (alarmManager == null) {
@@ -191,7 +193,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, midnight.getTimeInMillis(), ONE_DAY_MILLIS, pendingIntent);
     }
 
-    private void unregisterNewDayBroadcast(Context context) {
+    private void unregisterNewDayBroadcast(@NonNull Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         if (alarmManager == null) {

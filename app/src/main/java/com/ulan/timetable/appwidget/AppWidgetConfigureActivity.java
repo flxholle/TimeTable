@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.ulan.timetable.R;
 import com.ulan.timetable.appwidget.Dao.AppWidgetDao;
 import com.ulan.timetable.utils.PreferenceUtil;
@@ -72,7 +74,7 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
         mRgTimeStyle.setOnCheckedChangeListener(this);
     }
 
-    private void setConfig(Map<String, Integer> configMap) {
+    private void setConfig(@NonNull Map<String, Integer> configMap) {
         Integer backgroundColor = configMap.get("backgroundColor");
         if (backgroundColor != null && backgroundColor != -1) {
             int r = (int) (((backgroundColor >> 16) & 0xff) / 255.0f * 100);
@@ -105,7 +107,7 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         switch (v.getId()) {
             case R.id.btn_cancel:
                 finish();
@@ -133,7 +135,7 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+    public void onProgressChanged(@NonNull SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar.getId() == R.id.sb_intensity) {
             mTvIntensity.setText(getString(R.string.app_widget_configure_intensity, progress));
         }

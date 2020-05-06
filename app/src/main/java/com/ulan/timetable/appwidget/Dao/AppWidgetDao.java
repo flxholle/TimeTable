@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.Nullable;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +39,7 @@ public class AppWidgetDao extends BaseDao {
         DBManager.close(db);
     }
 
+    @Nullable
     public static Map<String, Integer> getAppWidgetConfig(int appWidgetId, Context context) {
         SQLiteDatabase db = DBManager.getDb(context);
         String selection = "appWidgetId = ?";

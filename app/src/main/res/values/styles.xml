@@ -32,7 +32,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:forceDarkAllowed">true</item>
         <item name="popupMenuStyle">@style/ThemeOverlay.AppCompat.Dark</item>
     </style>
 

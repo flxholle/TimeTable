@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ulan.timetable.R;
@@ -15,23 +16,25 @@ import com.ulan.timetable.adapters.WeekAdapter;
 import com.ulan.timetable.model.Week;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Ulan on 03.12.2018.
  */
 public class FragmentHelper {
 
-    public static AbsListView.MultiChoiceModeListener setupListViewMultiSelect(final AppCompatActivity activity, final ListView listView, final WeekAdapter adapter, final DbHelper db) {
+    @NonNull
+    public static AbsListView.MultiChoiceModeListener setupListViewMultiSelect(@NonNull final AppCompatActivity activity, @NonNull final ListView listView, @NonNull final WeekAdapter adapter, @NonNull final DbHelper db) {
         return new AbsListView.MultiChoiceModeListener() {
             @Override
-            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+            public void onItemCheckedStateChanged(@NonNull ActionMode mode, int position, long id, boolean checked) {
                 final int checkedCount  = listView.getCheckedItemCount();
                 mode.setTitle(checkedCount  + " " + activity.getResources().getString(R.string.selected));
                 if(checkedCount == 0) mode.finish();
             }
 
             @Override
-            public boolean onActionItemClicked(final ActionMode mode, MenuItem item) {
+            public boolean onActionItemClicked(@NonNull final ActionMode mode, @NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_delete:
                         ArrayList<Week> removelist = new ArrayList<>();
@@ -39,7 +42,7 @@ public class FragmentHelper {
                         for (int i = 0; i < checkedItems.size(); i++) {
                             int key = checkedItems.keyAt(i);
                             if (checkedItems.get(key)) {
-                                db.deleteWeekById(adapter.getItem(key));
+                                db.deleteWeekById(Objects.requireNonNull(adapter.getItem(key)));
                                 removelist.add(adapter.getWeekList().get(key));
                             }
                         }
@@ -55,7 +58,7 @@ public class FragmentHelper {
             }
 
             @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            public boolean onCreateActionMode(@NonNull ActionMode mode, Menu menu) {
                 MenuInflater menuInflater = mode.getMenuInflater();
                 menuInflater.inflate(R.menu.toolbar_action_mode, menu);
                 return true;

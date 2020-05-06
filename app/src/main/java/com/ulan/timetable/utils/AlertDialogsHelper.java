@@ -33,7 +33,7 @@ import com.pd.chocobar.ChocoBar;
 import com.ulan.timetable.R;
 import com.ulan.timetable.adapters.ExamsAdapter;
 import com.ulan.timetable.adapters.FragmentsTabAdapter;
-import com.ulan.timetable.adapters.HomeworksAdapter;
+import com.ulan.timetable.adapters.HomeworkAdapter;
 import com.ulan.timetable.adapters.NotesAdapter;
 import com.ulan.timetable.adapters.TeachersAdapter;
 import com.ulan.timetable.fragments.WeekdayFragment;
@@ -59,7 +59,7 @@ import me.jfenn.colorpickerdialog.views.picker.RGBPickerView;
 public class AlertDialogsHelper {
     //TODO: Rewrite Dialogs to and returning a dialog object, without activity
 
-    public static void getEditSubjectDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, Runnable runOnSafe, @NonNull final Week week) {
+    public static void getEditSubjectDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull Runnable runOnSafe, @NonNull final Week week) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subject_dialog);
         editTextHashs.put(R.string.subject, subject);
@@ -143,24 +143,22 @@ public class AlertDialogsHelper {
                     .show();
         });
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
 
         subject.setOnEditorActionListener(
@@ -357,23 +355,21 @@ public class AlertDialogsHelper {
                     .show();
         });
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
         subject.setOnEditorActionListener(
                 (v, actionId, event) -> {
@@ -564,24 +560,22 @@ public class AlertDialogsHelper {
             datePickerDialog.show();
         });
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
 
         subject.setOnEditorActionListener(
@@ -649,13 +643,13 @@ public class AlertDialogsHelper {
             } /*else if (!date.getText().toString().matches(".*\\d+.*")) {
                 Snackbar.make(alertLayout, R.string.deadline_snackbar, Snackbar.LENGTH_LONG).show();
             }*/ else {
-                HomeworksAdapter homeworksAdapter = (HomeworksAdapter) listView.getAdapter();
+                HomeworkAdapter homeworkAdapter = (HomeworkAdapter) listView.getAdapter();
                 ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                 homework.setSubject(subject.getText().toString());
                 homework.setDescription(description.getText().toString());
                 homework.setColor(buttonColor.getColor());
                 new DbHelper(activity).updateHomework(homework);
-                homeworksAdapter.notifyDataSetChanged();
+                homeworkAdapter.notifyDataSetChanged();
                 dialog.dismiss();
 
                 new MaterialDialog.Builder(activity)
@@ -688,7 +682,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getAddHomeworkDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final HomeworksAdapter adapter) {
+    public static void getAddHomeworkDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final HomeworkAdapter adapter) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subjecthomework);
         editTextHashs.put(R.string.subject, subject);
@@ -714,24 +708,22 @@ public class AlertDialogsHelper {
             datePickerDialog.show();
         });
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
         subject.setOnEditorActionListener(
                 (v, actionId, event) -> {
@@ -850,7 +842,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getEditTeacherDialog(final AppCompatActivity activity, final View alertLayout, final ArrayList<Teacher> adapter, final ListView listView, int listposition) {
+    public static void getEditTeacherDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Teacher> adapter, @NonNull final ListView listView, int listposition) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText name = alertLayout.findViewById(R.id.name_dialog);
         editTextHashs.put(R.string.name, name);
@@ -869,24 +861,22 @@ public class AlertDialogsHelper {
         email.setText(teacher.getEmail());
         select_color.setBackgroundColor(teacher.getColor() != 0 ? teacher.getColor() : Color.WHITE);
 
-        select_color.setOnClickListener((View v) -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener((View v) -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
         alert.setTitle(R.string.edit_teacher);
@@ -897,41 +887,33 @@ public class AlertDialogsHelper {
         final AlertDialog dialog = alert.create();
         dialog.show();
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        cancel.setOnClickListener(v -> dialog.dismiss());
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(name.getText()) /*|| TextUtils.isEmpty(post.getText()) || TextUtils.isEmpty(phone_number.getText())*/ || TextUtils.isEmpty(email.getText())) {
-                    for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
-                        if (TextUtils.isEmpty(entry.getValue().getText())) {
-                            entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
-                            entry.getValue().requestFocus();
-                        }
+        save.setOnClickListener(v -> {
+            if (TextUtils.isEmpty(name.getText()) /*|| TextUtils.isEmpty(post.getText()) || TextUtils.isEmpty(phone_number.getText())*/ || TextUtils.isEmpty(email.getText())) {
+                for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
+                    if (TextUtils.isEmpty(entry.getValue().getText())) {
+                        entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
+                        entry.getValue().requestFocus();
                     }
-                } else {
-                    DbHelper dbHelper = new DbHelper(activity);
-                    TeachersAdapter teachersAdapter = (TeachersAdapter) listView.getAdapter();
-                    ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
-                    teacher.setName(name.getText().toString());
-                    teacher.setPost(post.getText().toString());
-                    teacher.setPhonenumber(phone_number.getText().toString());
-                    teacher.setEmail(email.getText().toString());
-                    teacher.setColor(buttonColor.getColor());
-                    dbHelper.updateTeacher(teacher);
-                    teachersAdapter.notifyDataSetChanged();
-                    dialog.dismiss();
                 }
+            } else {
+                DbHelper dbHelper = new DbHelper(activity);
+                TeachersAdapter teachersAdapter = (TeachersAdapter) listView.getAdapter();
+                ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
+                teacher.setName(name.getText().toString());
+                teacher.setPost(post.getText().toString());
+                teacher.setPhonenumber(phone_number.getText().toString());
+                teacher.setEmail(email.getText().toString());
+                teacher.setColor(buttonColor.getColor());
+                dbHelper.updateTeacher(teacher);
+                teachersAdapter.notifyDataSetChanged();
+                dialog.dismiss();
             }
         });
     }
 
-    public static void getAddTeacherDialog(final AppCompatActivity activity, final View alertLayout, final TeachersAdapter adapter) {
+    public static void getAddTeacherDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final TeachersAdapter adapter) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText name = alertLayout.findViewById(R.id.name_dialog);
         editTextHashs.put(R.string.name, name);
@@ -944,24 +926,22 @@ public class AlertDialogsHelper {
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Teacher teacher = new Teacher();
 
-        select_color.setOnClickListener((View v) -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener((View v) -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
         alert.setTitle(activity.getResources().getString(R.string.add_teacher));
@@ -971,52 +951,39 @@ public class AlertDialogsHelper {
         alert.setView(alertLayout);
         final AlertDialog dialog = alert.create();
         FloatingActionButton fab = activity.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.show();
-            }
-        });
+        fab.setOnClickListener(view -> dialog.show());
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        cancel.setOnClickListener(v -> dialog.dismiss());
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(name.getText()) /*|| TextUtils.isEmpty(post.getText()) || TextUtils.isEmpty(phone_number.getText())*/ || TextUtils.isEmpty(email.getText())) {
-                    for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
-                        if (TextUtils.isEmpty(entry.getValue().getText())) {
-                            entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
-                            entry.getValue().requestFocus();
-                        }
+        save.setOnClickListener(v -> {
+            if (TextUtils.isEmpty(name.getText()) /*|| TextUtils.isEmpty(post.getText()) || TextUtils.isEmpty(phone_number.getText())*/ || TextUtils.isEmpty(email.getText())) {
+                for (Map.Entry<Integer, EditText> entry : editTextHashs.entrySet()) {
+                    if (TextUtils.isEmpty(entry.getValue().getText())) {
+                        entry.getValue().setError(activity.getResources().getString(entry.getKey()) + " " + activity.getResources().getString(R.string.field_error));
+                        entry.getValue().requestFocus();
                     }
-                } else {
-                    DbHelper dbHelper = new DbHelper(activity);
-                    ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
-                    teacher.setName(name.getText().toString());
-                    teacher.setPost(post.getText().toString());
-                    teacher.setPhonenumber(phone_number.getText().toString());
-                    teacher.setEmail(email.getText().toString());
-                    teacher.setColor(buttonColor.getColor());
-                    dbHelper.insertTeacher(teacher);
-
-                    adapter.clear();
-                    adapter.addAll(dbHelper.getTeacher());
-                    adapter.notifyDataSetChanged();
-
-                    name.getText().clear();
-                    post.getText().clear();
-                    phone_number.getText().clear();
-                    email.getText().clear();
-                    select_color.setBackgroundColor(Color.WHITE);
-                    name.requestFocus();
-                    dialog.dismiss();
                 }
+            } else {
+                DbHelper dbHelper = new DbHelper(activity);
+                ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
+                teacher.setName(name.getText().toString());
+                teacher.setPost(post.getText().toString());
+                teacher.setPhonenumber(phone_number.getText().toString());
+                teacher.setEmail(email.getText().toString());
+                teacher.setColor(buttonColor.getColor());
+                dbHelper.insertTeacher(teacher);
+
+                adapter.clear();
+                adapter.addAll(dbHelper.getTeacher());
+                adapter.notifyDataSetChanged();
+
+                name.getText().clear();
+                post.getText().clear();
+                phone_number.getText().clear();
+                email.getText().clear();
+                select_color.setBackgroundColor(Color.WHITE);
+                name.requestFocus();
+                dialog.dismiss();
             }
         });
     }
@@ -1029,24 +996,22 @@ public class AlertDialogsHelper {
         select_color.setBackgroundColor(note.getColor() != 0 ? note.getColor() : Color.WHITE);
         select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(note.getColor(), Color.WHITE, Color.BLACK));
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
         AlertDialog.Builder alert = new AlertDialog.Builder(activity);
         alert.setTitle(R.string.edit_note);
@@ -1088,24 +1053,22 @@ public class AlertDialogsHelper {
         select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(((ColorDrawable) select_color.getBackground()).getColor(), Color.WHITE, Color.BLACK));
         final Note note = new Note();
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
         alert.setTitle(R.string.add_note);
@@ -1228,24 +1191,22 @@ public class AlertDialogsHelper {
                     .show();
         });
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
 
         subject.setOnEditorActionListener(
@@ -1444,24 +1405,22 @@ public class AlertDialogsHelper {
                     .show();
         });
 
-        select_color.setOnClickListener(v -> {
-            new ColorPickerDialog()
-                    .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withTitle(activity.getString(R.string.choose_color))
-                    .withTheme(PreferenceUtil.getGeneralTheme(activity))
-                    .withCornerRadius(16)
-                    .withAlphaEnabled(false)
-                    .withListener((dialog, color) -> {
-                        // a color has been picked; use it
-                        select_color.setBackgroundColor(color);
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
-                    })
-                    .clearPickers()
-                    .withPresets(ColorPalette.PRIMARY_COLORS)
-                    .withPicker(RGBPickerView.class)
-                    .show(activity.getSupportFragmentManager(), "colorPicker");
-        });
+        select_color.setOnClickListener(v -> new ColorPickerDialog()
+                .withColor(((ColorDrawable) select_color.getBackground()).getColor()) // the default / initial color
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withTitle(activity.getString(R.string.choose_color))
+                .withTheme(PreferenceUtil.getGeneralTheme(activity))
+                .withCornerRadius(16)
+                .withAlphaEnabled(false)
+                .withListener((dialog, color) -> {
+                    // a color has been picked; use it
+                    select_color.setBackgroundColor(color);
+                    select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(color, Color.WHITE, Color.BLACK));
+                })
+                .clearPickers()
+                .withPresets(ColorPalette.PRIMARY_COLORS)
+                .withPicker(RGBPickerView.class)
+                .show(activity.getSupportFragmentManager(), "colorPicker"));
 
 
         subject.setOnEditorActionListener(

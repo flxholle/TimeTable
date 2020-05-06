@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent exams = new Intent(MainActivity.this, ExamsActivity.class);
             startActivity(exams);
         } else if (itemId == R.id.homework) {
-            Intent homework = new Intent(MainActivity.this, HomeworksActivity.class);
+            Intent homework = new Intent(MainActivity.this, HomeworkActivity.class);
             startActivity(homework);
         } else if (itemId == R.id.notes) {
             Intent note = new Intent(MainActivity.this, NotesActivity.class);

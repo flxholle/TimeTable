@@ -162,7 +162,7 @@
     <string name="add_to_calendar">Soll diese Ereignis zu deinem Kalender hinzugefügt werden?</string>
     <string name="school_website">Schulhomepage</string>
     <string name="school_website_snackbar">Bitte stelle deine Schulhomepage in den Einstellungen ein.</string>
-    <string name="homeworks">Hausaufgaben</string>
+    <string name="homework">Hausaufgaben</string>
     <string name="title">Titel</string>
     <string name="teachers">Lehrer</string>
     <string name="add_teacher">Lehrer hinzufügen</string>

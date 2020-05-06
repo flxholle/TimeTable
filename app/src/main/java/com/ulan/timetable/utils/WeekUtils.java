@@ -106,7 +106,8 @@ public class WeekUtils {
         return customWeeks;
     }
 
-    private static ArrayList<Week> removeDuplicates(ArrayList<Week> weeks) {
+    @NonNull
+    private static ArrayList<Week> removeDuplicates(@NonNull ArrayList<Week> weeks) {
         ArrayList<Week> returnValue = new ArrayList<>();
         ArrayList<String> returnValueSubjects = new ArrayList<>();
         for (Week w : weeks) {
@@ -142,10 +143,12 @@ public class WeekUtils {
             return schedule;
     }
 
+    @NonNull
     public static String getMatchingTimeBegin(int hour, Context context) {
         return getMatchingTimeBegin(hour, PreferenceUtil.getStartTime(context), PreferenceUtil.getPeriodLength(context));
     }
 
+    @NonNull
     public static String getMatchingTimeBegin(int hour, int[] startTime, int lessonDuration) {
         Calendar startOfSchool = Calendar.getInstance();
         startOfSchool.set(Calendar.HOUR_OF_DAY, startTime[0]);
@@ -155,10 +158,12 @@ public class WeekUtils {
         return String.format(Locale.getDefault(), "%02d:%02d", startOfSchool.get(Calendar.HOUR_OF_DAY), startOfSchool.get(Calendar.MINUTE));
     }
 
+    @NonNull
     public static String getMatchingTimeEnd(int hour, Context context) {
         return getMatchingTimeEnd(hour, PreferenceUtil.getStartTime(context), PreferenceUtil.getPeriodLength(context));
     }
 
+    @NonNull
     public static String getMatchingTimeEnd(int hour, int[] startTime, int lessonDuration) {
         Calendar startOfSchool = Calendar.getInstance();
         startOfSchool.set(Calendar.HOUR_OF_DAY, startTime[0]);
@@ -168,7 +173,7 @@ public class WeekUtils {
         return String.format(Locale.getDefault(), "%02d:%02d", startOfSchool.get(Calendar.HOUR_OF_DAY), startOfSchool.get(Calendar.MINUTE));
     }
 
-    public static int getDurationOfWeek(Week w, boolean countOnlyIfFitsLessonsTime, int lessonDuration) {
+    public static int getDurationOfWeek(@NonNull Week w, boolean countOnlyIfFitsLessonsTime, int lessonDuration) {
         Calendar weekCalendarStart = Calendar.getInstance();
         int startHour = Integer.parseInt(w.getFromTime().substring(0, w.getFromTime().indexOf(":")));
         weekCalendarStart.set(Calendar.HOUR_OF_DAY, startHour);
@@ -196,7 +201,7 @@ public class WeekUtils {
         return multiplier;
     }
 
-    public static boolean isEvenWeek(Calendar termStart, Calendar now) {
+    public static boolean isEvenWeek(@NonNull Calendar termStart, @NonNull Calendar now) {
         boolean isEven = true;
 
         int weekDifference = now.get(Calendar.WEEK_OF_YEAR) - termStart.get(Calendar.WEEK_OF_YEAR);

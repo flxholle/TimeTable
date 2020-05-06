@@ -136,10 +136,11 @@ public class SummaryActivity extends AppCompatActivity {
         });
     }
 
-    private int getDurationOfWeek(Week w) {
+    private int getDurationOfWeek(@NonNull Week w) {
         return WeekUtils.getDurationOfWeek(w, false, lessonDuration);
     }
 
+    @NonNull
     private static String generateLessonsString(int duration, int hoursBefore) {
         StringBuilder durationString = new StringBuilder();
         for (int i = 1; i <= duration; i++) {
@@ -150,9 +151,10 @@ public class SummaryActivity extends AppCompatActivity {
     }
 
     private static class CustomCourseInfo extends CourseInfo {
-        private Week week;
+        @NonNull
+        private final Week week;
 
-        public CustomCourseInfo(Week w) {
+        public CustomCourseInfo(@NonNull Week w) {
             super();
             week = w;
 
@@ -167,6 +169,7 @@ public class SummaryActivity extends AppCompatActivity {
             setColor(w.getColor());
         }
 
+        @NonNull
         public Week getWeek() {
             return week;
         }
@@ -234,9 +237,7 @@ public class SummaryActivity extends AppCompatActivity {
 
         String[] header = new String[8];
         String[] resource = getResources().getStringArray(R.array.timetable_header);
-        for (int i = 1; i < header.length; i++) {
-            header[i] = resource[i - 1];
-        }
+        System.arraycopy(resource, 0, header, 1, header.length - 1);
 
         TimetableView timetable = new TimetableView.Builder(this)
                 .setColumnCount(6 + (PreferenceUtil.isSevenDays(this) ? 2 : 0))
@@ -263,9 +264,10 @@ public class SummaryActivity extends AppCompatActivity {
     }
 
     private static class CustomSchedule extends Schedule {
-        private Week week;
+        @NonNull
+        private final Week week;
 
-        CustomSchedule(Week w, int day) {
+        CustomSchedule(@NonNull Week w, int day) {
             super();
             this.week = w;
 
@@ -283,6 +285,7 @@ public class SummaryActivity extends AppCompatActivity {
             setDay(day);
         }
 
+        @NonNull
         public Week getWeek() {
             return week;
         }

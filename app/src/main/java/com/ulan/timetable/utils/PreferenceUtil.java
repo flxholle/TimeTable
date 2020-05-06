@@ -47,6 +47,7 @@ import com.ulan.timetable.activities.SettingsActivity;
 import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -61,7 +62,7 @@ public class PreferenceUtil {
         return getBooleanSettings(context, "timetableNotif", true);
     }
 
-    public static void setAlarmTime(Context context, @NonNull int... times) {
+    public static void setAlarmTime(@NonNull Context context, @NonNull int... times) {
         if (times.length != 3) {
             if (times.length > 0 && times[0] == 0) {
                 setAlarm(context, false);
@@ -114,10 +115,10 @@ public class PreferenceUtil {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // Check if the notification policy access has been granted for the app.
-            if (!notificationManager.isNotificationPolicyAccessGranted() && !dontAskAgain) {
+            if (!Objects.requireNonNull(notificationManager).isNotificationPolicyAccessGranted() && !dontAskAgain) {
                 Drawable drawable = ContextCompat.getDrawable(activity, R.drawable.ic_do_not_disturb_on_black_24dp);
                 try {
-                    Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
+                    Drawable wrappedDrawable = DrawableCompat.wrap(Objects.requireNonNull(drawable));
                     DrawableCompat.setTint(wrappedDrawable, PreferenceUtil.getTextColorPrimary(activity));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -133,7 +134,7 @@ public class PreferenceUtil {
                         .positiveText(R.string.permission_ok_button)
                         .negativeText(R.string.permission_cancel_button)
                         .onNegative(((dialog, which) -> dialog.dismiss()))
-                        .icon(drawable)
+                        .icon(Objects.requireNonNull(drawable))
                         .onNeutral(((dialog, which) -> setDoNotDisturbDontAskAgain(activity, true)))
                         .neutralText(R.string.dont_show_again)
                         .show();
@@ -238,19 +239,19 @@ public class PreferenceUtil {
         Intent intent = new Intent(context, cls);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-        am.cancel(pendingIntent);
+        Objects.requireNonNull(am).cancel(pendingIntent);
         pendingIntent.cancel();
     }
 
 
     @StyleRes
-    public static int getGeneralTheme(Context context) {
+    public static int getGeneralTheme(@NonNull Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         return getThemeResFromPrefValue(sharedPref.getString("theme", "switch"), context);
     }
 
     @StyleRes
-    private static int getThemeResFromPrefValue(@NonNull String themePrefValue, Context context) {
+    private static int getThemeResFromPrefValue(@NonNull String themePrefValue, @NonNull Context context) {
         switch (themePrefValue) {
             case "dark":
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -277,13 +278,13 @@ public class PreferenceUtil {
     }
 
     @StyleRes
-    public static int getGeneralThemeNoActionBar(Context context) {
+    public static int getGeneralThemeNoActionBar(@NonNull Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         return getThemeResFromPrefValueNoActionBar(sharedPref.getString("theme", "switch"), context);
     }
 
     @StyleRes
-    private static int getThemeResFromPrefValueNoActionBar(@NonNull String themePrefValue, Context context) {
+    private static int getThemeResFromPrefValueNoActionBar(@NonNull String themePrefValue, @NonNull Context context) {
         switch (themePrefValue) {
             case "dark":
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -309,7 +310,7 @@ public class PreferenceUtil {
         }
     }
 
-    public static boolean isDark(Context context) {
+    public static boolean isDark(@NonNull Context context) {
         int theme = getGeneralTheme(context);
         switch (theme) {
             case R.style.AppTheme_Dark:
@@ -410,6 +411,7 @@ public class PreferenceUtil {
         editor.commit();
     }
 
+    @NonNull
     public static Calendar getTermStart(Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         Calendar calendar = Calendar.getInstance();
@@ -428,7 +430,7 @@ public class PreferenceUtil {
         return calendar;
     }
 
-    public static boolean isEvenWeek(Context context, Calendar now) {
+    public static boolean isEvenWeek(Context context, @NonNull Calendar now) {
         if (isTwoWeeksEnabled(context)) {
             return WeekUtils.isEvenWeek(getTermStart(context), now);
         } else

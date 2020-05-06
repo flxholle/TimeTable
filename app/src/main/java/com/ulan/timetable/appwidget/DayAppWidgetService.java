@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.ulan.timetable.R;
 import com.ulan.timetable.appwidget.Dao.AppWidgetDao;
 import com.ulan.timetable.model.Week;
@@ -23,8 +26,9 @@ import static com.ulan.timetable.utils.NotificationUtil.getCurrentDay;
  */
 public class DayAppWidgetService extends RemoteViewsService {
 
+    @NonNull
     @Override
-    public RemoteViewsFactory onGetViewFactory(Intent intent) {
+    public RemoteViewsFactory onGetViewFactory(@NonNull Intent intent) {
         return new DayAppWidgetRemoteViewsFactory(this.getApplicationContext(), intent);
     }
 }
@@ -35,7 +39,7 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     private ArrayList<Week> content;
     private final int mAppWidgetId;
 
-    DayAppWidgetRemoteViewsFactory(Context context, Intent intent) {
+    DayAppWidgetRemoteViewsFactory(Context context, @NonNull Intent intent) {
         mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         mContext = context;
     }
@@ -63,6 +67,7 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         return content.size();
     }
 
+    @NonNull
     @Override
     public RemoteViews getViewAt(int position) {
 
@@ -95,6 +100,7 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         return rv;
     }
 
+    @Nullable
     @Override
     public RemoteViews getLoadingView() {
         return null;

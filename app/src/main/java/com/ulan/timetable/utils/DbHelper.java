@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
+
 import com.ulan.timetable.model.Exam;
 import com.ulan.timetable.model.Homework;
 import com.ulan.timetable.model.Note;
@@ -71,10 +73,12 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, getDBName(context, now), null, DB_VERSION);
     }
 
+    @NonNull
     public static String getDBName(Context context) {
         return getDBName(context, Calendar.getInstance());
     }
 
+    @NonNull
     private static String getDBName(Context context, Calendar now) {
         if (PreferenceUtil.isEvenWeek(context, now))
             return DB_NAME;
@@ -82,7 +86,7 @@ public class DbHelper extends SQLiteOpenHelper {
             return DB_NAME_ODD_WEEK;
     }
 
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(@NonNull SQLiteDatabase db) {
         String CREATE_TIMETABLE = "CREATE TABLE " + TIMETABLE + "("
                 + WEEK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + WEEK_SUBJECT + " TEXT,"
@@ -131,7 +135,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(@NonNull SQLiteDatabase db, int oldVersion, int newVersion) {
         switch (oldVersion) {
             case 1:
                 db.execSQL("DROP TABLE IF EXISTS " + TIMETABLE);
@@ -155,7 +159,7 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Methods for Week fragments
      **/
-    public void insertWeek(Week week) {
+    public void insertWeek(@NonNull Week week) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WEEK_SUBJECT, week.getSubject());
@@ -170,13 +174,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteWeekById(Week week) {
+    public void deleteWeekById(@NonNull Week week) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TIMETABLE, WEEK_ID + " = ? ", new String[]{String.valueOf(week.getId())});
         db.close();
     }
 
-    public void updateWeek(Week week) {
+    public void updateWeek(@NonNull Week week) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WEEK_SUBJECT, week.getSubject());
@@ -189,6 +193,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    @NonNull
     public ArrayList<Week> getWeek(String fragment) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -212,7 +217,7 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Methods for Homeworks activity
      **/
-    public void insertHomework(Homework homework) {
+    public void insertHomework(@NonNull Homework homework) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(HOMEWORKS_SUBJECT, homework.getSubject());
@@ -223,7 +228,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateHomework(Homework homework) {
+    public void updateHomework(@NonNull Homework homework) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(HOMEWORKS_SUBJECT, homework.getSubject());
@@ -234,13 +239,14 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteHomeworkById(Homework homework) {
+    public void deleteHomeworkById(@NonNull Homework homework) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(HOMEWORKS, HOMEWORKS_ID + " = ? ", new String[]{String.valueOf(homework.getId())});
         db.close();
     }
 
 
+    @NonNull
     public ArrayList<Homework> getHomework() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Homework> homelist = new ArrayList<>();
@@ -263,7 +269,7 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Methods for Notes activity
      **/
-    public void insertNote(Note note) {
+    public void insertNote(@NonNull Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOTES_TITLE, note.getTitle());
@@ -273,7 +279,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateNote(Note note) {
+    public void updateNote(@NonNull Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOTES_TITLE, note.getTitle());
@@ -283,12 +289,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteNoteById(Note note) {
+    public void deleteNoteById(@NonNull Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(NOTES, NOTES_ID + " =? ", new String[]{String.valueOf(note.getId())});
         db.close();
     }
 
+    @NonNull
     public ArrayList<Note> getNote() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Note> notelist = new ArrayList<>();
@@ -310,7 +317,7 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Methods for Teachers activity
      **/
-    public void insertTeacher(Teacher teacher) {
+    public void insertTeacher(@NonNull Teacher teacher) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(TEACHERS_NAME, teacher.getName());
@@ -322,7 +329,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateTeacher(Teacher teacher) {
+    public void updateTeacher(@NonNull Teacher teacher) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(TEACHERS_NAME, teacher.getName());
@@ -334,12 +341,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteTeacherById(Teacher teacher) {
+    public void deleteTeacherById(@NonNull Teacher teacher) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TEACHERS, TEACHERS_ID + " =? ", new String[]{String.valueOf(teacher.getId())});
         db.close();
     }
 
+    @NonNull
     public ArrayList<Teacher> getTeacher() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Teacher> teacherlist = new ArrayList<>();
@@ -363,7 +371,7 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Methods for Exams activity
      **/
-    public void insertExam(Exam exam) {
+    public void insertExam(@NonNull Exam exam) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(EXAMS_SUBJECT, exam.getSubject());
@@ -376,7 +384,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateExam(Exam exam) {
+    public void updateExam(@NonNull Exam exam) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(EXAMS_SUBJECT, exam.getSubject());
@@ -389,12 +397,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteExamById(Exam exam) {
+    public void deleteExamById(@NonNull Exam exam) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(EXAMS, EXAMS_ID + " =? ", new String[]{String.valueOf(exam.getId())});
         db.close();
     }
 
+    @NonNull
     public ArrayList<Exam> getExam() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Exam> examslist = new ArrayList<>();

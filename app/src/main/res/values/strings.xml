@@ -44,7 +44,7 @@
     <string name="select">Select</string>
 
     <!-- Homeworks Activity strings -->
-    <string name="homeworks">Homeworks</string>
+    <string name="homework">Homework</string>
     <string name="deadline_dialog">Deadline:</string>
     <string name="description_dialog">Description:</string>
     <string name="date_error">Date field can not be empty!</string>

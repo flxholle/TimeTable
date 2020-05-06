@@ -21,6 +21,7 @@ import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ExamsActivity extends AppCompatActivity {
 
@@ -81,7 +82,7 @@ public class ExamsActivity extends AppCompatActivity {
                     for (int i = 0; i < checkedItems.size(); i++) {
                         int key = checkedItems.keyAt(i);
                         if (checkedItems.get(key)) {
-                            db.deleteExamById(adapter.getItem(key));
+                            db.deleteExamById(Objects.requireNonNull(adapter.getItem(key)));
                             removelist.add(adapter.getExamList().get(key));
                         }
                     }

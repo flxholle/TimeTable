@@ -14,22 +14,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ulan.timetable.R;
-import com.ulan.timetable.adapters.HomeworksAdapter;
+import com.ulan.timetable.adapters.HomeworkAdapter;
 import com.ulan.timetable.model.Homework;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
-public class HomeworksActivity extends AppCompatActivity {
+public class HomeworkActivity extends AppCompatActivity {
     public static final String ACTION_ADD_HOMEWORK = "addHomework";
 
     @NonNull
     private final AppCompatActivity context = this;
     private ListView listView;
-    private HomeworksAdapter adapter;
+    private HomeworkAdapter adapter;
     private DbHelper db;
     private int listposition = 0;
 
@@ -53,7 +54,7 @@ public class HomeworksActivity extends AppCompatActivity {
     private void setupAdapter() {
         db = new DbHelper(context);
         listView = findViewById(R.id.homeworklist);
-        adapter = new HomeworksAdapter(HomeworksActivity.this, listView, R.layout.listview_homeworks_adapter, db.getHomework());
+        adapter = new HomeworkAdapter(HomeworkActivity.this, listView, R.layout.listview_homeworks_adapter, db.getHomework());
         listView.setAdapter(adapter);
     }
 
@@ -88,7 +89,7 @@ public class HomeworksActivity extends AppCompatActivity {
                     for (int i = 0; i < checkedItems.size(); i++) {
                         int key = checkedItems.keyAt(i);
                         if (checkedItems.get(key)) {
-                            db.deleteHomeworkById(adapter.getItem(key));
+                            db.deleteHomeworkById(Objects.requireNonNull(adapter.getItem(key)));
                             removelist.add(adapter.getHomeworkList().get(key));
                         }
                     }
@@ -109,6 +110,6 @@ public class HomeworksActivity extends AppCompatActivity {
 
     private void setupCustomDialog() {
         final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_homework, null);
-        AlertDialogsHelper.getAddHomeworkDialog(HomeworksActivity.this, alertLayout, adapter);
+        AlertDialogsHelper.getAddHomeworkDialog(HomeworkActivity.this, alertLayout, adapter);
     }
 }

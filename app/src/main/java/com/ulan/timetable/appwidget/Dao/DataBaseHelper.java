@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
+
 /**
  * From https://github.com/SubhamTyagi/TimeTable
  */
@@ -17,18 +19,18 @@ class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(@NonNull SQLiteDatabase db) {
         createTables(db);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(@NonNull SQLiteDatabase db, int oldVersion, int newVersion) {
         for (int version = oldVersion + 1; version <= newVersion; version++) {
             upgradeTo(db, version);
         }
     }
 
-    private void upgradeTo(SQLiteDatabase db, int version) {
+    private void upgradeTo(@NonNull SQLiteDatabase db, int version) {
         switch (version) {
             case 1:
                 createTables(db);
@@ -44,11 +46,11 @@ class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void upgradeFrom2To3(SQLiteDatabase db) {
+    private void upgradeFrom2To3(@NonNull SQLiteDatabase db) {
         db.execSQL("CREATE TABLE app_widget(_id INTEGER PRIMARY KEY AUTOINCREMENT , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1 , UNIQUE(appWidgetId))");
     }
 
-    private void upgradeFrom1To2(SQLiteDatabase db) {
+    private void upgradeFrom1To2(@NonNull SQLiteDatabase db) {
         // table_1 表主键添加自增长
         db.execSQL("CREATE TEMPORARY TABLE table_1_backup(week INTEGER , section INTEGER , time INTEGER , startWeek INTEGER , endWeek INTEGER , doubleWeek INTEGER , course CHAR , classroom CHAR)");
         db.execSQL("INSERT INTO table_1_backup SELECT week , section , time , startWeek , endWeek , doubleWeek , course , classroom FROM table_1");
@@ -67,13 +69,13 @@ class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onDowngrade(@NonNull SQLiteDatabase db, int oldVersion, int newVersion) {
         for (int version = oldVersion - 1; version >= newVersion; version--) {
             downgrade(db, version);
         }
     }
 
-    private void downgrade(SQLiteDatabase db, int version) {
+    private void downgrade(@NonNull SQLiteDatabase db, int version) {
         switch (version) {
             case 2:
                 downgradeFrom3To2(db);
@@ -86,16 +88,16 @@ class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void downgradeFrom3To2(SQLiteDatabase db) {
+    private void downgradeFrom3To2(@NonNull SQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS app_widget");
     }
 
-    private void downgradeFrom2To1(SQLiteDatabase db) {
+    private void downgradeFrom2To1(@NonNull SQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS course_classroom");
         db.execSQL("CREATE TABLE table_2(_id INTEGER PRIMARY KEY AUTOINCREMENT , week INTEGER , section INTEGER , time INTEGER , startWeek INTEGER , endWeek INTEGER , doubleWeek INTEGER , course CHAR , classroom CHAR)");
     }
 
-    private void createTables(SQLiteDatabase db) {
+    private void createTables(@NonNull SQLiteDatabase db) {
         db.execSQL("CREATE TABLE table_1(_id INTEGER PRIMARY KEY AUTOINCREMENT , week INTEGER , section INTEGER , time INTEGER , startWeek INTEGER , endWeek INTEGER , doubleWeek INTEGER , course CHAR , classroom CHAR)");
         db.execSQL("CREATE TABLE course_classroom(_id INTEGER PRIMARY KEY AUTOINCREMENT , course CHAR , classroom CHAR)");
         db.execSQL("CREATE TABLE app_widget(_id INTEGER PRIMARY KEY AUTOINCREMENT , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1 , UNIQUE(appWidgetId))");

@@ -25,6 +25,8 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 public class NotificationDismissButtonReceiver extends BroadcastReceiver {
     public static final String EXTRA_NOTIFICATION_ID = "EXTRA_NOTIFICATION_ID";
 
@@ -35,6 +37,6 @@ public class NotificationDismissButtonReceiver extends BroadcastReceiver {
 
         // if you want cancel notification
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.cancel(notificationId);
+        Objects.requireNonNull(manager).cancel(notificationId);
     }
 }

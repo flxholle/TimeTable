@@ -33,7 +33,7 @@ import java.util.Objects;
 /**
  * Created by Ulan on 21.09.2018.
  */
-public class HomeworksAdapter extends ArrayAdapter<Homework> {
+public class HomeworkAdapter extends ArrayAdapter<Homework> {
 
     @NonNull
     private final AppCompatActivity mActivity;
@@ -50,7 +50,7 @@ public class HomeworksAdapter extends ArrayAdapter<Homework> {
         ImageView popup;
     }
 
-    public HomeworksAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Homework> objects) {
+    public HomeworkAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Homework> objects) {
         super(activity, resource, objects);
         mActivity = activity;
         mListView = listView;
@@ -105,8 +105,8 @@ public class HomeworksAdapter extends ArrayAdapter<Homework> {
                 public boolean onMenuItemClick(@NonNull MenuItem item) {
                     int itemId = item.getItemId();
                     if (itemId == R.id.delete_popup) {
-                        db.deleteHomeworkById(getItem(position));
-                        db.updateHomework(getItem(position));
+                        db.deleteHomeworkById(Objects.requireNonNull(getItem(position)));
+                        db.updateHomework(Objects.requireNonNull(getItem(position)));
                         homeworklist.remove(position);
                         notifyDataSetChanged();
                         return true;

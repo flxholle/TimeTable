@@ -19,6 +19,8 @@ import com.ulan.timetable.activities.TimeSettingsActivity;
 import com.ulan.timetable.receivers.DailyReceiver;
 import com.ulan.timetable.utils.PreferenceUtil;
 
+import java.util.Objects;
+
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -26,23 +28,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings, rootKey);
 
-        tintIcons(getPreferenceScreen(), PreferenceUtil.getTextColorPrimary(getContext()));
+        tintIcons(getPreferenceScreen(), PreferenceUtil.getTextColorPrimary(requireContext()));
 
         setNotif();
 
         Preference myPref = findPreference("timetableNotif");
-        myPref.setOnPreferenceClickListener((Preference preference) -> {
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener((Preference preference) -> {
             setNotif();
             return true;
         });
 
         myPref = findPreference("alarm");
-        myPref.setOnPreferenceClickListener((Preference p) -> {
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener((Preference p) -> {
             int[] oldTimes = PreferenceUtil.getAlarmTime(getContext());
             TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                     (view, hourOfDay, minute) -> {
                         PreferenceUtil.setAlarmTime(getContext(), hourOfDay, minute, 0);
-                        PreferenceUtil.setRepeatingAlarm(getContext(), DailyReceiver.class, hourOfDay, minute, 0, DailyReceiver.DailyReceiverID, AlarmManager.INTERVAL_DAY);
+                        PreferenceUtil.setRepeatingAlarm(requireContext(), DailyReceiver.class, hourOfDay, minute, 0, DailyReceiver.DailyReceiverID, AlarmManager.INTERVAL_DAY);
                         p.setSummary(hourOfDay + ":" + minute);
                     }, oldTimes[0], oldTimes[1], true);
             timePickerDialog.setTitle(R.string.choose_time);
@@ -54,29 +56,29 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         setTurnOff();
         myPref = findPreference("automatic_do_not_disturb");
-        myPref.setOnPreferenceClickListener((Preference p) -> {
-            PreferenceUtil.setDoNotDisturb(getActivity(), false);
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener((Preference p) -> {
+            PreferenceUtil.setDoNotDisturb(requireActivity(), false);
             setTurnOff();
             return true;
         });
 
         ListPreference mp = findPreference("theme");
-        mp.setOnPreferenceChangeListener((preference, newValue) -> {
+        Objects.requireNonNull(mp).setOnPreferenceChangeListener((preference, newValue) -> {
             mp.setValue(newValue + "");
-            getActivity().recreate();
+            requireActivity().recreate();
             return false;
         });
         mp.setSummary(getThemeName());
 
         myPref = findPreference("time_settings");
-        myPref.setOnPreferenceClickListener(p -> {
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener(p -> {
             startActivity(new Intent(getActivity(), TimeSettingsActivity.class));
             return true;
         });
     }
 
     private String getThemeName() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
         String selectedTheme = sharedPreferences.getString("theme", "switch");
         String[] values = getResources().getStringArray(R.array.theme_array_values);
@@ -93,13 +95,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void setNotif() {
-        boolean show = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("timetableNotif", true);
+        boolean show = PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean("timetableNotif", true);
         findPreference("alwaysNotification").setVisible(show);
         findPreference("alarm").setVisible(show);
     }
 
     private void setTurnOff() {
-        boolean show = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("automatic_do_not_disturb", true);
+        boolean show = PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean("automatic_do_not_disturb", true);
         findPreference("do_not_disturb_turn_off").setVisible(show);
     }
 
