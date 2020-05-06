@@ -57,6 +57,7 @@ import me.jfenn.colorpickerdialog.views.picker.RGBPickerView;
  * Created by Ulan on 22.10.2018.
  */
 public class AlertDialogsHelper {
+    //TODO: Rewrite Dialogs to and returning a dialog object, without activity
 
     public static void getEditSubjectDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, Runnable runOnSafe, @NonNull final Week week) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
@@ -78,8 +79,8 @@ public class AlertDialogsHelper {
         room.setText(week.getRoom());
         from_time.setText(week.getFromTime());
         to_time.setText(week.getToTime());
-        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(week.getFromTime(), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
-        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(week.getToTime(), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(week.getFromTime(), activity));
+        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(week.getToTime(), activity));
         select_color.setBackgroundColor(week.getColor() != 0 ? week.getColor() : Color.WHITE);
 
         from_time.setOnClickListener(v -> {
@@ -89,7 +90,7 @@ public class AlertDialogsHelper {
                     (view, hourOfDay, minute) -> {
                         from_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         week.setFromTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -102,7 +103,7 @@ public class AlertDialogsHelper {
                     (view, hourOfDay, minute1) -> {
                         to_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
                         week.setToTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
-                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -118,8 +119,8 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        from_time.setText(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
-                        week.setFromTime(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
                     })
                     .show();
@@ -135,8 +136,8 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        to_time.setText(WeekUtils.getMatchingTimeEnd(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
-                        week.setToTime(WeekUtils.getMatchingTimeEnd(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                        week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
                     })
                     .show();
@@ -274,47 +275,43 @@ public class AlertDialogsHelper {
 
         final Week week = new Week();
 
-        if (PreferenceUtil.showTimes(activity)) {
-            from_hour.setVisibility(View.GONE);
-            from_time.setVisibility(View.VISIBLE);
-            from_time.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-
-            to_hour.setVisibility(View.GONE);
-            to_time.setVisibility(View.VISIBLE);
-            to_time.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-        } else {
-            from_hour.setVisibility(View.VISIBLE);
-            from_time.setVisibility(View.GONE);
-            from_hour.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-
-            to_hour.setVisibility(View.VISIBLE);
-            to_time.setVisibility(View.GONE);
-            to_hour.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-        }
-
         from_time.setOnClickListener(v -> {
-            final Calendar c = Calendar.getInstance();
-            int mHour = c.get(Calendar.HOUR_OF_DAY);
-            int mMinute = c.get(Calendar.MINUTE);
+            int mHour, mMinute;
+            try {
+                String time = from_time.getText().toString();
+                mHour = Integer.parseInt(time.substring(0, time.indexOf(":")));
+                mMinute = Integer.parseInt(time.substring(time.indexOf(":") + 1));
+            } catch (Exception ignore) {
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+            }
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute) -> {
                         from_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         week.setFromTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
         });
 
         to_time.setOnClickListener(v -> {
-            final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
+            int hour, minute;
+            try {
+                String time = WeekUtils.getMatchingTimeEnd(WeekUtils.getMatchingScheduleBegin(from_time.getText().toString(), activity), activity);
+                hour = Integer.parseInt(time.substring(0, time.indexOf(":")));
+                minute = Integer.parseInt(time.substring(time.indexOf(":") + 1));
+            } catch (Exception ignore) {
+                final Calendar c = Calendar.getInstance();
+                hour = c.get(Calendar.HOUR_OF_DAY);
+                minute = c.get(Calendar.MINUTE);
+            }
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute1) -> {
                         to_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
                         week.setToTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
-                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
                     }, hour, minute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -324,13 +321,17 @@ public class AlertDialogsHelper {
             NumberPicker numberPicker = new NumberPicker(activity);
             numberPicker.setMaxValue(15);
             numberPicker.setMinValue(1);
+            try {
+                numberPicker.setValue(Integer.parseInt(from_hour.getText().toString()));
+            } catch (Exception ignore) {
+            }
             new MaterialDialog.Builder(activity)
                     .customView(numberPicker, false)
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        from_time.setText(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
-                        week.setFromTime(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
                     })
                     .show();
@@ -340,13 +341,17 @@ public class AlertDialogsHelper {
             NumberPicker numberPicker = new NumberPicker(activity);
             numberPicker.setMaxValue(15);
             numberPicker.setMinValue(1);
+            try {
+                numberPicker.setValue(Integer.parseInt(from_hour.getText().toString()) + 1);
+            } catch (Exception ignore) {
+            }
             new MaterialDialog.Builder(activity)
                     .customView(numberPicker, false)
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        to_time.setText(WeekUtils.getMatchingTimeEnd(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
-                        week.setToTime(WeekUtils.getMatchingTimeEnd(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                        week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
                     })
                     .show();
@@ -429,6 +434,24 @@ public class AlertDialogsHelper {
                 subjects.add(w.getSubject());
             }
 
+            if (PreferenceUtil.showTimes(activity)) {
+                from_hour.setVisibility(View.GONE);
+                from_time.setVisibility(View.VISIBLE);
+                from_time.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
+
+                to_hour.setVisibility(View.GONE);
+                to_time.setVisibility(View.VISIBLE);
+                to_time.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
+            } else {
+                from_hour.setVisibility(View.VISIBLE);
+                from_time.setVisibility(View.GONE);
+                from_hour.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
+
+                to_hour.setVisibility(View.VISIBLE);
+                to_time.setVisibility(View.GONE);
+                to_hour.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
+            }
+
             new MaterialDialog.Builder(activity)
                     .title(R.string.pick_a_subject)
                     .items(subjects)
@@ -439,10 +462,39 @@ public class AlertDialogsHelper {
                         room.setText(w.getRoom());
                         select_color.setBackgroundColor(w.getColor());
                         select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
+
+                        String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
+                        ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                        int valueNew = 1;
+                        if (weeks.size() > 0) {
+                            valueNew = WeekUtils.getMatchingScheduleBegin(weeks.get(weeks.size() - 1).getToTime(), activity);
+                        }
+                        from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                        week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                        from_hour.setText("" + valueNew);
+                        to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                        week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                        to_hour.setText("" + valueNew);
+
                         dialog.show();
                     })
                     .positiveText(R.string.new_subject)
-                    .onPositive((dialog1, which) -> dialog.show())
+                    .onPositive((dialog1, which) -> {
+                        String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
+                        ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                        int valueNew = 1;
+                        if (weeks.size() > 0) {
+                            valueNew = WeekUtils.getMatchingScheduleBegin(weeks.get(weeks.size() - 1).getToTime(), activity);
+                        }
+                        from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                        week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                        from_hour.setText("" + valueNew);
+                        to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                        week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                        to_hour.setText("" + valueNew);
+
+                        dialog.show();
+                    })
                     .show();
         });
 
@@ -1114,7 +1166,7 @@ public class AlertDialogsHelper {
         date.setText(exam.getDate());
         time.setText(exam.getTime());
         if (!exam.getTime().trim().isEmpty()) {
-            hour.setText("" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+            hour.setText("" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), activity));
             time.setText(exam.getTime());
         } else {
             hour.setText("0");
@@ -1149,7 +1201,7 @@ public class AlertDialogsHelper {
                     (view, hourOfDay, minute) -> {
                         time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         exam.setTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -1169,8 +1221,8 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        time.setText(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
-                        exam.setTime(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        exam.setTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         hour.setText("" + value);
                     })
                     .show();
@@ -1370,7 +1422,7 @@ public class AlertDialogsHelper {
                     (view, hourOfDay, minute) -> {
                         time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         exam.setTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -1385,8 +1437,8 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        time.setText(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
-                        exam.setTime(WeekUtils.getMatchingTimeBegin(value, PreferenceUtil.getStartTime(activity), PreferenceUtil.getPeriodLength(activity)));
+                        time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        exam.setTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         hour.setText("" + value);
                     })
                     .show();

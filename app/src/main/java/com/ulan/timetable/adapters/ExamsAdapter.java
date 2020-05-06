@@ -122,7 +122,7 @@ public class ExamsAdapter extends ArrayAdapter<Exam> {
         if (PreferenceUtil.showTimes(getContext()))
             holder.time.setText(exam.getTime());
         else if (!exam.getTime().trim().isEmpty())
-            holder.time.setText("" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), PreferenceUtil.getStartTime(getContext()), PreferenceUtil.getPeriodLength(getContext())));
+            holder.time.setText("" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), getContext()));
 
         holder.cardView.setCardBackgroundColor(exam.getColor());
         holder.popup.setOnClickListener(v -> {

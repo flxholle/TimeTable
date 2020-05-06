@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .show();
         }
 
-        NotificationUtil.sendNotificationCurrentLesson(this, false);
         initAll();
     }
 
@@ -86,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initAll() {
+        NotificationUtil.sendNotificationCurrentLesson(this, false);
+        PreferenceUtil.setDoNotDisturb(this, PreferenceUtil.doNotDisturbDontAskAgain(this));
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerview = navigationView.getHeaderView(0);
@@ -279,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         AppCompatActivity activity = this;
 
-        SQLiteToExcel sqliteToExcel = new SQLiteToExcel(this, DbHelper.DB_NAME, path);
+        SQLiteToExcel sqliteToExcel = new SQLiteToExcel(this, DbHelper.getDBName(this), path);
         sqliteToExcel.exportAllTables(filename, new SQLiteToExcel.ExportListener() {
             @Override
             public void onStart() {
@@ -330,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DbHelper dbHelper = new DbHelper(this);
         dbHelper.deleteAll();
 
-        ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), DbHelper.DB_NAME, false);
+        ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), DbHelper.getDBName(this), false);
         excelToSQLite.importFromFile(path, new ExcelToSQLite.ImportListener() {
             @Override
             public void onStart() {
@@ -344,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .setDuration(ChocoBar.LENGTH_LONG)
                         .green()
                         .show());
-                MainActivity.this.onStart();
+                initAll();
             }
 
             @Override
@@ -372,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 .setDuration(ChocoBar.LENGTH_LONG)
                                 .green()
                                 .show();
-                        MainActivity.this.onStart();
+                        initAll();
                     } catch (Exception e) {
                         ChocoBar.builder().setActivity(this)
                                 .setText(getString(R.string.remove_all_failed))

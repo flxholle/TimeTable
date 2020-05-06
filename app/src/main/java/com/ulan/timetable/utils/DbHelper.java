@@ -13,14 +13,16 @@ import com.ulan.timetable.model.Teacher;
 import com.ulan.timetable.model.Week;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Ulan on 07.09.2018.
  */
-public class DbHelper extends SQLiteOpenHelper{
+public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 6;
-    public static final String DB_NAME = "timetabledb";
+    private static final String DB_NAME = "timetabledb";
+    private static final String DB_NAME_ODD_WEEK = "timetabledb_odd";
     private static final String TIMETABLE = "timetable";
     private static final String WEEK_ID = "id";
     private static final String WEEK_SUBJECT = "subject";
@@ -32,7 +34,7 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final String WEEK_COLOR = "color";
 
     private static final String HOMEWORKS = "homeworks";
-    private static final String HOMEWORKS_ID  = "id";
+    private static final String HOMEWORKS_ID = "id";
     private static final String HOMEWORKS_SUBJECT = "subject";
     private static final String HOMEWORKS_DESCRIPTION = "description";
     private static final String HOMEWORKS_DATE = "date";
@@ -61,12 +63,26 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final String EXAMS_TIME = "time";
     private static final String EXAMS_COLOR = "color";
 
-
-    public DbHelper(Context context){
-        super(context , DB_NAME, null, DB_VERSION);
+    public DbHelper(Context context) {
+        super(context, getDBName(context), null, DB_VERSION);
     }
 
-     public void onCreate(SQLiteDatabase db) {
+    public DbHelper(Context context, Calendar now) {
+        super(context, getDBName(context, now), null, DB_VERSION);
+    }
+
+    public static String getDBName(Context context) {
+        return getDBName(context, Calendar.getInstance());
+    }
+
+    private static String getDBName(Context context, Calendar now) {
+        if (PreferenceUtil.isEvenWeek(context, now))
+            return DB_NAME;
+        else
+            return DB_NAME_ODD_WEEK;
+    }
+
+    public void onCreate(SQLiteDatabase db) {
         String CREATE_TIMETABLE = "CREATE TABLE " + TIMETABLE + "("
                 + WEEK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + WEEK_SUBJECT + " TEXT,"
@@ -75,7 +91,7 @@ public class DbHelper extends SQLiteOpenHelper{
                 + WEEK_ROOM + " TEXT,"
                 + WEEK_FROM_TIME + " TEXT,"
                 + WEEK_TO_TIME + " TEXT,"
-                + WEEK_COLOR + " INTEGER" +  ")";
+                + WEEK_COLOR + " INTEGER" + ")";
 
         String CREATE_HOMEWORKS = "CREATE TABLE " + HOMEWORKS + "("
                 + HOMEWORKS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -139,7 +155,7 @@ public class DbHelper extends SQLiteOpenHelper{
     /**
      * Methods for Week fragments
      **/
-    public void insertWeek(Week week){
+    public void insertWeek(Week week) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WEEK_SUBJECT, week.getSubject());
@@ -149,7 +165,7 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(WEEK_FROM_TIME, week.getFromTime());
         contentValues.put(WEEK_TO_TIME, week.getToTime());
         contentValues.put(WEEK_COLOR, week.getColor());
-        db.insert(TIMETABLE,null, contentValues);
+        db.insert(TIMETABLE, null, contentValues);
         db.update(TIMETABLE, contentValues, WEEK_FRAGMENT, null);
         db.close();
     }
@@ -166,20 +182,20 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(WEEK_SUBJECT, week.getSubject());
         contentValues.put(WEEK_TEACHER, week.getTeacher());
         contentValues.put(WEEK_ROOM, week.getRoom());
-        contentValues.put(WEEK_FROM_TIME,week.getFromTime());
+        contentValues.put(WEEK_FROM_TIME, week.getFromTime());
         contentValues.put(WEEK_TO_TIME, week.getToTime());
         contentValues.put(WEEK_COLOR, week.getColor());
         db.update(TIMETABLE, contentValues, WEEK_ID + " = " + week.getId(), null);
         db.close();
     }
 
-    public ArrayList<Week> getWeek(String fragment){
+    public ArrayList<Week> getWeek(String fragment) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Week> weeklist = new ArrayList<>();
         Week week;
-        Cursor cursor = db.rawQuery("SELECT * FROM ( SELECT * FROM "+TIMETABLE+" ORDER BY " + WEEK_FROM_TIME + " ) WHERE "+ WEEK_FRAGMENT +" LIKE '"+fragment+"%'",null);
-        while (cursor.moveToNext()){
+        Cursor cursor = db.rawQuery("SELECT * FROM ( SELECT * FROM " + TIMETABLE + " ORDER BY " + WEEK_FROM_TIME + " ) WHERE " + WEEK_FRAGMENT + " LIKE '" + fragment + "%'", null);
+        while (cursor.moveToNext()) {
             week = new Week();
             week.setId(cursor.getInt(cursor.getColumnIndex(WEEK_ID)));
             week.setSubject(cursor.getString(cursor.getColumnIndex(WEEK_SUBJECT)));
@@ -190,7 +206,7 @@ public class DbHelper extends SQLiteOpenHelper{
             week.setColor(cursor.getInt(cursor.getColumnIndex(WEEK_COLOR)));
             weeklist.add(week);
         }
-        return  weeklist;
+        return weeklist;
     }
 
     /**
@@ -203,7 +219,7 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(HOMEWORKS_DESCRIPTION, homework.getDescription());
         contentValues.put(HOMEWORKS_DATE, homework.getDate());
         contentValues.put(HOMEWORKS_COLOR, homework.getColor());
-        db.insert(HOMEWORKS,null, contentValues);
+        db.insert(HOMEWORKS, null, contentValues);
         db.close();
     }
 
@@ -220,7 +236,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public void deleteHomeworkById(Homework homework) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(HOMEWORKS,HOMEWORKS_ID + " = ? ", new String[]{String.valueOf(homework.getId())});
+        db.delete(HOMEWORKS, HOMEWORKS_ID + " = ? ", new String[]{String.valueOf(homework.getId())});
         db.close();
     }
 
@@ -229,8 +245,8 @@ public class DbHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Homework> homelist = new ArrayList<>();
         Homework homework;
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ HOMEWORKS + " ORDER BY datetime(" + HOMEWORKS_DATE + ") ASC",null);
-        while (cursor.moveToNext()){
+        Cursor cursor = db.rawQuery("SELECT * FROM " + HOMEWORKS + " ORDER BY datetime(" + HOMEWORKS_DATE + ") ASC", null);
+        while (cursor.moveToNext()) {
             homework = new Homework();
             homework.setId(cursor.getInt(cursor.getColumnIndex(HOMEWORKS_ID)));
             homework.setSubject(cursor.getString(cursor.getColumnIndex(HOMEWORKS_SUBJECT)));
@@ -241,7 +257,7 @@ public class DbHelper extends SQLiteOpenHelper{
         }
         cursor.close();
         db.close();
-        return  homelist;
+        return homelist;
     }
 
     /**
@@ -257,7 +273,7 @@ public class DbHelper extends SQLiteOpenHelper{
         db.close();
     }
 
-    public void updateNote(Note note)  {
+    public void updateNote(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOTES_TITLE, note.getTitle());
@@ -269,7 +285,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public void deleteNoteById(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(NOTES, NOTES_ID + " =? ", new String[] {String.valueOf(note.getId())});
+        db.delete(NOTES, NOTES_ID + " =? ", new String[]{String.valueOf(note.getId())});
         db.close();
     }
 
@@ -320,7 +336,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public void deleteTeacherById(Teacher teacher) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TEACHERS, TEACHERS_ID + " =? ", new String[] {String.valueOf(teacher.getId())});
+        db.delete(TEACHERS, TEACHERS_ID + " =? ", new String[]{String.valueOf(teacher.getId())});
         db.close();
     }
 
@@ -375,7 +391,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public void deleteExamById(Exam exam) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(EXAMS, EXAMS_ID + " =? ", new String[] {String.valueOf(exam.getId())});
+        db.delete(EXAMS, EXAMS_ID + " =? ", new String[]{String.valueOf(exam.getId())});
         db.close();
     }
 

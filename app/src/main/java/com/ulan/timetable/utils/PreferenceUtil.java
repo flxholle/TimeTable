@@ -396,4 +396,42 @@ public class PreferenceUtil {
     public static boolean showTimes(Context context) {
         return getBooleanSettings(context, "show_times", false);
     }
+
+    //Even, odd weeks
+    public static boolean isTwoWeeksEnabled(Context context) {
+        return getBooleanSettings(context, "two_weeks", false);
+    }
+
+    public static void setTermStart(Context context, int year, int month, int day) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putInt("term_year", year);
+        editor.putInt("term_month", month);
+        editor.putInt("term_day", day);
+        editor.commit();
+    }
+
+    public static Calendar getTermStart(Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        Calendar calendar = Calendar.getInstance();
+        int year = sharedPref.getInt("term_year", -999999999);
+
+        //If start has not been set
+        if (year == -999999999) {
+            setTermStart(context, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            return getTermStart(context);
+        }
+
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, sharedPref.getInt("term_month", 0));
+        calendar.set(Calendar.DAY_OF_MONTH, sharedPref.getInt("term_day", 0));
+
+        return calendar;
+    }
+
+    public static boolean isEvenWeek(Context context, Calendar now) {
+        if (isTwoWeeksEnabled(context)) {
+            return WeekUtils.isEvenWeek(getTermStart(context), now);
+        } else
+            return true;
+    }
 }

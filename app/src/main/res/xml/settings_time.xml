@@ -15,4 +15,14 @@
         android:summary="@string/show_times_instead_of_lessons_desc"
         android:title="@string/show_times_instead_of_lessons"
         app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="two_weeks"
+        android:title="@string/enable_even_odd_weeks"
+        app:iconSpaceReserved="false" />
+    <Preference
+        android:key="term_start"
+        android:title="@string/start_of_term"
+        android:summary="@string/start_of_term_desc"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>

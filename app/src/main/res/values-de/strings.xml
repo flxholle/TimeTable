@@ -188,8 +188,8 @@
     <string name="delete_exam">die Prüfung %1$s</string>
     <string name="about_libs_title">Open-Source Bibliotheken</string>
 
-    <string name="start_of_school">Schulstart</string>
-    <string name="length_of_period">Stundenlänge</string>
+    <string name="start_of_school">Schulstart (Nur einmal einstellen)</string>
+    <string name="length_of_period">Stundenlänge (Nur einmal einstellen)</string>
     <string name="minutes">Minuten</string>
     <string name="change_summary_library">Darstellung ändern</string>
     <string name="summary_activity_title">Zusammenfassung</string>
@@ -243,6 +243,11 @@
     <string name="show_times_instead_of_lessons_desc">Zeige die Uhrzeiten anstatt der Stundenzahl an. Zum Beispiel 8:00 statt 1</string>
     <string name="time_settings">Zeiteinstellungen</string>
     <string name="time_settings_desc">Einstellungen über deinen Schulstart und deine Stundenlänge</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="first_start_setup">Es müssen ein paar Dinge zu Beginn eingestellt werden.</string>
+    <string name="start_of_term">Beginn des Schuljahrs/Semesters</string>
+    <string name="enable_even_odd_weeks">Gerade/Ungerade Wochen aktivieren</string>
+    <string name="start_of_term_desc">Mit Hilfe dieses Datums wird berechnet ob gerade eine gerade oder eine ungerade Woche ist.
+        \nDie erste Woche ist immer eine gerade Woche
+        \nWenn du die Woche manuell verändern möchtest, ändere einfach die erhöhe einfach die eingestellte Woche um 1.</string>
 </resources>

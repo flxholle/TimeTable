@@ -2,6 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <Preference
+        android:icon="@drawable/ic_access_time_black_24dp"
+        android:key="time_settings"
+        android:summary="@string/time_settings_desc"
+        android:title="@string/time_settings" />
+
     <SwitchPreferenceCompat
         android:defaultValue="false"
         android:icon="@drawable/ic_view_week_black_24dp"
@@ -16,12 +22,6 @@
         android:singleLine="true"
         android:summary="@string/school_website_setting_summary"
         android:title="@string/school_website_setting" />
-
-    <Preference
-        android:icon="@drawable/ic_access_time_black_24dp"
-        android:key="time_settings"
-        android:summary="@string/time_settings_desc"
-        android:title="@string/time_settings" />
 
     <ListPreference
         android:defaultValue="switch"

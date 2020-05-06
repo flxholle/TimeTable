@@ -102,8 +102,8 @@ public class SummaryActivity extends AppCompatActivity {
         for (int j = 0; j < weeks.size(); j++) {
             for (int i = 0; i < weeks.get(j).size(); i++) {
                 Week w = weeks.get(j).get(i);
-                int start = WeekUtils.getMatchingScheduleBegin(w.getFromTime(), PreferenceUtil.getStartTime(this), PreferenceUtil.getPeriodLength(this));
-                int end = WeekUtils.getMatchingScheduleEnd(w.getToTime(), PreferenceUtil.getStartTime(this), PreferenceUtil.getPeriodLength(this));
+                int start = WeekUtils.getMatchingScheduleBegin(w.getFromTime(), this);
+                int end = WeekUtils.getMatchingScheduleEnd(w.getToTime(), this);
                 durationStrings.get(j).add(i, generateLessonsString(end - start + 1, start - 1));
             }
         }

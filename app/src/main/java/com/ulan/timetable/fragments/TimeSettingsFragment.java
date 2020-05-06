@@ -1,5 +1,6 @@
 package com.ulan.timetable.fragments;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.widget.NumberPicker;
@@ -11,6 +12,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.ulan.timetable.R;
 import com.ulan.timetable.utils.PreferenceUtil;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 
 public class TimeSettingsFragment extends PreferenceFragmentCompat {
 
@@ -19,13 +23,12 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
         setPreferencesFromResource(R.xml.settings_time, rootKey);
 
         Preference myPref = findPreference("start_time");
-        Preference finalMyPref = myPref;
         myPref.setOnPreferenceClickListener((Preference p) -> {
             int[] oldTimes = PreferenceUtil.getStartTime(getContext());
             TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                     (view, hourOfDay, minute) -> {
                         PreferenceUtil.setStartTime(getContext(), hourOfDay, minute, 0);
-                        finalMyPref.setSummary(hourOfDay + ":" + minute);
+                        p.setSummary(hourOfDay + ":" + minute);
                     }, oldTimes[0], oldTimes[1], true);
             timePickerDialog.setTitle(R.string.start_of_school);
             timePickerDialog.show();
@@ -36,7 +39,6 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
 
 
         myPref = findPreference("set_period_length");
-        Preference finalMyPref1 = myPref;
         myPref.setOnPreferenceClickListener((Preference p) -> {
             NumberPicker numberPicker = new NumberPicker(getContext());
             numberPicker.setMaxValue(180);
@@ -48,11 +50,46 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
                     .onPositive((d, w) -> {
                         int value = numberPicker.getValue();
                         PreferenceUtil.setPeriodLength(getContext(), value);
-                        finalMyPref1.setSummary(value + " " + getString(R.string.minutes));
+                        p.setSummary(value + " " + getString(R.string.minutes));
                     })
                     .show();
             return true;
         });
         myPref.setSummary(PreferenceUtil.getPeriodLength(getContext()) + " " + getString(R.string.minutes));
+
+        myPref = findPreference("two_weeks");
+        myPref.setOnPreferenceClickListener((p) -> {
+            setTermStartVisibility();
+            return true;
+        });
+
+        setTermStartVisibility();
+        myPref = findPreference("term_start");
+
+        Calendar calendar = PreferenceUtil.getTermStart(requireContext());
+        int mYear = calendar.get(Calendar.YEAR);
+        int mMonth = calendar.get(Calendar.MONTH);
+        int mDayofMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        myPref.setTitle(getString(R.string.start_of_term) + " (" + String.format(Locale.getDefault(), "%02d-%02d-%02d", mYear, mMonth + 1, mDayofMonth) + ")");
+        myPref.setOnPreferenceClickListener((p) -> {
+            Calendar calendar2 = PreferenceUtil.getTermStart(requireContext());
+            int mYear2 = calendar2.get(Calendar.YEAR);
+            int mMonth2 = calendar2.get(Calendar.MONTH);
+            int mDayofMonth2 = calendar2.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(requireActivity(), (view, year, month, dayOfMonth) -> {
+                PreferenceUtil.setTermStart(requireContext(), year, month, dayOfMonth);
+                p.setTitle(getString(R.string.start_of_term) + " (" + String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth) + ")");
+            }, mYear2, mMonth2, mDayofMonth2);
+
+            datePickerDialog.setTitle(R.string.choose_date);
+            datePickerDialog.show();
+            return true;
+        });
+    }
+
+    private void setTermStartVisibility() {
+        findPreference("term_start").setVisible(PreferenceUtil.isTwoWeeksEnabled(requireContext()));
     }
 }

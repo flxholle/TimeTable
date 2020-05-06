@@ -45,7 +45,7 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         long currentTime = AppWidgetDao.getAppWidgetCurrentTime(mAppWidgetId, System.currentTimeMillis(), mContext);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(currentTime);
-        content = new DbHelper(mContext).getWeek(getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK)));
+        content = new DbHelper(mContext, calendar).getWeek(getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK)));
     }
 
     @Override
@@ -75,8 +75,8 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
             if (PreferenceUtil.showTimes(mContext))
                 time = week.getFromTime() + " - " + week.getToTime();
             else {
-                int start = WeekUtils.getMatchingScheduleBegin(week.getFromTime(), PreferenceUtil.getStartTime(mContext), PreferenceUtil.getPeriodLength(mContext));
-                int end = WeekUtils.getMatchingScheduleEnd(week.getToTime(), PreferenceUtil.getStartTime(mContext), PreferenceUtil.getPeriodLength(mContext));
+                int start = WeekUtils.getMatchingScheduleBegin(week.getFromTime(), mContext);
+                int end = WeekUtils.getMatchingScheduleEnd(week.getToTime(), mContext);
                 if (start == end) {
                     time = start + ". " + mContext.getString(R.string.lesson);
                 } else {

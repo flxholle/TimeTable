@@ -162,12 +162,12 @@
 
     <string name="summary_activity_title">Summary</string>
     <string name="change_summary_library">Change presentation</string>
-    <string name="start_of_school">Start of school</string>
-    <string name="length_of_period">Length of the lesson</string>
+    <string name="start_of_school">School start (set only once)</string>
+    <string name="length_of_period">Duration of your subjects (set only once)</string>
     <string name="minutes">minutes</string>
     <string name="lesson">lesson</string>
-    <string name="show_times_instead_of_lessons">Show times of lessons</string>
-    <string name="show_times_instead_of_lessons_desc">Show the times instead of the lessons number, e.g. 8:00 instead of 1</string>
+    <string name="show_times_instead_of_lessons">Show exact times of subjects</string>
+    <string name="show_times_instead_of_lessons_desc">Show the exact times instead of the subject\'s number, e.g. 8:00 instead of 1</string>
 
     <string-array name="timetable_header">
         <item>Mon</item>
@@ -212,11 +212,16 @@
     <string name="style_1">Style 1</string>
     <string name="style_2">Style 2</string>
     <string name="style_3">Style 3</string>
-    <string name="no_class">No schedule</string>
+    <string name="no_class">No subjects</string>
     <string name="confirm">Confirm</string>
 
     <string name="time_settings">Time settings</string>
     <string name="time_settings_desc">Settings about the start of your school and the length of your lessons.</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="first_start_setup">Some things have to be set at the beginning.</string>
+    <string name="start_of_term">Start of your term</string>
+    <string name="start_of_term_desc">With this value we calculate if it\'s now an even or an odd week.
+        \nThe first week of your term is always an even week.
+        \nIf you want to switch the weeks manually, just change the week of your term start.</string>
+    <string name="enable_even_odd_weeks">Enable even/odd weeks</string>
 </resources>

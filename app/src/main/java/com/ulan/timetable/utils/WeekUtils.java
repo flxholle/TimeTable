@@ -18,6 +18,8 @@
 
 package com.ulan.timetable.utils;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,24 +77,18 @@ public class WeekUtils {
         return weeks;
     }
 
-    public static ArrayList<Week> getAllWeeksAndRemoveDuplicates(DbHelper dbHelper) {
-        ArrayList<Week> weeks = getAllWeeks(dbHelper);
-        ArrayList<Week> returnValue = new ArrayList<>();
-        ArrayList<String> returnValueSubjects = new ArrayList<>();
-        for (Week w : weeks) {
-            if (!returnValueSubjects.contains(w.getSubject().toUpperCase())) {
-                returnValue.add(w);
-                returnValueSubjects.add(w.getSubject().toUpperCase());
-            }
-        }
-        return returnValue;
-    }
-
     @NotNull
     public static ArrayList<Week> getPreselection(@NonNull AppCompatActivity activity) {
         DbHelper dbHelper = new DbHelper(activity);
+        ArrayList<Week> customWeeks = getAllWeeks(dbHelper);
 
-        ArrayList<Week> customWeeks = getAllWeeksAndRemoveDuplicates(dbHelper);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) - 1);
+        dbHelper = new DbHelper(activity, calendar);
+        customWeeks.addAll(getAllWeeks(dbHelper));
+
+        customWeeks = removeDuplicates(customWeeks);
+
         ArrayList<String> subjects = new ArrayList<>();
         for (Week w : customWeeks) {
             subjects.add(w.getSubject().toUpperCase());
@@ -110,12 +106,32 @@ public class WeekUtils {
         return customWeeks;
     }
 
+    private static ArrayList<Week> removeDuplicates(ArrayList<Week> weeks) {
+        ArrayList<Week> returnValue = new ArrayList<>();
+        ArrayList<String> returnValueSubjects = new ArrayList<>();
+        for (Week w : weeks) {
+            if (!returnValueSubjects.contains(w.getSubject().toUpperCase())) {
+                returnValue.add(w);
+                returnValueSubjects.add(w.getSubject().toUpperCase());
+            }
+        }
+        return returnValue;
+    }
+
+    public static int getMatchingScheduleBegin(String time, Context context) {
+        return getMatchingScheduleBegin(time, PreferenceUtil.getStartTime(context), PreferenceUtil.getPeriodLength(context));
+    }
+
     public static int getMatchingScheduleBegin(String time, int[] startTime, int lessonDuration) {
         int schedule = getDurationOfWeek(new Week("", "", "", startTime[0] + ":" + (startTime[1] - 1), time, 0), false, lessonDuration);
         if (schedule == 0)
             return 1;
         else
             return schedule;
+    }
+
+    public static int getMatchingScheduleEnd(String time, Context context) {
+        return getMatchingScheduleEnd(time, PreferenceUtil.getStartTime(context), PreferenceUtil.getPeriodLength(context));
     }
 
     public static int getMatchingScheduleEnd(String time, int[] startTime, int lessonDuration) {
@@ -126,6 +142,10 @@ public class WeekUtils {
             return schedule;
     }
 
+    public static String getMatchingTimeBegin(int hour, Context context) {
+        return getMatchingTimeBegin(hour, PreferenceUtil.getStartTime(context), PreferenceUtil.getPeriodLength(context));
+    }
+
     public static String getMatchingTimeBegin(int hour, int[] startTime, int lessonDuration) {
         Calendar startOfSchool = Calendar.getInstance();
         startOfSchool.set(Calendar.HOUR_OF_DAY, startTime[0]);
@@ -133,6 +153,10 @@ public class WeekUtils {
         startOfSchool.setTimeInMillis(startOfSchool.getTimeInMillis() + (hour - 1) * lessonDuration * 60 * 1000);
 
         return String.format(Locale.getDefault(), "%02d:%02d", startOfSchool.get(Calendar.HOUR_OF_DAY), startOfSchool.get(Calendar.MINUTE));
+    }
+
+    public static String getMatchingTimeEnd(int hour, Context context) {
+        return getMatchingTimeEnd(hour, PreferenceUtil.getStartTime(context), PreferenceUtil.getPeriodLength(context));
     }
 
     public static String getMatchingTimeEnd(int hour, int[] startTime, int lessonDuration) {
@@ -170,5 +194,20 @@ public class WeekUtils {
             multiplier = inMinutes / lessonDuration;
 
         return multiplier;
+    }
+
+    public static boolean isEvenWeek(Calendar termStart, Calendar now) {
+        boolean isEven = true;
+
+        int weekDifference = now.get(Calendar.WEEK_OF_YEAR) - termStart.get(Calendar.WEEK_OF_YEAR);
+        if (weekDifference < 0) {
+            weekDifference = -weekDifference;
+        }
+
+        for (int i = 0; i < weekDifference; i++) {
+            isEven = !isEven;
+        }
+
+        return isEven;
     }
 }

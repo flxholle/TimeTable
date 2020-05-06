@@ -121,8 +121,8 @@ public class WeekAdapter extends ArrayAdapter<Week> {
         if (PreferenceUtil.showTimes(getContext()))
             holder.time.setText(week.getFromTime() + " - " + week.getToTime());
         else {
-            int start = WeekUtils.getMatchingScheduleBegin(week.getFromTime(), PreferenceUtil.getStartTime(getContext()), PreferenceUtil.getPeriodLength(getContext()));
-            int end = WeekUtils.getMatchingScheduleEnd(week.getToTime(), PreferenceUtil.getStartTime(getContext()), PreferenceUtil.getPeriodLength(getContext()));
+            int start = WeekUtils.getMatchingScheduleBegin(week.getFromTime(), getContext());
+            int end = WeekUtils.getMatchingScheduleEnd(week.getToTime(), getContext());
             if (start == end) {
                 holder.time.setText(start + ". " + getContext().getString(R.string.lesson));
             } else {
