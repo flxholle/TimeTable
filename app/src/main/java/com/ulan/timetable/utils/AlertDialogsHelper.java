@@ -463,7 +463,7 @@ public class AlertDialogsHelper {
                         ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
                         int valueNew = 1;
                         if (weeks.size() > 0) {
-                            valueNew = WeekUtils.getMatchingScheduleBegin(weeks.get(weeks.size() - 1).getToTime(), activity);
+                            valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
                         }
                         from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
@@ -480,7 +480,7 @@ public class AlertDialogsHelper {
                         ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
                         int valueNew = 1;
                         if (weeks.size() > 0) {
-                            valueNew = WeekUtils.getMatchingScheduleBegin(weeks.get(weeks.size() - 1).getToTime(), activity);
+                            valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
                         }
                         from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
