@@ -34,6 +34,7 @@ import me.yaoandy107.ntut_timetable.model.StudentCourse;
 public class SummaryActivity extends AppCompatActivity {
     private int lessonDuration;
     private String schoolStart;
+    ArrayList<ArrayList<Week>> weeks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,16 @@ public class SummaryActivity extends AppCompatActivity {
         schoolStart = oldTimes[0] + ":" + oldTimes[1];
 
         findViewById(R.id.courseTable).setVisibility(View.GONE);
+
+        DbHelper dbHelper = new DbHelper(this);
+        weeks = new ArrayList<>();
+        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
+        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));
+        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_WEDNESDAY_FRAGMENT));
+        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_THURSDAY_FRAGMENT));
+        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_FRIDAY_FRAGMENT));
+        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SATURDAY_FRAGMENT));
+        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SUNDAY_FRAGMENT));
 
         if (PreferenceUtil.isSummaryLibrary1(this))
             setupCourseTableLibrary1();
@@ -76,7 +87,6 @@ public class SummaryActivity extends AppCompatActivity {
      * Setup the course Table with Library: https://github.com/asdoi/TimetableUI
      */
     private void setupCourseTableLibrary1() {
-        DbHelper dbHelper = new DbHelper(this);
 
         CourseTableLayout courseTable = findViewById(R.id.courseTable);
         courseTable.setVisibility(View.VISIBLE);
@@ -84,15 +94,6 @@ public class SummaryActivity extends AppCompatActivity {
 
         StudentCourse studentCourse = new StudentCourse();
         ArrayList<CourseInfo> courseInfoList = new ArrayList<>();
-
-        List<List<Week>> weeks = new ArrayList<>();
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_WEDNESDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_THURSDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_FRIDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SATURDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SUNDAY_FRAGMENT));
 
         List<List<String>> durationStrings = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
@@ -136,10 +137,6 @@ public class SummaryActivity extends AppCompatActivity {
         });
     }
 
-    private int getDurationOfWeek(@NonNull Week w) {
-        return WeekUtils.getDurationOfWeek(w, false, lessonDuration);
-    }
-
     @NonNull
     private static String generateLessonsString(int duration, int hoursBefore) {
         StringBuilder durationString = new StringBuilder();
@@ -180,16 +177,6 @@ public class SummaryActivity extends AppCompatActivity {
      * Setup the course Table with Library: https://github.com/asdoi/TimetableView
      */
     private void setupTimetableLibrary2() {
-        List<List<Week>> weeks = new ArrayList<>();
-        DbHelper dbHelper = new DbHelper(this);
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_WEDNESDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_THURSDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_FRIDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SATURDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SUNDAY_FRAGMENT));
-
         List<String> done = new ArrayList<>();
         ArrayList<String> colors = new ArrayList<>();
         List<ArrayList<Schedule>> timetableContent = new ArrayList<>();

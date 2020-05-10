@@ -20,25 +20,35 @@
             android:background="?colorPrimary"
             app:popupTheme="?attr/popupMenuStyle" />
 
+        <TextView
+            android:id="@+id/main_week_tV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:gravity="center"
+            android:text="Even week"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="12sp" />
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:clipToPadding="false"
             android:backgroundTint="?colorPrimary"
-            app:tabIndicatorColor="?colorAccent"
-            app:tabSelectedTextColor="?android:attr/textColorPrimary"
-            app:tabTextColor="?android:attr/textColorSecondary"
+            android:clipToPadding="false"
             android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_anchor="@+id/include"
             app:layout_anchorGravity="top|center"
             app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
             app:tabGravity="fill"
+            app:tabIndicatorColor="?colorAccent"
             app:tabMode="scrollable"
             app:tabPaddingEnd="20dp"
-            app:tabPaddingStart="20dp" />
+            app:tabPaddingStart="20dp"
+            app:tabSelectedTextColor="?android:attr/textColorPrimary"
+            app:tabTextColor="?android:attr/textColorSecondary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

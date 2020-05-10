@@ -82,11 +82,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onStart() {
         super.onStart();
         PreferenceUtil.setDoNotDisturb(this, PreferenceUtil.doNotDisturbDontAskAgain(this));
+        setupWeeksTV();
     }
 
     private void initAll() {
         NotificationUtil.sendNotificationCurrentLesson(this, false);
         PreferenceUtil.setDoNotDisturb(this, PreferenceUtil.doNotDisturbDontAskAgain(this));
+
+        setupWeeksTV();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -113,6 +116,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setupCustomDialog();
 
         if (switchSevenDays) changeFragments(true);
+    }
+
+    private void setupWeeksTV() {
+        TextView weekView = findViewById(R.id.main_week_tV);
+        if (PreferenceUtil.isTwoWeeksEnabled(this)) {
+            weekView.setVisibility(View.VISIBLE);
+            if (PreferenceUtil.isEvenWeek(this, Calendar.getInstance()))
+                weekView.setText(R.string.even_week);
+            else
+                weekView.setText(R.string.odd_week);
+        } else
+            weekView.setVisibility(View.GONE);
     }
 
     private void setupFragments() {

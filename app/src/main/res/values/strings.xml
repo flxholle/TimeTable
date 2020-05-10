@@ -162,8 +162,8 @@
 
     <string name="summary_activity_title">Summary</string>
     <string name="change_summary_library">Change presentation</string>
-    <string name="start_of_school">School start (set only once)</string>
-    <string name="length_of_period">Duration of your subjects (set only once)</string>
+    <string name="start_of_school">School start (set only on first app start)</string>
+    <string name="length_of_period">Duration of your subjects (set only on first app start)</string>
     <string name="minutes">minutes</string>
     <string name="lesson">lesson</string>
     <string name="show_times_instead_of_lessons">Show exact times of subjects</string>
@@ -224,4 +224,6 @@
         \nThe first week of your term is always an even week.
         \nIf you want to switch the weeks manually, just change the week of your term start.</string>
     <string name="enable_even_odd_weeks">Enable even/odd weeks</string>
+    <string name="even_week">Even week</string>
+    <string name="odd_week">Odd week</string>
 </resources>
