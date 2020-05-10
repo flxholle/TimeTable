@@ -89,8 +89,12 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
                 }
             }
 
-            String text = week.getSubject() + ": " + time + ", " + week.getRoom() + " (" + week.getTeacher() + ")";
-            rv.setTextViewText(R.id.widget_text, text);
+            StringBuilder text = new StringBuilder(week.getSubject()).append(": ").append(time);
+            if (!week.getRoom().trim().isEmpty())
+                text.append(", ").append(week.getRoom());
+            if (!week.getTeacher().trim().isEmpty())
+                text.append(" (").append(week.getTeacher()).append(")");
+            rv.setTextViewText(R.id.widget_text, text.toString());
         }
 
         //Set OpenApp Button intent

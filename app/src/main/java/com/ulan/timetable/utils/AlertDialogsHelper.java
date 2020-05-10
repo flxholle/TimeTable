@@ -91,6 +91,15 @@ public class AlertDialogsHelper {
                         from_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         week.setFromTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
+                        try {
+                            int value = WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity);
+                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -104,6 +113,15 @@ public class AlertDialogsHelper {
                         to_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
                         week.setToTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
                         to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
+                        try {
+                            int value = WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity);
+                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -122,6 +140,14 @@ public class AlertDialogsHelper {
                         from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
+                        try {
+                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     })
                     .show();
         });
@@ -139,6 +165,14 @@ public class AlertDialogsHelper {
                         to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
                         week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
+                        try {
+                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     })
                     .show();
         });
@@ -289,6 +323,15 @@ public class AlertDialogsHelper {
                         from_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         week.setFromTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
+                        try {
+                            int value = WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity);
+                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     }, mHour, mMinute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -310,6 +353,15 @@ public class AlertDialogsHelper {
                         to_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
                         week.setToTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
                         to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
+                        try {
+                            int value = WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity);
+                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     }, hour, minute, true);
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -331,6 +383,14 @@ public class AlertDialogsHelper {
                         from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
+                        try {
+                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     })
                     .show();
         });
@@ -351,6 +411,14 @@ public class AlertDialogsHelper {
                         to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
                         week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
+                        try {
+                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_hour.setText("" + value);
+                            }
+                        } catch (Exception ignore) {
+                        }
                     })
                     .show();
         });
