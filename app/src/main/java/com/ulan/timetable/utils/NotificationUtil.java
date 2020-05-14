@@ -159,6 +159,9 @@ public class NotificationUtil {
                 .setOnlyAlertOnce(!alert)
                 .setContentIntent(pendingIntent);
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            mNotifyBuilder.setPriority(NotificationCompat.PRIORITY_LOW);
+        }
 
         if (PreferenceUtil.isAlwaysNotification(context)) {
             //Dismiss button intent
