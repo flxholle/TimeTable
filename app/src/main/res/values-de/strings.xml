@@ -250,4 +250,8 @@
     <string name="start_of_term_desc">Mit Hilfe dieses Datums wird berechnet ob gerade eine gerade oder eine ungerade Woche ist.
         \nDie erste Woche ist immer eine gerade Woche
         \nWenn du die Woche manuell verändern möchtest, ändere einfach die erhöhe einfach die eingestellte Woche um 1.</string>
+    <string name="even_week">Gerade Woche</string>
+    <string name="odd_week">Ungerade Woche</string>
+    <string name="intelligent_auto_fill">Automatisch passende Start-/End-Zeiten</string>
+    <string name="intelligent_auto_fill_desc">Automatisch die passenden Start-/End-Zeiten zu deinen Eingaben auswählen.</string>
 </resources>

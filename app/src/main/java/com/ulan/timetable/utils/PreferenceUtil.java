@@ -436,4 +436,9 @@ public class PreferenceUtil {
         } else
             return true;
     }
+
+
+    public static boolean isIntelligentAutoFill(Context context) {
+        return getBooleanSettings(context, "auto_fill", true);
+    }
 }

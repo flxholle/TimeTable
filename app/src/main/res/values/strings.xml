@@ -226,4 +226,6 @@
     <string name="enable_even_odd_weeks">Enable even/odd weeks</string>
     <string name="even_week">Even week</string>
     <string name="odd_week">Odd week</string>
+    <string name="intelligent_auto_fill">Automatically select start/end</string>
+    <string name="intelligent_auto_fill_desc">Automatically select the matching begin/end time to your inputs.</string>
 </resources>

@@ -93,7 +93,7 @@ public class AlertDialogsHelper {
                         from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity);
-                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                            if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
@@ -115,7 +115,7 @@ public class AlertDialogsHelper {
                         to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity);
-                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                            if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
@@ -141,7 +141,7 @@ public class AlertDialogsHelper {
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
                         try {
-                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                            if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
@@ -166,7 +166,7 @@ public class AlertDialogsHelper {
                         week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
                         try {
-                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                            if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
@@ -325,7 +325,7 @@ public class AlertDialogsHelper {
                         from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity);
-                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                            if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
@@ -355,7 +355,7 @@ public class AlertDialogsHelper {
                         to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity);
-                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                            if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
@@ -384,7 +384,7 @@ public class AlertDialogsHelper {
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
                         try {
-                            if (Integer.parseInt(to_hour.getText().toString()) < value) {
+                            if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
@@ -412,7 +412,7 @@ public class AlertDialogsHelper {
                         week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
                         try {
-                            if (Integer.parseInt(from_hour.getText().toString()) > value) {
+                            if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
                                 from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
