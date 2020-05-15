@@ -1,7 +1,12 @@
-# TimeTable
 <h1 align=center>
 <img src="logo-files/horizontal.png" width=50%>
 </h1>
+
+# TimeTable
+
+<img src="https://img.shields.io/f-droid/v/com.asdoi.timetable.svg"> <img src="https://img.shields.io/github/release/asdoi/TimeTable.svg?logo=github">
+
+<a href="https://f-droid.org/en/packages/com.asdoi.timetable/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="130"></a>
 
 Timetable is an Android Application, which allows you to save timetable, homeworks and notes.<br>
 This is an improved version of the <a href="https://github.com/ulan17/TimeTable">app from ulan17 </a>.<br>
