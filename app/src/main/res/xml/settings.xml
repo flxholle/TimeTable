@@ -12,7 +12,7 @@
         android:defaultValue="false"
         android:icon="@drawable/ic_view_week_black_24dp"
         android:key="sevendays"
-        android:summary="@string/sevendays_setting"
+        android:summary="@string/enable_seven_days_setting"
         android:title="@string/seven_days_of_the_week" />
 
     <EditTextPreference
@@ -20,8 +20,8 @@
         android:key="schoolwebsite"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="@string/school_website_setting_summary"
-        android:title="@string/school_website_setting" />
+        android:summary="@string/change_school_website_setting_summary"
+        android:title="@string/change_school_website_setting" />
 
     <ListPreference
         android:defaultValue="switch"
@@ -29,7 +29,7 @@
         android:entryValues="@array/theme_array_values"
         android:icon="@drawable/ic_palette_black_24dp"
         android:key="theme"
-        android:title="@string/set_choose_theme" />
+        android:title="@string/choose_theme_setting" />
 
     <SwitchPreferenceCompat
         android:defaultValue="true"
@@ -47,17 +47,17 @@
         android:defaultValue="true"
         android:icon="@drawable/ic_slideshow_black_24dp"
         android:key="timetableNotif"
-        android:title="@string/set_notification_isOn" />
+        android:title="@string/notification_visibility_setting" />
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="alwaysNotification"
-        android:summary="@string/set_desc_alwaysNotification"
-        android:title="@string/set_notification_showAlways" />
+        android:summary="@string/notification_show_permanent_setting_desc"
+        android:title="@string/notification_show_permanent_setting" />
     <Preference
         android:key="alarm"
-        android:summary="@string/set_desc_alarm"
-        android:title="@string/set_notification_alarm" />
+        android:summary="@string/notification_alarm_setting_desc"
+        android:title="@string/notification_alarm_setting" />
 
     <Preference
         android:key="cyanea"

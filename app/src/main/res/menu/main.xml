@@ -5,23 +5,23 @@
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings_black_24dp"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/settings"
         app:iconTint="@android:color/white"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_backup"
         android:orderInCategory="100"
-        android:title="@string/menu_backup"
+        android:title="@string/backup"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_restore"
         android:orderInCategory="100"
-        android:title="@string/menu_restore"
+        android:title="@string/restore"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_remove_all"
         android:orderInCategory="100"
-        android:title="@string/remove_all_subjects"
+        android:title="@string/delete_everything"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_about_libs"

@@ -171,7 +171,7 @@ public class NotificationUtil {
             PendingIntent btPendingIntent = PendingIntent.getBroadcast(context, UUID.randomUUID().hashCode(), buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             mNotifyBuilder.setOngoing(true);
-            mNotifyBuilder.addAction(R.drawable.ic_close_black_24dp, context.getString(R.string.notif_dismiss), btPendingIntent);
+            mNotifyBuilder.addAction(R.drawable.ic_close_black_24dp, context.getString(R.string.notification_dismiss), btPendingIntent);
         }
 
         if (notificationManager != null) {

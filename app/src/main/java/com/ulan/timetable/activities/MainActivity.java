@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 openUrlInChromeCustomTab(schoolWebsite);
             } else {
                 ChocoBar.builder().setActivity(this)
-                        .setText(getString(R.string.school_website_snackbar))
+                        .setText(getString(R.string.please_set_school_website_url))
                         .setDuration(ChocoBar.LENGTH_LONG)
                         .red()
                         .show();
@@ -377,22 +377,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void deleteAll() {
         new MaterialDialog.Builder(this)
-                .title(getString(R.string.remove_all_subjects))
-                .content(getString(R.string.remove_all_subjects_content))
+                .title(getString(R.string.delete_everything))
+                .content(getString(R.string.delete_everything_desc))
                 .positiveText(getString(R.string.yes))
                 .onPositive((dialog, which) -> {
                     try {
                         DbHelper dbHelper = new DbHelper(this);
                         dbHelper.deleteAll();
                         ChocoBar.builder().setActivity(this)
-                                .setText(getString(R.string.remove_all_successful))
+                                .setText(getString(R.string.successfully_deleted_everything))
                                 .setDuration(ChocoBar.LENGTH_LONG)
                                 .green()
                                 .show();
                         initAll();
                     } catch (Exception e) {
                         ChocoBar.builder().setActivity(this)
-                                .setText(getString(R.string.remove_all_failed))
+                                .setText(getString(R.string.an_error_occurred))
                                 .setDuration(ChocoBar.LENGTH_LONG)
                                 .red()
                                 .show();
@@ -404,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     backup();
                     dialog.dismiss();
                 })
-                .neutralText(R.string.menu_backup)
+                .neutralText(R.string.backup)
                 .show();
     }
 
@@ -448,7 +448,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .requestCode(REQUEST_MULTIPLE_PERMISSION)
                 .setPermissionResultCallback(pl)
                 .askFor(permissions)
-                .rationalMessage(getString(R.string.sheriff_permission_rational))
+                .rationalMessage(getString(R.string.permission_request_message))
                 .build();
 
         sheriffPermission.requestPermissions();

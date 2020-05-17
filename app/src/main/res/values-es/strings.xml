@@ -2,7 +2,7 @@
     <string name="app_name">Cronograma</string>
     <string name="navigation_drawer_open">Abrir caja de navegación</string>
     <string name="navigation_drawer_close">Cerrar caja de navegación</string>
-    <string name="action_settings">Ajustes</string>
+    <string name="settings">Ajustes</string>
 
     <!-- Fragments strings -->
     <string name="monday">Lunes</string>
@@ -22,7 +22,7 @@
     <string name="delete">Borrar</string>
     <string name="edit">Editar</string>
     <string name="school_website">Sitio web del instituto</string>
-    <string name="school_website_snackbar">Por favor, configura la URL del sitio web de tu instituto en los ajustes.</string>
+    <string name="please_set_school_website_url">Por favor, configura la URL del sitio web de tu instituto en los ajustes.</string>
 
     <string name="add_subject">Añadir curso</string>
     <string name="edit_subject">Editar curso</string>
@@ -79,33 +79,33 @@
     <string name="time_dialog">Hora:</string>
 
     <!-- Settings Activity strings -->
-    <string name="sevendays_setting">Activar 7 días de la semana</string>
-    <string name="school_website_setting">Cambiar sitio web del instituto</string>
-    <string name="school_website_setting_summary">Cambiar la URL del sitio web de tu instituto</string>
+    <string name="enable_seven_days_setting">Activar 7 días de la semana</string>
+    <string name="change_school_website_setting">Cambiar sitio web del instituto</string>
+    <string name="change_school_website_setting_summary">Cambiar la URL del sitio web de tu instituto</string>
 
-    <string name="set_notification_isOn">Mostrar notificaciones</string>
-    <string name="set_notification_showAlways">Mostrar permanentemente</string>
+    <string name="notification_visibility_setting">Mostrar notificaciones</string>
+    <string name="notification_show_permanent_setting">Mostrar permanentemente</string>
 
-    <string name="notif_dismiss">Ocultar</string>
+    <string name="notification_dismiss">Ocultar</string>
 
-    <string name="sheriff_permission_rational">Se necesitan unos cuantos permisos para esta catacterística. Para un funcionamiento completo, por favor, concédalos.</string>
+    <string name="permission_request_message">Se necesitan unos cuantos permisos para esta catacterística. Para un funcionamiento completo, por favor, concédalos.</string>
     <string name="permission_required">¡Se necesita la autorización!</string>
     <string name="permission_required_description">Estas autorizaciones se necesitan para garantizar una completa funcionalidad</string>
     <string name="permission_ok_button">Conceder\u2026</string>
     <string name="permission_cancel_button">Cancelar</string>
 
-    <string name="set_notification_alarm">A la hora fija</string>
+    <string name="notification_alarm_setting">A la hora fija</string>
     <string name="no">No</string>
-    <string name="profiles_delete_submit_heading">¿Estás seguro?</string>
+    <string name="are_you_sure">¿Estás seguro?</string>
     <string name="yes">Sí</string>
     <string name="dont_show_again">No mostrar de nuevo</string>
     <string name="with_teacher">con</string>
     <string name="share_msg_in_room">en el salón</string>
     <string name="version">Versión</string>
-    <string name="menu_backup">Respaldar</string>
+    <string name="backup">Respaldar</string>
 
-    <string name="set_desc_alwaysNotification">La notificación solo puede ocultarse manualmente</string>
-    <string name="set_desc_alarm">Mostrar notificación a determinada hora</string>
+    <string name="notification_show_permanent_setting_desc">La notificación solo puede ocultarse manualmente</string>
+    <string name="notification_alarm_setting_desc">Mostrar notificación a determinada hora</string>
 
 
     <string name="description">Descripción</string>
@@ -114,7 +114,7 @@
     <string name="select_start_time">Inicio</string>
     <string name="select_end_time">Fin</string>
 
-    <string name="homeworks_activity_title">Tareas</string>
+    <string name="homework_activity_title">Tareas</string>
     <string name="notes_activity_title">Notas</string>
     <string name="exams_activity_title">Exámenes</string>
     <string name="notification_summary_title">Clase de hoy:</string>
@@ -132,7 +132,7 @@
     <string name="backup_failed">Respaldo fallido</string>
     <string name="import_successful">Restauración completa</string>
     <string name="import_failed">Restauración fallida</string>
-    <string name="menu_restore">Restaurar</string>
+    <string name="restore">Restaurar</string>
     <string name="no_backup_found_in_downloads">No se encontró respaldo en %1$s</string>
     <string name="Documents">Documentos</string>
     <string name="Downloads">Descargas</string>
@@ -141,22 +141,22 @@
     <string name="delete_week">el curso %1$s</string>
     <string name="delete_note">la nota %1$s</string>
     <string name="delete_exam">el examen %1$s</string>
-    <string name="remove_all_subjects">Borrar todo</string>
-    <string name="remove_all_subjects_content">¿Deseas borrar todo el cronograma de forma irreversible?
+    <string name="delete_everything">Borrar todo</string>
+    <string name="delete_everything_desc">¿Deseas borrar todo el cronograma de forma irreversible?
         \n¡Se aconseja crear un respaldo de antemano!</string>
-    <string name="remove_all_successful">¡Se realizó el borrado completo!</string>
-    <string name="remove_all_failed">Ocurrió un error</string>
+    <string name="successfully_deleted_everything">¡Se realizó el borrado completo!</string>
+    <string name="an_error_occurred">Ocurrió un error</string>
 
     <string name="no_email_app">No se encontró la aplicación de e-mail</string>
     <string name="no_navigation_app">No se encontró la aplicación de navegación</string>
     <string name="no_calendar_app">No se encontró la aplicación de calendario</string>
     <string name="add_to_calendar">¿Desea añadir este evento a tu calendario??</string>
 
-    <string name="set_choose_theme">Escoger tema</string>
-    <string name="set_theme_light">Claro</string>
-    <string name="set_theme_dark">Oscuro</string>
-    <string name="set_theme_black">Negro</string>
-    <string name="set_theme_auto">Automático</string>
+    <string name="choose_theme_setting">Escoger tema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="theme_black">Negro</string>
+    <string name="theme_auto">Automático</string>
 
     <string name="about_libs_title">Librerías de código abierto</string>
 

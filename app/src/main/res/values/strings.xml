@@ -2,7 +2,7 @@
     <string name="app_name">TimeTable</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
+    <string name="settings">Settings</string>
 
     <!-- Fragments strings -->
     <string name="monday">Monday</string>
@@ -22,7 +22,7 @@
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="school_website">School website</string>
-    <string name="school_website_snackbar">Please set URL of your school website in settings.</string>
+    <string name="please_set_school_website_url">Please set URL of your school website in settings.</string>
 
     <string name="add_subject">Add subject</string>
     <string name="edit_subject">Edit subject</string>
@@ -79,34 +79,32 @@
     <string name="time_dialog">Time:</string>
 
     <!-- Settings Activity strings -->
-    <string name="sevendays_setting">Enable 7 Days of the Week</string>
-    <string name="school_website_setting">Change school website</string>
-    <string name="school_website_setting_summary">Change URL of your school website</string>
+    <string name="enable_seven_days_setting">Enable 7 Days of the Week</string>
+    <string name="change_school_website_setting">Change school website</string>
+    <string name="change_school_website_setting_summary">Change URL of your school website</string>
 
-    <string name="set_notification_isOn">Show notification</string>
-    <string name="set_notification_showAlways">Show permanently</string>
+    <string name="notification_visibility_setting">Show notification</string>
+    <string name="notification_show_permanent_setting">Show permanently</string>
+    <string name="notification_show_permanent_setting_desc">The notification can only be hidden manually</string>
+    <string name="notification_alarm_setting">On fixed time</string>
+    <string name="notification_alarm_setting_desc">Show the notification at a specific time</string>
 
-    <string name="notif_dismiss">Hide</string>
+    <string name="notification_dismiss">Hide</string>
 
-    <string name="sheriff_permission_rational">A few permissions are required for this function. To ensure comprehensive functionality, please grant them.</string>
+    <string name="permission_request_message">A few permissions are required for this function. To ensure comprehensive functionality, please grant them.</string>
     <string name="permission_required">Authorization is required!</string>
     <string name="permission_required_description">These authorization (s) are required to ensure comprehensive functionality</string>
     <string name="permission_ok_button">Grant\u2026</string>
     <string name="permission_cancel_button">Cancel</string>
 
-    <string name="set_notification_alarm">On fixed time</string>
     <string name="no">No</string>
-    <string name="profiles_delete_submit_heading">Are you sure?</string>
+    <string name="are_you_sure">Are you sure?</string>
     <string name="yes">Yes</string>
     <string name="dont_show_again">Don\'t show again</string>
     <string name="with_teacher">with</string>
     <string name="share_msg_in_room">in room</string>
     <string name="version">Version</string>
-    <string name="menu_backup">Backup</string>
-
-    <string name="set_desc_alwaysNotification">The notification can only be hidden manually</string>
-    <string name="set_desc_alarm">Show the notification at a specific time</string>
-
+    <string name="backup">Backup</string>
 
     <string name="description">Description</string>
 
@@ -114,7 +112,7 @@
     <string name="select_start_time">Start</string>
     <string name="select_end_time">End</string>
 
-    <string name="homeworks_activity_title">Homework</string>
+    <string name="homework_activity_title">Homework</string>
     <string name="notes_activity_title">Notes</string>
     <string name="exams_activity_title">Exams</string>
     <string name="notification_summary_title">Today\'s lessons:</string>
@@ -132,7 +130,7 @@
     <string name="backup_failed">Backup failed</string>
     <string name="import_successful">Restore succeeded</string>
     <string name="import_failed">Restore failed</string>
-    <string name="menu_restore">Restore</string>
+    <string name="restore">Restore</string>
     <string name="no_backup_found_in_downloads">No Backup found in %1$s</string>
     <string name="Documents">Documents</string>
     <string name="Downloads">Downloads</string>
@@ -141,22 +139,22 @@
     <string name="delete_week">the subject %1$s</string>
     <string name="delete_note">the note %1$s</string>
     <string name="delete_exam">the exam %1$s</string>
-    <string name="remove_all_subjects">Delete everything</string>
-    <string name="remove_all_subjects_content">Should all data in the timetable be irretrievably deleted?
+    <string name="delete_everything">Delete everything</string>
+    <string name="delete_everything_desc">Should all data in the timetable be irretrievably deleted?
         \nIt is advisable to create a backup beforehand!</string>
-    <string name="remove_all_successful">Successfully deleted everything</string>
-    <string name="remove_all_failed">An error occurred</string>
+    <string name="successfully_deleted_everything">Successfully deleted everything</string>
+    <string name="an_error_occurred">An error occurred</string>
 
     <string name="no_email_app">No e-mail app installed</string>
     <string name="no_navigation_app">No navigation app installed</string>
     <string name="no_calendar_app">No calendar app installed</string>
     <string name="add_to_calendar">Should this event be added to your calendar?</string>
 
-    <string name="set_choose_theme">Choose theme</string>
-    <string name="set_theme_light">Light</string>
-    <string name="set_theme_dark">Dark</string>
-    <string name="set_theme_black">Black</string>
-    <string name="set_theme_auto">Automatic</string>
+    <string name="choose_theme_setting">Choose theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_black">Black</string>
+    <string name="theme_auto">Automatic</string>
 
     <string name="about_libs_title">Open-Source Libraries</string>
 

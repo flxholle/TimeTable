@@ -29,7 +29,7 @@
         <item
             android:id="@+id/homework"
             android:icon="@drawable/ic_book_black_24dp"
-            android:title="@string/homeworks_activity_title" />
+            android:title="@string/homework_activity_title" />
         <item
             android:id="@+id/notes"
             android:icon="@drawable/ic_event_note_black_24dp"
@@ -42,6 +42,6 @@
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="@string/action_settings" />
+            android:title="@string/settings" />
     </group>
 </menu>
