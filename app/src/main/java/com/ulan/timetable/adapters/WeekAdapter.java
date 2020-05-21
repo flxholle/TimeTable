@@ -26,6 +26,7 @@ import androidx.core.widget.ImageViewCompat;
 import com.ulan.timetable.R;
 import com.ulan.timetable.activities.TeachersActivity;
 import com.ulan.timetable.model.Week;
+import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.ColorPalette;
 import com.ulan.timetable.utils.DbHelper;
@@ -143,6 +144,7 @@ public class WeekAdapter extends ArrayAdapter<Week> {
                             db.updateWeek(Objects.requireNonNull(getItem(position)));
                             weeklist.remove(position);
                             notifyDataSetChanged();
+                            DoNotDisturbReceiversKt.setDoNotDisturbReceivers(mActivity, false);
                         }, getContext().getString(R.string.delete_week, week.getSubject()));
                         return true;
                     } else if (itemId == R.id.edit_popup) {

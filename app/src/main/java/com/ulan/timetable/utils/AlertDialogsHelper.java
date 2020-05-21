@@ -42,6 +42,7 @@ import com.ulan.timetable.model.Homework;
 import com.ulan.timetable.model.Note;
 import com.ulan.timetable.model.Teacher;
 import com.ulan.timetable.model.Week;
+import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -279,6 +280,7 @@ public class AlertDialogsHelper {
                 week.setColor(buttonColor.getColor());
                 db.updateWeek(week);
                 runOnSafe.run();
+                DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity, false);
                 dialog.dismiss();
             }
         });
@@ -594,6 +596,7 @@ public class AlertDialogsHelper {
                 week.setColor(buttonColor.getColor());
                 new DbHelper(activity).insertWeek(week);
                 adapter.notifyDataSetChanged();
+                DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity, false);
                 cancel.performClick();
             }
         });

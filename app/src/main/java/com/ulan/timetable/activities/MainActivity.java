@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ViewPager viewPager;
     private boolean switchSevenDays;
 
+    private static final int showNextDayAfterSpecificHour = 20;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(PreferenceUtil.getGeneralThemeNoActionBar(this));
@@ -178,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         //If its after 18 o'clock, show the next day
-        if (hour >= 18) {
+        if (hour >= showNextDayAfterSpecificHour) {
             day++;
         }
         if (day > 7) { //Calender.Saturday

@@ -138,9 +138,8 @@ public class PreferenceUtil {
                         .onNeutral(((dialog, which) -> setDoNotDisturbDontAskAgain(activity, true)))
                         .neutralText(R.string.dont_show_again)
                         .show();
-            } else {
-                DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity);
             }
+            DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity, false);
         }
     }
 

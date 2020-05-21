@@ -50,7 +50,7 @@ class TurnOnReceiver : BroadcastReceiver() {
 
 class TurnOffReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
-        setDoNotDisturbReceivers(context)
+        setDoNotDisturbReceivers(context, true)
         if (PreferenceUtil.isDoNotDisturbTurnOff(context))
             setDoNotDisturb(context, false)
     }
@@ -76,7 +76,7 @@ fun setDoNotDisturb(context: Context, on: Boolean) {
     }
 }
 
-fun setDoNotDisturbReceivers(context: Context) {
+fun setDoNotDisturbReceivers(context: Context, onlyReceivers: Boolean = false) {
     Thread(Runnable {
         val dbHelper = DbHelper(context)
         val calendar = Calendar.getInstance()
@@ -95,7 +95,7 @@ fun setDoNotDisturbReceivers(context: Context) {
             val startMinute = Integer.parseInt(week.fromTime.substring(week.fromTime.indexOf(":") + 1))
             weekCalendarStart.set(Calendar.MINUTE, startMinute)
 
-            if (((startHour == calendar.get(Calendar.HOUR_OF_DAY) && startMinute >= calendar.get(Calendar.MINUTE)) || startHour > calendar.get(Calendar.HOUR_OF_DAY)) && ((startHour == lastCalendar.get(Calendar.HOUR_OF_DAY) && startMinute <= lastCalendar.get(Calendar.MINUTE)) || startHour < lastCalendar.get(Calendar.HOUR_OF_DAY))) {
+            if (((startHour == calendar.get(Calendar.HOUR_OF_DAY) && startMinute > calendar.get(Calendar.MINUTE)) || startHour > calendar.get(Calendar.HOUR_OF_DAY)) && ((startHour == lastCalendar.get(Calendar.HOUR_OF_DAY) && startMinute < lastCalendar.get(Calendar.MINUTE)) || startHour < lastCalendar.get(Calendar.HOUR_OF_DAY))) {
                 lastCalendar = weekCalendarStart
                 on = true
             }
@@ -111,7 +111,7 @@ fun setDoNotDisturbReceivers(context: Context) {
                 on = false
             }
 
-            if (((startHour == calendar.get(Calendar.HOUR_OF_DAY) && startMinute <= calendar.get(Calendar.MINUTE)) || startHour < calendar.get(Calendar.HOUR_OF_DAY)) && ((endHour == calendar.get(Calendar.HOUR_OF_DAY) && endMinute > calendar.get(Calendar.MINUTE)) || endHour > calendar.get(Calendar.HOUR_OF_DAY))) {
+            if (((startHour == calendar.get(Calendar.HOUR_OF_DAY) && startMinute < calendar.get(Calendar.MINUTE)) || startHour < calendar.get(Calendar.HOUR_OF_DAY)) && ((endHour == calendar.get(Calendar.HOUR_OF_DAY) && endMinute > calendar.get(Calendar.MINUTE)) || endHour > calendar.get(Calendar.HOUR_OF_DAY)) && !onlyReceivers) {
                 //Just in lesson
                 setDoNotDisturb(context, true)
             }
