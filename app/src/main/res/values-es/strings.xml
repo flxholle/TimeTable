@@ -228,4 +228,7 @@
     <string name="odd_week">Semana par</string>
     <string name="intelligent_auto_fill">Seleccionar automáticamente inicio y final</string>
     <string name="intelligent_auto_fill_desc">Selecciona automáticamente la hora de inicio/fin de coincidencia de tus entradas.</string>
+    <string name="notification_reminder_setting">Recuerde antes de comenzar el courso</string>
+    <string name="channel_important">Cronograma importante</string>
+    <string name="notification_reminder_settings_desc">Envíe una notificación fuerte %1$s minutos antes de que comience el curso.</string>
 </resources>

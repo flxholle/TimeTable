@@ -32,7 +32,6 @@ class TurnOnReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action != null) {
             if (intent.action.equals(Intent.ACTION_BOOT_COMPLETED, ignoreCase = true)) {
-                // Set the alarm here.
                 setDoNotDisturbReceivers(context)
                 NotificationUtil.sendNotificationCurrentLesson(context, false)
                 return
@@ -53,6 +52,7 @@ class TurnOffReceiver : BroadcastReceiver() {
         setDoNotDisturbReceivers(context, true)
         if (PreferenceUtil.isDoNotDisturbTurnOff(context))
             setDoNotDisturb(context, false)
+        NotificationUtil.sendNotificationCurrentLesson(context, false)
     }
 
     companion object {
@@ -62,7 +62,6 @@ class TurnOffReceiver : BroadcastReceiver() {
 
 
 fun setDoNotDisturb(context: Context, on: Boolean) {
-    NotificationUtil.sendNotificationCurrentLesson(context, true)
     if (!PreferenceUtil.isAutomaticDoNotDisturb(context))
         return
 
@@ -77,6 +76,7 @@ fun setDoNotDisturb(context: Context, on: Boolean) {
 }
 
 fun setDoNotDisturbReceivers(context: Context, onlyReceivers: Boolean = false) {
+    setSubjectReminder(context)
     Thread(Runnable {
         val dbHelper = DbHelper(context)
         val calendar = Calendar.getInstance()

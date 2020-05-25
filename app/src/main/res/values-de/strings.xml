@@ -254,4 +254,7 @@
     <string name="odd_week">Ungerade Woche</string>
     <string name="intelligent_auto_fill">Automatisch passende Start-/End-Zeiten</string>
     <string name="intelligent_auto_fill_desc">Automatisch die passenden Start-/End-Zeiten zu deinen Eingaben auswählen.</string>
+    <string name="channel_important">Stundenplan wichtig</string>
+    <string name="notification_reminder_setting">Benachrichtigung vor Unterrichtsbeginn</string>
+    <string name="notification_reminder_settings_desc">Es wird eine laute Benachrichtung %1$s Minuten vor Unterrichtsbeginn gesendet.</string>
 </resources>

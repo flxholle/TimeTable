@@ -440,4 +440,16 @@ public class PreferenceUtil {
     public static boolean isIntelligentAutoFill(Context context) {
         return getBooleanSettings(context, "auto_fill", true);
     }
+
+    public static void setReminderTime(Context context, int length) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt("reminder_time", length).apply();
+    }
+
+    public static int getReminderTime(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt("reminder_time", 15);
+    }
+
+    public static boolean isReminder(Context context) {
+        return getBooleanSettings(context, "reminder", false);
+    }
 }

@@ -88,6 +88,8 @@
     <string name="notification_show_permanent_setting_desc">The notification can only be hidden manually</string>
     <string name="notification_alarm_setting">On fixed time</string>
     <string name="notification_alarm_setting_desc">Show the notification at a specific time</string>
+    <string name="notification_reminder_setting">Remind before subject beginning</string>
+    <string name="notification_reminder_settings_desc">Send a loud notification %1$s minutes before the subject starts.</string>
 
     <string name="notification_dismiss">Hide</string>
 
@@ -121,6 +123,7 @@
     <string name="time_from">from</string>
 
     <string name="channel">Timetable</string>
+    <string name="channel_important">Timetable important</string>
     <string name="channel_desc">A notification about your lessons</string>
     <string name="do_not_disturb_permission_desc">In order to automatically switch to do not disturb mode, the app requires the appropriate authorization</string>
     <string name="do_not_disturb_setting">Automatic Do not disturb</string>

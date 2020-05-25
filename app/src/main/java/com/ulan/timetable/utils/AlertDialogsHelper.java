@@ -280,7 +280,7 @@ public class AlertDialogsHelper {
                 week.setColor(buttonColor.getColor());
                 db.updateWeek(week);
                 runOnSafe.run();
-                DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity, false);
+                databaseChanged(activity);
                 dialog.dismiss();
             }
         });
@@ -596,7 +596,7 @@ public class AlertDialogsHelper {
                 week.setColor(buttonColor.getColor());
                 new DbHelper(activity).insertWeek(week);
                 adapter.notifyDataSetChanged();
-                DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity, false);
+                databaseChanged(activity);
                 cancel.performClick();
             }
         });
@@ -1642,5 +1642,10 @@ public class AlertDialogsHelper {
                 .onNegative((dialog, which) -> dialog.dismiss())
                 .negativeText(context.getString(R.string.no))
                 .show();
+    }
+
+    private static void databaseChanged(Context context) {
+        NotificationUtil.sendNotificationCurrentLesson(context, false);
+        DoNotDisturbReceiversKt.setDoNotDisturbReceivers(context, false);
     }
 }

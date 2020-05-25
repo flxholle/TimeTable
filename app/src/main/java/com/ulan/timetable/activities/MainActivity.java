@@ -36,6 +36,7 @@ import com.pd.chocobar.ChocoBar;
 import com.ulan.timetable.R;
 import com.ulan.timetable.adapters.FragmentsTabAdapter;
 import com.ulan.timetable.fragments.WeekdayFragment;
+import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.NotificationUtil;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onStart() {
         super.onStart();
-        PreferenceUtil.setDoNotDisturb(this, PreferenceUtil.doNotDisturbDontAskAgain(this));
+        DoNotDisturbReceiversKt.setDoNotDisturbReceivers(this, false);
         setupWeeksTV();
     }
 

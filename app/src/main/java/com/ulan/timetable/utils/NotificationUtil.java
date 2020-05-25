@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.RingtoneManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -53,6 +54,7 @@ public class NotificationUtil {
     private static final int NOTIFICATION_SUMMARY_ID = 9090;
     private static final int NOTIFICATION_NEXT_WEEK_ID = 3030;
     private static final String CHANNEL_ID = "notification";
+    private static final String CHANNEL_ID_LOUD = "notificationLoud";
 
     public static void sendNotificationSummary(@NonNull Context context, boolean alert) {
         new Thread(() -> {
@@ -61,7 +63,7 @@ public class NotificationUtil {
             if (lessons == null)
                 return;
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "id")
                     .setSmallIcon(R.drawable.ic_assignment_black_24dp)
                     .setContentTitle(context.getString(R.string.notification_summary_title))
                     .setStyle(new NotificationCompat.BigTextStyle().bigText(lessons));
@@ -127,7 +129,7 @@ public class NotificationUtil {
             Person person = new Person.Builder().setName(name).setIcon(IconCompat.createWithBitmap(DrawableKt.toBitmap(drawable, context.getResources().getInteger(R.integer.notification_bitmap_size), context.getResources().getInteger(R.integer.notification_bitmap_size), null))).build();
             style.addMessage(new NotificationCompat.MessagingStyle.Message(lesson, 0, person));
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "id")
                     .setStyle(style)
                     .setSmallIcon(R.drawable.ic_assignment_next_black_24dp)
                     .setColor(color);
@@ -150,23 +152,27 @@ public class NotificationUtil {
         stackBuilder.addNextIntentWithParentStack(notificationIntent);
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        createNotificationChannel(context);
+        if (alert)
+            createNotificationChannelLoud(context);
+        else
+            createNotificationChannel(context);
+
         NotificationCompat.Builder mNotifyBuilder = notificationBuilder
-                .setChannelId(CHANNEL_ID)
+                .setChannelId(alert ? CHANNEL_ID_LOUD : CHANNEL_ID)
                 .setAutoCancel(true)
                 .setWhen(when)
-                .setPriority(alert ? NotificationCompat.PRIORITY_HIGH : NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setSound(alert ? RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION) : null)
                 .setOnlyAlertOnce(!alert)
                 .setContentIntent(pendingIntent);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && !alert) {
             mNotifyBuilder.setPriority(NotificationCompat.PRIORITY_LOW);
         }
 
         if (PreferenceUtil.isAlwaysNotification(context)) {
             //Dismiss button intent
             Intent buttonIntent = new Intent(context, NotificationDismissButtonReceiver.class);
-            buttonIntent.setAction("com.asdoi.gymwen.receivers.NotificationDismissButtonReceiver");
             buttonIntent.putExtra(NotificationDismissButtonReceiver.EXTRA_NOTIFICATION_ID, id);
             PendingIntent btPendingIntent = PendingIntent.getBroadcast(context, UUID.randomUUID().hashCode(), buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -187,6 +193,23 @@ public class NotificationUtil {
             channel.setDescription(context.getString(R.string.channel_desc));
             channel.enableLights(false);
             channel.setSound(null, null);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
+        }
+    }
+
+    private static void createNotificationChannelLoud(@NonNull Context context) {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID_LOUD, context.getString(R.string.channel_important), NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription(context.getString(R.string.channel_desc));
+            channel.enableLights(true);
+            channel.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION), null);
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
 
             // Register the channel with the system; you can't change the importance

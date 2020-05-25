@@ -102,6 +102,9 @@
         <receiver
             android:name=".receivers.TurnOffReceiver"
             android:enabled="true" />
+        <receiver
+            android:name=".receivers.SubjectReminderReceiver"
+            android:enabled="true" />
 
 
         <activity
