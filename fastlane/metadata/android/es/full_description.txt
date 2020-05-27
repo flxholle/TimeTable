@@ -1,0 +1,4 @@
+Esta es una versión mejorada de la <a href="https://github.com/ulan17/TimeTable">Aplicación de ulan17</a>.
+Con esta aplicación puedes gestionar tu horario, tus tareas, exámenes, profesores o apuntes.
+La aplicación también silencia automáticamente el teléfono durante las clases y deja de silenciar al terminar.
+Además, siempre le muestra una notificación con su siguiente asignatura.
