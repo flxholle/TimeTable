@@ -93,7 +93,7 @@
     <string name="notification_alarm_setting_desc">Afficher la notification à une heure précise</string>
     <string name="notification_reminder_setting">Rappel avant le début du sujet</string>
     <string name="notification_reminder_settings_desc">Envoyez une notification à haute voix %1$s quelques minutes avant que le sujet ne commence.</string>
-    <string name="notification_notification_end_setting">Rappeler à la fin du sujet</string>
+    <string name="notification_notification_end_setting">Rappel à la fin du sujet</string>
     <string name="notification_notification_end_setting_desc">Envoyez une notification silencieuse à la fin du sujet pour vous informer sur votre prochain sujet.</string>
 
     <string name="notification_dismiss">Cacher</string>
