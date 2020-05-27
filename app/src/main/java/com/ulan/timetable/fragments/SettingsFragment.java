@@ -34,12 +34,34 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         tintIcons(getPreferenceScreen(), PreferenceUtil.getTextColorPrimary(requireContext()));
 
         setNotif();
-
         Preference myPref = findPreference("timetableNotif");
         Objects.requireNonNull(myPref).setOnPreferenceClickListener((Preference preference) -> {
             setNotif();
             return true;
         });
+
+        SwitchPreferenceCompat reminderSwitch = findPreference("reminder");
+        Objects.requireNonNull(reminderSwitch).setSummary(getString(R.string.notification_reminder_settings_desc, "" + PreferenceUtil.getReminderTime(requireContext())));
+        Objects.requireNonNull(reminderSwitch).setOnPreferenceClickListener((Preference p) -> {
+            if (reminderSwitch.isChecked()) {
+                NumberPicker numberPicker = new NumberPicker(getContext());
+                int max = PreferenceUtil.getPeriodLength(requireContext()) - 2;
+                numberPicker.setMaxValue(max <= 0 ? 2 : max);
+                numberPicker.setMinValue(1);
+                numberPicker.setValue(PreferenceUtil.getReminderTime(requireContext()));
+                new MaterialDialog.Builder(requireContext())
+                        .customView(numberPicker, false)
+                        .positiveText(R.string.select)
+                        .onPositive((d, w) -> {
+                            int value = numberPicker.getValue();
+                            PreferenceUtil.setReminderTime(requireContext(), value);
+                            reminderSwitch.setSummary(getString(R.string.notification_reminder_settings_desc, "" + value));
+                        })
+                        .show();
+            }
+            return true;
+        });
+
 
         myPref = findPreference("alarm");
         Objects.requireNonNull(myPref).setOnPreferenceClickListener((Preference p) -> {
@@ -78,29 +100,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             startActivity(new Intent(getActivity(), TimeSettingsActivity.class));
             return true;
         });
-
-
-        SwitchPreferenceCompat reminderSwitch = findPreference("reminder");
-        Objects.requireNonNull(reminderSwitch).setSummary(getString(R.string.notification_reminder_settings_desc, "" + PreferenceUtil.getReminderTime(requireContext())));
-        Objects.requireNonNull(reminderSwitch).setOnPreferenceClickListener((Preference p) -> {
-            if (reminderSwitch.isChecked()) {
-                NumberPicker numberPicker = new NumberPicker(getContext());
-                int max = PreferenceUtil.getPeriodLength(requireContext()) - 2;
-                numberPicker.setMaxValue(max <= 0 ? 2 : max);
-                numberPicker.setMinValue(1);
-                numberPicker.setValue(PreferenceUtil.getReminderTime(requireContext()));
-                new MaterialDialog.Builder(requireContext())
-                        .customView(numberPicker, false)
-                        .positiveText(R.string.select)
-                        .onPositive((d, w) -> {
-                            int value = numberPicker.getValue();
-                            PreferenceUtil.setReminderTime(requireContext(), value);
-                            reminderSwitch.setSummary(getString(R.string.notification_reminder_settings_desc, "" + value));
-                        })
-                        .show();
-            }
-            return true;
-        });
     }
 
     private String getThemeName() {
@@ -124,7 +123,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         boolean show = PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean("timetableNotif", true);
         findPreference("alwaysNotification").setVisible(show);
         findPreference("alarm").setVisible(show);
+        findPreference("reminder").setVisible(show);
+        findPreference("notification_end").setVisible(show);
+
+//        if (!PreferenceUtil.isReminder(requireContext()) && !PreferenceUtil.isNotificationAtEnd(requireContext()) && show) {
+//            ((SwitchPreferenceCompat) findPreference("notification_end")).setChecked(true);
+//        }
     }
+
+/*    private void setOtherNotifs() {
+        if (!PreferenceUtil.isReminder(requireContext()) && !PreferenceUtil.isNotificationAtEnd(requireContext())) {
+            findPreference("alwaysNotification").setVisible(false);
+            findPreference("alarm").setVisible(false);
+            findPreference("reminder").setVisible(false);
+            findPreference("notification_end").setVisible(false);
+            ((SwitchPreferenceCompat) findPreference("timetableNotif")).setChecked(false);
+        }
+    }*/
 
     private void setTurnOff() {
         boolean show = PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean("automatic_do_not_disturb", true);

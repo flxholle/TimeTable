@@ -45,7 +45,7 @@ public class DailyReceiver extends BroadcastReceiver {
                     PreferenceUtil.setRepeatingAlarm(context, DailyReceiver.class, times[0], times[1], times[2], DailyReceiverID, AlarmManager.INTERVAL_DAY);
                 } else
                     PreferenceUtil.cancelAlarm(context, DailyReceiver.class, DailyReceiverID);
-                NotificationUtil.sendNotificationSummary(context, true);
+                NotificationUtil.sendNotificationSummary(context, false);
                 return;
             }
         }

@@ -452,4 +452,8 @@ public class PreferenceUtil {
     public static boolean isReminder(Context context) {
         return getBooleanSettings(context, "reminder", false);
     }
+
+    public static boolean isNotificationAtEnd(Context context) {
+        return getBooleanSettings(context, "notification_end", true);
+    }
 }

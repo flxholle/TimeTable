@@ -231,4 +231,6 @@
     <string name="notification_reminder_setting">Recuerde antes de comenzar el courso</string>
     <string name="channel_important">Cronograma importante</string>
     <string name="notification_reminder_settings_desc">Envíe una notificación fuerte %1$s minutos antes de que comience el curso.</string>
+    <string name="notification_notification_end_setting">Recordar al final del curso</string>
+    <string name="notification_notification_end_setting_desc">Envíe una notificación silenciosa al final del curso para informarle sobre su próximo tema.</string>
 </resources>

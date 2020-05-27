@@ -90,6 +90,8 @@
     <string name="notification_alarm_setting_desc">Show the notification at a specific time</string>
     <string name="notification_reminder_setting">Remind before subject beginning</string>
     <string name="notification_reminder_settings_desc">Send a loud notification %1$s minutes before the subject starts.</string>
+    <string name="notification_notification_end_setting">Remind at subject ending</string>
+    <string name="notification_notification_end_setting_desc">Send a silent notification at the end of the subject to inform you about your next subject.</string>
 
     <string name="notification_dismiss">Hide</string>
 

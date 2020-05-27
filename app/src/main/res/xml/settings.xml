@@ -54,6 +54,11 @@
         android:summary="@string/notification_reminder_settings_desc"
         android:title="@string/notification_reminder_setting" />
     <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="notification_end"
+        android:summary="@string/notification_notification_end_setting_desc"
+        android:title="@string/notification_notification_end_setting" />
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="alwaysNotification"
         android:summary="@string/notification_show_permanent_setting_desc"

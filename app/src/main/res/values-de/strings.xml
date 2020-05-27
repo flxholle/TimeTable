@@ -257,4 +257,6 @@
     <string name="channel_important">Stundenplan wichtig</string>
     <string name="notification_reminder_setting">Benachrichtigung vor Unterrichtsbeginn</string>
     <string name="notification_reminder_settings_desc">Es wird eine laute Benachrichtung %1$s Minuten vor Unterrichtsbeginn gesendet.</string>
+    <string name="notification_notification_end_setting">Benachrichtigung am Unterrichtsende</string>
+    <string name="notification_notification_end_setting_desc">Es wird eine lautlose Benachrichtigung am Unterrichtsende gesendet, um dich über dein nächstes Fach zu informieren.</string>
 </resources>
