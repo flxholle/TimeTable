@@ -1,6 +1,7 @@
 <h1 align=center>
 <img src="logo-files/horizontal.png" width=50%>
 </h1>
+Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! The repository on Github will remain as a mirror. Please do not submit Pull requests or issues on GitHub.
 
 # TimeTable
 
