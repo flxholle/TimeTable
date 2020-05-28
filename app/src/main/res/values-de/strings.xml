@@ -176,7 +176,6 @@
     <string name="email">E-Mail</string>
     <string name="change_school_website_setting">Schulhomepage ändern</string>
     <string name="change_school_website_setting_summary">URL deiner Schulhomepage ändern</string>
-    <string name="activity_title">Stundenplan</string>
     <string name="notification_summary_title">Heutige Fächer</string>
     <string name="notification_next_week_title">Nächstes Fach</string>
     <string name="nav_drawer_description">Erstellt mit Hilfe von ulan17</string>
@@ -249,7 +248,7 @@
     <string name="enable_even_odd_weeks">Gerade/Ungerade Wochen aktivieren</string>
     <string name="start_of_term_desc">Mit Hilfe dieses Datums wird berechnet ob gerade eine gerade oder eine ungerade Woche ist.
         \nDie erste Woche ist immer eine gerade Woche
-        \nWenn du die Woche manuell verändern möchtest, ändere einfach die erhöhe einfach die eingestellte Woche um 1.</string>
+        \nWenn du die Woche manuell verändern möchtest, erhöhe einfach die eingestellte Woche um 1.</string>
     <string name="even_week">Gerade Woche</string>
     <string name="odd_week">Ungerade Woche</string>
     <string name="intelligent_auto_fill">Automatisch passende Start-/End-Zeiten</string>

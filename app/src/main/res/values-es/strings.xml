@@ -110,7 +110,6 @@
 
     <string name="description">Descripción</string>
 
-    <string name="activity_title">Cronograma</string>
     <string name="select_start_time">Inicio</string>
     <string name="select_end_time">Fin</string>
 
@@ -125,7 +124,7 @@
     <string name="channel">Cronograma</string>
     <string name="channel_desc">Una notificación acerca de tus clases</string>
     <string name="do_not_disturb_permission_desc">Para pasar automáticamente al modo No molestar, la aplicación requiere la autorización adecuada</string>
-    <string name="do_not_disturb_setting">No molestar automáticmaente</string>
+    <string name="do_not_disturb_setting">No molestar automáticamente</string>
     <string name="do_not_disturb_settings_desc">Cambia automáticamente al modo No molestar durante los cursos y luego se desactiva</string>
     <string name="do_not_disturb_turn_off">También desactivar</string>
     <string name="backup_successful">Respaldo guardado a %1$s</string>
@@ -231,6 +230,6 @@
     <string name="notification_reminder_setting">Recuerde antes de que comience el tema</string>
     <string name="channel_important">Cronograma importante</string>
     <string name="notification_reminder_settings_desc">Envíe una notificación fuerte %1$s minutos antes de que comience el curso.</string>
-    <string name="notification_notification_end_setting">Recordar al final del curso</string>
+    <string name="notification_notification_end_setting">Recordar al final del tema</string>
     <string name="notification_notification_end_setting_desc">Envíe una notificación silenciosa al final del curso para informarle sobre su próximo tema.</string>
 </resources>

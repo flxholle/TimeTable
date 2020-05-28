@@ -112,7 +112,6 @@
 
     <string name="description">Description</string>
 
-    <string name="activity_title">Timetable</string>
     <string name="select_start_time">Start</string>
     <string name="select_end_time">End</string>
 
@@ -223,7 +222,7 @@
     <string name="ok">OK</string>
     <string name="first_start_setup">Some things have to be set at the beginning.</string>
     <string name="start_of_term">Start of your term</string>
-    <string name="start_of_term_desc">With this value we calculate if it\'s now an even or an odd week.
+    <string name="start_of_term_desc">With this date we calculate if it\'s now an even or an odd week.
         \nThe first week of your term is always an even week.
         \nIf you want to switch the weeks manually, just change the week of your term start.</string>
     <string name="enable_even_odd_weeks">Enable even/odd weeks</string>

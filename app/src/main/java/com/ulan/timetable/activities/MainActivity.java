@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View headerview = navigationView.getHeaderView(0);
         headerview.findViewById(R.id.nav_header_main_settings).setOnClickListener((View v) -> startActivity(new Intent(this, SettingsActivity.class)));
         TextView title = headerview.findViewById(R.id.nav_header_main_title);
-        title.setText(R.string.activity_title);
+        title.setText(R.string.app_name);
 
         TextView desc = headerview.findViewById(R.id.nav_header_main_desc);
         desc.setText(R.string.nav_drawer_description);
