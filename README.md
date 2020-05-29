@@ -5,7 +5,7 @@ Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! 
 
 # TimeTable
 
-<img src="https://img.shields.io/f-droid/v/com.asdoi.timetable.svg"> <img src="https://img.shields.io/github/release/asdoi/TimeTable.svg?logo=github">
+[![Fdroid](https://img.shields.io/f-droid/v/com.asdoi.timetable.svg)]() [![Release](https://img.shields.io/badge/dynamic/json.svg?label=Release&url=https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges.json?job=build_badges&query=release_tag&colorB=brightgreen&logo=gitlab)]()
 
 <a href="https://f-droid.org/en/packages/com.asdoi.timetable/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="130"></a>
 
