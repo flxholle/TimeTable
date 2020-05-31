@@ -80,8 +80,8 @@
     <!-- Share Message -->
     <string name="share_msg_in_room">in Raum</string>
 
-    <string name="notification_show_permanent_setting_desc">Die Benachrichtigung kann nur noch manuell ausgeblendet werden</string>
-    <string name="notification_alarm_setting_desc">Die Benachrichtigung zu einer bestimmten Uhrzeit anzeigen</string>
+    <string name="notification_show_permanent_setting_desc">Die Benachrichtigung kann nur noch manuell ausgeblendet werden.</string>
+    <string name="notification_alarm_setting_desc">Die Benachrichtigung zu einer bestimmten Uhrzeit anzeigen.</string>
 
     <string name="monday">Montag</string>
     <string name="tuesday">Dienstag</string>
@@ -142,7 +142,7 @@
 
     <string name="do_not_disturb_permission_desc">Um automatisch in den Nicht-Stören-Modus zu wechseln, benötigt die App die entsprechende Berechtigung. Dies kann auch später noch in den Einstellungen geändert werden.</string>
     <string name="do_not_disturb_setting">Automatisches Stummschalten</string>
-    <string name="do_not_disturb_settings_desc">Automatisch während Fächern in den Nicht-Stören-Modus wechseln und ihn danach wieder ausschalten</string>
+    <string name="do_not_disturb_settings_desc">Automatisch während des Unterrichts in den Nicht-Stören-Modus wechseln.</string>
     <string name="do_not_disturb_turn_off">Auch wieder auf laut stellen</string>
 
     <string name="backup_failed">Backup fehlgeschlagen</string>
@@ -153,7 +153,7 @@
     <string name="Documents">Dokumente</string>
     <string name="Downloads">Downloads</string>
     <string name="delete_everything">Alles löschen</string>
-    <string name="delete_everything_desc">Sollen alle Daten des Stundenplans unwiederbringliche gelöscht werden?
+    <string name="delete_everything_desc">Sollen alle Daten des Stundenplans unwiederbringlich gelöscht werden?
         \nEs empfiehlt sich vorher ein Backup anzulegen!</string>
     <string name="successfully_deleted_everything">Erfolgreich Alles gelöscht</string>
     <string name="an_error_occurred">Es ist ein Fehler aufgetreten</string>
@@ -246,7 +246,7 @@
     <string name="first_start_setup">Es müssen ein paar Dinge zu Beginn eingestellt werden.</string>
     <string name="start_of_term">Beginn des Schuljahrs/Semesters</string>
     <string name="enable_even_odd_weeks">Gerade/Ungerade Wochen aktivieren</string>
-    <string name="start_of_term_desc">Mit Hilfe dieses Datums wird berechnet ob gerade eine gerade oder eine ungerade Woche ist.
+    <string name="start_of_term_desc">Mit Hilfe dieses Datums wird berechnet ob heute eine gerade oder eine ungerade Woche ist.
         \nDie erste Woche ist immer eine gerade Woche
         \nWenn du die Woche manuell verändern möchtest, erhöhe einfach die eingestellte Woche um 1.</string>
     <string name="even_week">Gerade Woche</string>
@@ -258,4 +258,5 @@
     <string name="notification_reminder_settings_desc">Es wird eine laute Benachrichtung %1$s Minuten vor Unterrichtsbeginn gesendet.</string>
     <string name="notification_notification_end_setting">Benachrichtigung am Unterrichtsende</string>
     <string name="notification_notification_end_setting_desc">Es wird eine lautlose Benachrichtigung am Unterrichtsende gesendet, um dich über dein nächstes Fach zu informieren.</string>
+    <string name="do_not_disturb_turn_off_desc">Nach Ende des Unterrichts den Nicht-Stören-Modus automatisch wieder deaktivieren.</string>
 </resources>

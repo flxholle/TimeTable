@@ -125,7 +125,7 @@
     <string name="channel_desc">Una notificación acerca de tus clases</string>
     <string name="do_not_disturb_permission_desc">Para pasar automáticamente al modo No molestar, la aplicación requiere la autorización adecuada</string>
     <string name="do_not_disturb_setting">No molestar automáticamente</string>
-    <string name="do_not_disturb_settings_desc">Cambia automáticamente al modo No molestar durante los cursos y luego se desactiva</string>
+    <string name="do_not_disturb_settings_desc">Cambia automáticamente al modo No molestar durante los cursos.</string>
     <string name="do_not_disturb_turn_off">También desactivar</string>
     <string name="backup_successful">Respaldo guardado a %1$s</string>
     <string name="backup_failed">Respaldo fallido</string>
@@ -232,4 +232,5 @@
     <string name="notification_reminder_settings_desc">Envíe una notificación fuerte %1$s minutos antes de que comience el curso.</string>
     <string name="notification_notification_end_setting">Recordar al final del tema</string>
     <string name="notification_notification_end_setting_desc">Envíe una notificación silenciosa al final del curso para informarle sobre su próximo tema.</string>
+    <string name="do_not_disturb_turn_off_desc">Apague el modo de no perturbación al final de los sujetos.</string>
 </resources>

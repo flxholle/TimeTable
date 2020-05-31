@@ -15,14 +15,14 @@
     <string name="selected">Selected</string>
 
     <!-- Main Activity strings -->
-    <string name="seven_days_of_the_week">7 Days of the Week</string>
+    <string name="seven_days_of_the_week">7 days of the Week</string>
     <string name="subject">Subject</string>
-    <string name="field_error">field can not be empty!</string>
-    <string name="time_error">Time field can not be empty!</string>
+    <string name="field_error">field cannot be empty!</string>
+    <string name="time_error">Time field cannot be empty!</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="school_website">School website</string>
-    <string name="please_set_school_website_url">Please set URL of your school website in settings.</string>
+    <string name="please_set_school_website_url">Please set the URL of your school website in settings.</string>
 
     <string name="add_subject">Add subject</string>
     <string name="edit_subject">Edit subject</string>
@@ -47,7 +47,7 @@
     <string name="homework">Homework</string>
     <string name="deadline_dialog">Deadline:</string>
     <string name="description_dialog">Description:</string>
-    <string name="date_error">Date field can not be empty!</string>
+    <string name="date_error">Date field cannot be empty!</string>
     <string name="edit_homework">Edit homework</string>
     <string name="add_homework">Add homework</string>
     <string name="date">Date</string>
@@ -56,7 +56,7 @@
     <string name="title_dialog">Title:</string>
     <string name="add_note">Add note</string>
     <string name="edit_note">Edit note</string>
-    <string name="title_error">Title field can not be empty!</string>
+    <string name="title_error">Title field cannot be empty!</string>
     <string name="title">Title</string>
     <string name="saved">Saved</string>
 
@@ -79,9 +79,9 @@
     <string name="time_dialog">Time:</string>
 
     <!-- Settings Activity strings -->
-    <string name="enable_seven_days_setting">Enable 7 Days of the Week</string>
+    <string name="enable_seven_days_setting">Enable 7 days of the Week</string>
     <string name="change_school_website_setting">Change school website</string>
-    <string name="change_school_website_setting_summary">Change URL of your school website</string>
+    <string name="change_school_website_setting_summary">Change the URL of your school website</string>
 
     <string name="notification_visibility_setting">Show notification</string>
     <string name="notification_show_permanent_setting">Show permanently</string>
@@ -104,7 +104,7 @@
     <string name="no">No</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="yes">Yes</string>
-    <string name="dont_show_again">Don\'t show again</string>
+    <string name="dont_show_again">Do not show again</string>
     <string name="with_teacher">with</string>
     <string name="share_msg_in_room">in room</string>
     <string name="version">Version</string>
@@ -128,8 +128,9 @@
     <string name="channel_desc">A notification about your lessons</string>
     <string name="do_not_disturb_permission_desc">In order to automatically switch to do not disturb mode, the app requires the appropriate authorization</string>
     <string name="do_not_disturb_setting">Automatic Do not disturb</string>
-    <string name="do_not_disturb_settings_desc">Automatically switch to do not disturb mode during subjects and then switch it off again</string>
+    <string name="do_not_disturb_settings_desc">Automatically switch to do not disturb mode during subjects.</string>
     <string name="do_not_disturb_turn_off">Also turning off</string>
+    <string name="do_not_disturb_turn_off_desc">Turn do not disturb mode off at the end of the subjects.</string>
     <string name="backup_successful">Backup has been saved to %1$s</string>
     <string name="backup_failed">Backup failed</string>
     <string name="import_successful">Restore succeeded</string>
@@ -149,7 +150,7 @@
     <string name="successfully_deleted_everything">Successfully deleted everything</string>
     <string name="an_error_occurred">An error occurred</string>
 
-    <string name="no_email_app">No e-mail app installed</string>
+    <string name="no_email_app">No email app installed</string>
     <string name="no_navigation_app">No navigation app installed</string>
     <string name="no_calendar_app">No calendar app installed</string>
     <string name="add_to_calendar">Should this event be added to your calendar?</string>
@@ -222,7 +223,7 @@
     <string name="ok">OK</string>
     <string name="first_start_setup">Some things have to be set at the beginning.</string>
     <string name="start_of_term">Start of your term</string>
-    <string name="start_of_term_desc">With this date we calculate if it\'s now an even or an odd week.
+    <string name="start_of_term_desc">With this date we calculate if today is an even or an odd week.
         \nThe first week of your term is always an even week.
         \nIf you want to switch the weeks manually, just change the week of your term start.</string>
     <string name="enable_even_odd_weeks">Enable even/odd weeks</string>
