@@ -31,6 +31,7 @@ import com.ulan.timetable.model.Week;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Locale;
@@ -94,12 +95,18 @@ public class WeekUtils {
             subjects.add(w.getSubject().toUpperCase());
         }
 
-        String[] preselected = activity.getResources().getStringArray(R.array.preselected_subjects);
-        int[] preselectedColors = activity.getResources().getIntArray(R.array.preselected_subjects_colors);
+        ArrayList<String> preselectedValues = new ArrayList<>(Arrays.asList(activity.getResources().getStringArray(R.array.preselected_subjects_values)));
+        String[] preselected = PreferenceUtil.getPreselectionElements(activity);
 
-        for (int i = preselected.length - 1; i >= 0; i--) {
-            if (!subjects.contains(preselected[i].toUpperCase()))
-                customWeeks.add(0, new Week(preselected[i], "", "", "", "", preselectedColors[i]));
+        int[] preselectedColors = activity.getResources().getIntArray(R.array.preselected_subjects_colors);
+        String[] preselectedLanguage = activity.getResources().getStringArray(R.array.preselected_subjects);
+
+        for (int i = 0; i < preselected.length; i++) {
+            if (preselectedValues.contains(preselected[i])) {
+                String langValue = preselectedLanguage[preselectedValues.indexOf(preselected[i])];
+                if (!subjects.contains(langValue.toUpperCase()))
+                    customWeeks.add(0, new Week(langValue, "", "", "", "", preselectedColors[i]));
+            }
         }
 
         Collections.sort(customWeeks, (week1, week2) -> week1.getSubject().compareToIgnoreCase(week2.getSubject()));

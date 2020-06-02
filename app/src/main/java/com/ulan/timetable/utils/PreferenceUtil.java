@@ -47,6 +47,7 @@ import com.ulan.timetable.activities.SettingsActivity;
 import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Objects;
 
 import static android.content.Context.ALARM_SERVICE;
@@ -455,5 +456,14 @@ public class PreferenceUtil {
 
     public static boolean isNotificationAtEnd(Context context) {
         return getBooleanSettings(context, "notification_end", true);
+    }
+
+    public static boolean isPreselectionList(Context context) {
+        return getBooleanSettings(context, "is_preselection", true);
+    }
+
+    public static String[] getPreselectionElements(Context context) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPrefs.getStringSet("preselection_elements", new HashSet<>()).toArray(new String[]{});
     }
 }

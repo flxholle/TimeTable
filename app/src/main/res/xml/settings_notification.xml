@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="timetableNotif"
+        android:title="@string/notification_visibility_setting"
+        app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="reminder"
+        android:summary="@string/notification_reminder_settings_desc"
+        android:title="@string/notification_reminder_setting"
+        app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="notification_end"
+        android:summary="@string/notification_notification_end_setting_desc"
+        android:title="@string/notification_notification_end_setting"
+        app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="alwaysNotification"
+        android:summary="@string/notification_show_permanent_setting_desc"
+        android:title="@string/notification_show_permanent_setting"
+        app:iconSpaceReserved="false" />
+    <Preference
+        android:key="alarm"
+        android:summary="@string/notification_alarm_setting_desc"
+        android:title="@string/notification_alarm_setting"
+        app:iconSpaceReserved="false" />
+
+</PreferenceScreen>

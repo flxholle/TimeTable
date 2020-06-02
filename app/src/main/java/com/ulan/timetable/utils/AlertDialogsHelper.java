@@ -493,13 +493,6 @@ public class AlertDialogsHelper {
         //Preselection
         FloatingActionButton fab = activity.findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            ArrayList<Week> customWeeks = WeekUtils.getPreselection(activity);
-
-            ArrayList<String> subjects = new ArrayList<>();
-            for (Week w : customWeeks) {
-                subjects.add(w.getSubject());
-            }
-
             if (PreferenceUtil.showTimes(activity)) {
                 from_hour.setVisibility(View.GONE);
                 from_time.setVisibility(View.VISIBLE);
@@ -518,50 +511,74 @@ public class AlertDialogsHelper {
                 to_hour.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
             }
 
-            new MaterialDialog.Builder(activity)
-                    .title(R.string.pick_a_subject)
-                    .items(subjects)
-                    .itemsCallback((dialog1, view1, which, text) -> {
-                        Week w = customWeeks.get(which);
-                        subject.setText(w.getSubject());
-                        teacher.setText(w.getTeacher());
-                        room.setText(w.getRoom());
-                        select_color.setBackgroundColor(w.getColor());
-                        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
+            if (PreferenceUtil.isPreselectionList(activity)) {
+                ArrayList<Week> customWeeks = WeekUtils.getPreselection(activity);
 
-                        String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
-                        ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
-                        int valueNew = 1;
-                        if (weeks.size() > 0) {
-                            valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
-                        }
-                        from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
-                        week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
-                        from_hour.setText("" + valueNew);
-                        to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
-                        week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
-                        to_hour.setText("" + valueNew);
+                ArrayList<String> subjects = new ArrayList<>();
+                for (Week w : customWeeks) {
+                    subjects.add(w.getSubject());
+                }
 
-                        dialog.show();
-                    })
-                    .positiveText(R.string.new_subject)
-                    .onPositive((dialog1, which) -> {
-                        String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
-                        ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
-                        int valueNew = 1;
-                        if (weeks.size() > 0) {
-                            valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
-                        }
-                        from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
-                        week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
-                        from_hour.setText("" + valueNew);
-                        to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
-                        week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
-                        to_hour.setText("" + valueNew);
+                new MaterialDialog.Builder(activity)
+                        .title(R.string.pick_a_subject)
+                        .items(subjects)
+                        .itemsCallback((dialog1, view1, which, text) -> {
+                            Week w = customWeeks.get(which);
+                            subject.setText(w.getSubject());
+                            teacher.setText(w.getTeacher());
+                            room.setText(w.getRoom());
+                            select_color.setBackgroundColor(w.getColor());
+                            select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
 
-                        dialog.show();
-                    })
-                    .show();
+                            String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
+                            ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                            int valueNew = 1;
+                            if (weeks.size() > 0) {
+                                valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
+                            }
+                            from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                            week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                            from_hour.setText("" + valueNew);
+                            to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                            week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                            to_hour.setText("" + valueNew);
+
+                            dialog.show();
+                        })
+                        .positiveText(R.string.new_subject)
+                        .onPositive((dialog1, which) -> {
+                            String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
+                            ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                            int valueNew = 1;
+                            if (weeks.size() > 0) {
+                                valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
+                            }
+                            from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                            week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                            from_hour.setText("" + valueNew);
+                            to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                            week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                            to_hour.setText("" + valueNew);
+
+                            dialog.show();
+                        })
+                        .show();
+            } else {
+                String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
+                ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                int valueNew = 1;
+                if (weeks.size() > 0) {
+                    valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
+                }
+                from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                from_hour.setText("" + valueNew);
+                to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                to_hour.setText("" + valueNew);
+
+                dialog.show();
+            }
         });
 
         cancel.setOnClickListener(v -> {

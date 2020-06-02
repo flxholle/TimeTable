@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.asdoi.ColorPickerDialog:imagepicker:a1d628430b@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/55a460c3bd64c7f924d11072b9f1610c/jetified-imagepicker-a1d628430b/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/55a460c3bd64c7f924d11072b9f1610c/jetified-imagepicker-a1d628430b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9ddf61bc3146c6c861d3fad896c14a5/jetified-imagepicker-a1d628430b/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9ddf61bc3146c6c861d3fad896c14a5/jetified-imagepicker-a1d628430b/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

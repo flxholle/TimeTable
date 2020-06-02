@@ -27,3 +27,4 @@
 -keep public class org.apache.poi.hssf.** {*;}
 -keep public class org.apache.poi.ss.** {*;}
 -keep public class me.jfenn.colorpickerdialog.** {*;}
+-keep public class com.ulan.timetable.fragments.NotificationSettingsFragment

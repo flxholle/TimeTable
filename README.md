@@ -31,6 +31,6 @@ You are welcome to contribute with issues, pull requests and ideas. And to contr
 <br>
 <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_3.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_4.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_5.jpg" width="31%" style="max-width:100%;">
 
-### Licence
+### License
 
 The source code is licensed under the [GNU v3 Public License](https://github.com/ulan17/TimeTable/blob/master/LICENSE). 

@@ -49,4 +49,23 @@
         <item>@color/spanish</item>
         <item>@color/pe</item>
     </integer-array>
+
+    <string-array name="preselected_subjects_values">
+        <item>Art</item>
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>English</item>
+        <item>French</item>
+        <item>Geography</item>
+        <item>German</item>
+        <item>History</item>
+        <item>Math</item>
+        <item>Music</item>
+        <item>Physics</item>
+        <item>Politics</item>
+        <item>Religion</item>
+        <item>Spanish</item>
+        <item>Sport</item>
+    </string-array>
+
 </resources>

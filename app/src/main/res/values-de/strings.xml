@@ -259,4 +259,7 @@
     <string name="notification_notification_end_setting">Benachrichtigung am Unterrichtsende</string>
     <string name="notification_notification_end_setting_desc">Es wird eine lautlose Benachrichtigung am Unterrichtsende gesendet, um dich über dein nächstes Fach zu informieren.</string>
     <string name="do_not_disturb_turn_off_desc">Nach Ende des Unterrichts den Nicht-Stören-Modus automatisch wieder deaktivieren.</string>
+    <string name="notification_settings">Benachrichtigung</string>
+    <string name="show_preselection_list">Vorauswahlliste anzeigen</string>
+    <string name="set_preselection_elements">Elemente der Liste festlegen</string>
 </resources>

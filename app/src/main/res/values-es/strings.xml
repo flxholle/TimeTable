@@ -233,4 +233,7 @@
     <string name="notification_notification_end_setting">Recordar al final del tema</string>
     <string name="notification_notification_end_setting_desc">Envíe una notificación silenciosa al final del curso para informarle sobre su próximo tema.</string>
     <string name="do_not_disturb_turn_off_desc">Apague el modo de no perturbación al final de los sujetos.</string>
+    <string name="notification_settings">Notificación</string>
+    <string name="show_preselection_list">Mostrar lista de preselección</string>
+    <string name="set_preselection_elements">Establecer los elementos de la lista</string>
 </resources>

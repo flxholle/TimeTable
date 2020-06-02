@@ -8,6 +8,12 @@
         android:summary="@string/time_settings_desc"
         android:title="@string/time_settings" />
 
+    <Preference
+        android:icon="@drawable/ic_baseline_notifications_active_24"
+        android:key="notification_settings"
+        android:title="@string/notification_settings"
+        app:fragment="com.ulan.timetable.fragments.NotificationSettingsFragment" />
+
     <SwitchPreferenceCompat
         android:defaultValue="false"
         android:icon="@drawable/ic_view_week_black_24dp"
@@ -46,28 +52,16 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="true"
-        android:icon="@drawable/ic_slideshow_black_24dp"
-        android:key="timetableNotif"
-        android:title="@string/notification_visibility_setting" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:key="reminder"
-        android:summary="@string/notification_reminder_settings_desc"
-        android:title="@string/notification_reminder_setting" />
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="notification_end"
-        android:summary="@string/notification_notification_end_setting_desc"
-        android:title="@string/notification_notification_end_setting" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:key="alwaysNotification"
-        android:summary="@string/notification_show_permanent_setting_desc"
-        android:title="@string/notification_show_permanent_setting" />
-    <Preference
-        android:key="alarm"
-        android:summary="@string/notification_alarm_setting_desc"
-        android:title="@string/notification_alarm_setting" />
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:key="is_preselection"
+        android:title="@string/show_preselection_list" />
+
+    <MultiSelectListPreference
+        android:defaultValue="@array/preselected_subjects_values"
+        android:entries="@array/preselected_subjects"
+        android:entryValues="@array/preselected_subjects_values"
+        android:key="preselection_elements"
+        android:title="@string/set_preselection_elements" />
 
     <Preference
         android:key="cyanea"
