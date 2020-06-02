@@ -12,10 +12,14 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceManager;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.ulan.timetable.R;
 import com.ulan.timetable.activities.TimeSettingsActivity;
 import com.ulan.timetable.utils.PreferenceUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -53,6 +57,51 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         myPref = findPreference("is_preselection");
         Objects.requireNonNull(myPref).setOnPreferenceClickListener(p -> {
             showPreselectionElements();
+            return true;
+        });
+
+        myPref = findPreference("preselection_elements");
+        Objects.requireNonNull(myPref).setOnPreferenceClickListener(p -> {
+            ArrayList<String> preselectedValues = new ArrayList<>(Arrays.asList(requireContext().getResources().getStringArray(R.array.preselected_subjects_values)));
+
+            String[] preselected = PreferenceUtil.getPreselectionElements(requireContext());
+            List<Integer> preselectedIndices = new ArrayList<>();
+
+            for (int i = 0; i < preselected.length; i++) {
+                preselectedIndices.add(preselectedValues.indexOf(preselected[i]));
+            }
+
+
+            new MaterialDialog.Builder(requireContext())
+                    .title(R.string.set_preselection_elements)
+                    .items(R.array.preselected_subjects)
+                    .itemsCallbackMultiChoice(preselectedIndices.toArray(new Integer[]{}), (dialog, which, text) -> {
+                        List<String> selection = new ArrayList<>();
+                        for (int i = 0; i < which.length; i++) {
+                            selection.add(preselectedValues.get(which[i]));
+                        }
+                        PreferenceUtil.setPreselectionElements(requireContext(), selection.toArray(new String[]{}));
+                        return true;
+                    })
+                    .positiveText(R.string.ok)
+                    .onPositive(((dialog, which) -> dialog.dismiss()))
+                    .negativeText(R.string.cancel)
+                    .onNegative((dialog, action) -> dialog.dismiss())
+                    .neutralText(R.string.de_select_all)
+                    .onNeutral((dialog, action) -> {
+                        Integer[] selection = dialog.getSelectedIndices();
+                        if (Objects.requireNonNull(selection).length == 0) {
+                            Integer[] select = new Integer[preselectedValues.size()];
+                            for (int i = 0; i < select.length; i++) {
+                                select[i] = i;
+                            }
+                            dialog.setSelectedIndices(select);
+                        } else {
+                            dialog.setSelectedIndices(new Integer[]{});
+                        }
+                    })
+                    .autoDismiss(false)
+                    .show();
             return true;
         });
     }

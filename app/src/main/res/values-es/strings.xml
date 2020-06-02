@@ -236,4 +236,5 @@
     <string name="notification_settings">Notificación</string>
     <string name="show_preselection_list">Mostrar lista de preselección</string>
     <string name="set_preselection_elements">Establecer los elementos de la lista</string>
+    <string name="de_select_all">De-/Seleccionar todo</string>
 </resources>

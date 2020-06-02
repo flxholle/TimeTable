@@ -56,10 +56,7 @@
         android:key="is_preselection"
         android:title="@string/show_preselection_list" />
 
-    <MultiSelectListPreference
-        android:defaultValue="@array/preselected_subjects_values"
-        android:entries="@array/preselected_subjects"
-        android:entryValues="@array/preselected_subjects_values"
+    <Preference
         android:key="preselection_elements"
         android:title="@string/set_preselection_elements" />
 

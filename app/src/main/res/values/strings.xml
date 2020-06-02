@@ -234,4 +234,5 @@
     <string name="intelligent_auto_fill_desc">Automatically select the matching begin/end time to your inputs.</string>
     <string name="show_preselection_list">Show preselection list</string>
     <string name="set_preselection_elements">Set the elements of the list</string>
+    <string name="de_select_all">De-/Select all</string>
 </resources>
