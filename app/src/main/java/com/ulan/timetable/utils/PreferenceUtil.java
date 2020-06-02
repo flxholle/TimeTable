@@ -47,8 +47,8 @@ import com.ulan.timetable.activities.SettingsActivity;
 import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -464,6 +464,10 @@ public class PreferenceUtil {
 
     public static String[] getPreselectionElements(Context context) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPrefs.getStringSet("preselection_elements", new HashSet<>()).toArray(new String[]{});
+        Set<String> preselection = sharedPrefs.getStringSet("preselection_elements", null);
+        if (preselection == null)
+            return context.getResources().getStringArray(R.array.preselected_subjects_values);
+        else
+            return preselection.toArray(new String[]{});
     }
 }
