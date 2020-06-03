@@ -44,6 +44,11 @@ public class SettingsActivity extends AppCompatActivity implements PreferenceFra
                 .replace(R.id.settings, fragment)
                 .addToBackStack(null)
                 .commit();
+
+        try {
+            Objects.requireNonNull(getSupportActionBar()).setTitle(pref.getTitle());
+        } catch (Exception ignore) {
+        }
         return true;
     }
 
