@@ -1,9 +1,15 @@
+variables:
+  GIT_DEPTH: 0
+
 stages:
     - build
 
 build_badges:
   stage: build
+  image: python:3.6.6
   before_script:
+    - apt-get update -qy
+    - pip install anybadge
     - chmod +x get-updated-badge-info.sh
   script:
     - echo "Some script to build your code"
@@ -12,5 +18,5 @@ build_badges:
   artifacts:
     paths:
         - badges.json
+        - badges
     when: always
-    expire_in: 4 weeks

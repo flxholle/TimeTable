@@ -5,7 +5,12 @@ Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! 
 
 # TimeTable
 
-[![Fdroid](https://img.shields.io/f-droid/v/com.asdoi.timetable.svg)]() [![Release](https://img.shields.io/badge/dynamic/json.svg?label=Release&url=https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges.json?job=build_badges&query=release_tag&colorB=brightgreen&logo=gitlab)]()
+[![Fdroid](https://img.shields.io/f-droid/v/com.asdoi.timetable.svg)]()
+[![Release](https://img.shields.io/badge/dynamic/json.svg?label=Release&url=https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges.json?job=build_badges&query=release_tag&colorB=brightgreen&logo=gitlab)]()  
+[![Commits since last release](https://gitlab.com/asdoi/TimeTable-/jobs/artifacts/master/raw/badges/commits_since_last_release.svg?job=build_badges)]()
+[![Commit activity](https://gitlab.com/asdoi/TimeTable-/jobs/artifacts/master/raw/badges/commit_activity.svg?job=build_badges)]()  
+[![Day the Repository has been created](https://gitlab.com/asdoi/TimeTable-/jobs/artifacts/master/raw/badges/repository_creation_day.svg?job=build_badges)]()
+[![Time the repo exists](https://gitlab.com/asdoi/TimeTable-/jobs/artifacts/master/raw/badges/time_repository_exists.svg?job=build_badges)]()
 
 <a href="https://f-droid.org/en/packages/com.asdoi.timetable/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="130"></a>
 [<img src="https://github.com/k0shk0sh/FastHub/raw/development/.github/assets/direct-apk-download.png"
