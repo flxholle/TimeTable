@@ -33,8 +33,9 @@ difference_in_months=$((difference_in_days / 30))
 difference_in_years=$((difference_in_days / 365))
 
 time_repository_exists="$difference_in_months months $((difference_in_days - (difference_in_months * 30))) days"
-if [ "$difference_in_years" -gt "1" ]; then
-  time_repository_exists="$difference_in_years years $((difference_in_months - (difference_in_years * 12))) months $((difference_in_days - ((difference_in_months - (difference_in_years * 12)) * 30))) days"
+if [ "$difference_in_years" -gt "0" ]; then
+  diff_months=$((difference_in_months - (difference_in_years * 12)))
+  time_repository_exists="$difference_in_years years $diff_months months $((difference_in_days - (difference_in_months * 30))) days"
 fi
 
 if [ "$difference_in_minutes" -eq 0 ]; then
