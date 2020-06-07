@@ -33,6 +33,9 @@ difference_in_months=$((difference_in_days / 30))
 difference_in_years=$((difference_in_days / 365))
 
 time_repository_exists="$difference_in_months months $((difference_in_days - (difference_in_months * 30))) days"
+if [ "$difference_in_years" -gt "1" ]; then
+  time_repository_exists="$difference_in_years years $((difference_in_months - (difference_in_years * 12))) months $((difference_in_days - ((difference_in_months - (difference_in_years * 12)) * 30))) days"
+fi
 
 if [ "$difference_in_minutes" -eq 0 ]; then
   difference_in_minutes=1
@@ -92,11 +95,11 @@ mkdir -p badges
 rm -rf badges/*
 anybadge --value="$commits" --label="Commits" --color=red --file=badges/commits.svg
 anybadge --value="$latest_release_tag" --label="Release" --color=green --file=badges/latest_release.svg
-anybadge --value="$latest_release_date" --label="Last release" --color=green --file=badges/latest_release_date.svg
-anybadge --value="$latest_release_date_layout2" --label="Last release" --color=green --file=badges/latest_release_date_layout2.svg
+anybadge --value="$latest_release_date" --label="Released $latest_release_tag in" --color=green --file=badges/latest_release_date.svg
+anybadge --value="$latest_release_date_layout2" --label="Released $latest_release_tag on" --color=green --file=badges/latest_release_date_layout2.svg
 anybadge --value="$authorsAllCount" --label="All contributors" --color=#0B7CBC --file=badges/all_contributors.svg
 anybadge --value="$authorsCount" --label="Contributors" --color=#0B7CBC --file=badges/contributors.svg
-anybadge --value="$commits_since_last_release" --label="Commits since last release" --color=purple --file=badges/commits_since_last_release.svg
+anybadge --value="$commits_since_last_release" --label="Commits since $latest_release_tag" --color=purple --file=badges/commits_since_last_release.svg
 anybadge --value="$repository_creation_day" --label="Created on" --color=teal --file=badges/repository_creation_day.svg
 anybadge --value="$time_repository_exists" --label="The repository exists" --color=#89B702 --file=badges/time_repository_exists.svg
 anybadge --value="$commits_per_second" --label="Commits per second" --color=#0B7CBC --file=badges/commits_per_second.svg
@@ -116,5 +119,5 @@ anybadge --value="$releases_per_hour" --label="Releases per hour" --color=#0B7CB
 anybadge --value="$releases_per_day" --label="Releases per day" --color=#0B7CBC --file=badges/releases_per_day.svg
 anybadge --value="$releases_per_month" --label="Releases per month" --color=yellow --file=badges/releases_per_month.svg
 anybadge --value="$releases_per_year" --label="Releases per year" --color=yellowgreen --file=badges/releases_per_year.svg
-anybadge --value="$releases_activity" --label="Releases activity" --color=orange --file=badges/releases_activity.svg
+anybadge --value="$releases_activity" --label="Release activity" --color=orange --file=badges/releases_activity.svg
 anybadge --value="$releases_amount" --label="Releases" --color=maroon --file=badges/releases_amount.svg
