@@ -154,12 +154,12 @@
     <string name="Downloads">Downloads</string>
     <string name="delete_everything">Alles löschen</string>
     <string name="delete_everything_desc">Sollen alle Daten des Stundenplans unwiederbringlich gelöscht werden?
-        \nEs empfiehlt sich vorher ein Backup anzulegen!</string>
+        \nEs empfiehlt sich, vorher ein Backup anzulegen!</string>
     <string name="successfully_deleted_everything">Erfolgreich Alles gelöscht</string>
     <string name="an_error_occurred">Es ist ein Fehler aufgetreten</string>
 
     <string name="no_calendar_app">Du hast keine Kalender-App installiert</string>
-    <string name="add_to_calendar">Soll diese Ereignis zu deinem Kalender hinzugefügt werden?</string>
+    <string name="add_to_calendar">Soll dieses Ereignis zu deinem Kalender hinzugefügt werden?</string>
     <string name="school_website">Schulhomepage</string>
     <string name="please_set_school_website_url">Bitte stelle deine Schulhomepage in den Einstellungen ein.</string>
     <string name="homework">Hausaufgaben</string>
