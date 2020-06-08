@@ -7,13 +7,13 @@ Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! 
 
 [![Fdroid](https://img.shields.io/f-droid/v/com.asdoi.timetable.svg)]()
 [![Release](https://img.shields.io/badge/dynamic/json.svg?label=Release&url=https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges.json?job=build_badges&query=release_tag&colorB=brightgreen&logo=gitlab)]()  
+[![License](https://img.shields.io/badge/dynamic/json.svg?label=License&url=https://gitlab.com/api/v4/projects/19059184?license=true&query=license.key&colorB=yellow)]()
 [![Commits since last release](https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges/commits_since_last_release.svg?job=build_badges)]()
 [![Commit activity](https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges/commit_activity.svg?job=build_badges)]()  
 [![Day the Repository has been created](https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges/repository_creation_day.svg?job=build_badges)]()
-[![Time the repo exists](https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges/time_repository_exists.svg?job=build_badges)]()
 
 <a href="https://f-droid.org/en/packages/com.asdoi.timetable/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="130"></a>
-[<img src="https://github.com/k0shk0sh/FastHub/raw/development/.github/assets/direct-apk-download.png"
+[<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
       alt="Direct apk download"
       height="130">](https://gitlab.com/asdoi/TimeTable/-/raw/master/app/release/app-release.apk)*
 
