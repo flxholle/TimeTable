@@ -15,7 +15,7 @@ Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! 
 <a href="https://f-droid.org/en/packages/com.asdoi.timetable/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="130"></a>
 [<img src="https://github.com/k0shk0sh/FastHub/raw/development/.github/assets/direct-apk-download.png"
       alt="Direct apk download"
-      height="130">](https://gitlab.com/asdoi/TimeTable/-/raw/master/app/release/app-release.apk)
+      height="130">](https://gitlab.com/asdoi/TimeTable/-/raw/master/app/release/app-release.apk)*
 
 
 Timetable is an Android Application, which allows you to save timetable, homeworks and notes.<br>
@@ -35,6 +35,8 @@ You are welcome to contribute with issues, pull requests and ideas. And to contr
 <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_1.png" width="31%" style="max-width:100%;"> &nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_2.png" width="31%" style="max-width:100%;">
 <br>
 <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_3.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_4.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_5.jpg" width="31%" style="max-width:100%;">
+
+*Made by <a href="https://github.com/smichel17">smichel17</a> from <a href="https://github.com/LibreShift/red-moon">LibreShifte/red-moon</a>
 
 ### License
 
