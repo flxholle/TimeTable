@@ -36,7 +36,7 @@ You are welcome to contribute with issues, pull requests and ideas. And to contr
 <br>
 <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_3.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_4.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_5.jpg" width="31%" style="max-width:100%;">
 
-*Made by <a href="https://github.com/smichel17">smichel17</a> from <a href="https://github.com/LibreShift/red-moon">LibreShifte/red-moon</a>
+*Made by <a href="https://github.com/smichel17">smichel17</a> from <a href="https://github.com/LibreShift/red-moon">LibreShift/red-moon</a>
 
 ### License
 
