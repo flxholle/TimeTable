@@ -20,6 +20,8 @@ import java.util.Calendar;
 /**
  * Created by Ulan on 07.09.2018.
  */
+
+//TODO: Rewrite to Kotlin and RoomDB
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 6;

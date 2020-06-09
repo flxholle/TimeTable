@@ -142,4 +142,5 @@
   <com.google.oboe/>
   <androidx.window/>
   <com.google.test.platform/>
+  <com.google.mlkit/>
 </metadata>
