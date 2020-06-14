@@ -80,10 +80,10 @@ public class WeekUtils {
 
     @NotNull
     public static ArrayList<Week> getPreselection(@NonNull AppCompatActivity activity) {
-        DbHelper dbHelper = new DbHelper(activity);
+        Calendar calendar = Calendar.getInstance();
+        DbHelper dbHelper = new DbHelper(activity, calendar);
         ArrayList<Week> customWeeks = getAllWeeks(dbHelper);
 
-        Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) - 1);
         dbHelper = new DbHelper(activity, calendar);
         customWeeks.addAll(getAllWeeks(dbHelper));
