@@ -65,4 +65,10 @@ public class SettingsActivity extends AppCompatActivity implements PreferenceFra
             }
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
