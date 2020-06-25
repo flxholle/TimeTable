@@ -91,7 +91,7 @@
     <string name="notification_alarm_setting">A heure fixe</string>
     <string name="notification_alarm_setting_desc">Afficher la notification à une heure précise</string>
     <string name="notification_reminder_setting">Rappel avant le début du sujet</string>
-    <string name="notification_reminder_settings_desc">Montre une notification à haute voix %1$s minutes avant que le sujet commence.</string>
+    <string name="notification_reminder_settings_desc">Montre une notification à haute voix %s minutes avant que le sujet commence.</string>
     <string name="notification_notification_end_setting">Rappeler à la fin du sujet</string>
     <string name="notification_notification_end_setting_desc">Montre une notification silencieuse à la fin du sujet pour vous informer sur votre prochain sujet.</string>
 
@@ -132,19 +132,19 @@
     <string name="do_not_disturb_setting">Automatique Ne pas déranger</string>
     <string name="do_not_disturb_settings_desc">Passage automatique en mode "ne pas déranger" pendant les sujets.</string>
     <string name="do_not_disturb_turn_off">Eteindre aussi</string>
-    <string name="backup_successful">La sauvegarde a été réduite à %1$s</string>
+    <string name="backup_successful">La sauvegarde a été réduite à %s</string>
     <string name="backup_failed">Echec de la sauvegarde</string>
     <string name="import_successful">La restauration a réussi</string>
     <string name="import_failed">La restauration a échoué</string>
     <string name="restore">Restaurer</string>
-    <string name="no_backup_found_in_downloads">Aucune sauvegarde trouvée en %1$s</string>
+    <string name="no_backup_found_in_downloads">Aucune sauvegarde trouvée en %s</string>
     <string name="Documents">Documents</string>
     <string name="Downloads">Téléchargements</string>
     <string name="colorPickerDialog_preset">Présélections</string>
     <string name="delete_content">Faut-il supprimer les %1$ ?</string>
-    <string name="delete_week">le sujet %1$s</string>
-    <string name="delete_note">la note %1$s</string>
-    <string name="delete_exam">l\'examen %1$s</string>
+    <string name="delete_week">le sujet %s</string>
+    <string name="delete_note">la note %s</string>
+    <string name="delete_exam">l\'examen %s</string>
     <string name="delete_everything">Tout effacer</string>
     <string name="delete_everything_desc">Faut-il supprimer irrémédiablement toutes les données du calendrier?
         \nIl est conseillé de créer une sauvegarde au préalable !</string>

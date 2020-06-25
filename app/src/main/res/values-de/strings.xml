@@ -148,8 +148,8 @@
     <string name="backup_failed">Backup fehlgeschlagen</string>
     <string name="import_successful">Wiederherstellen erfolgreich</string>
     <string name="import_failed">Wiederherstellen fehlgeschlagen</string>
-    <string name="backup_successful">Backup in %1$s gespeichert</string>
-    <string name="no_backup_found_in_downloads">Kein Backup in %1$s gefunden</string>
+    <string name="backup_successful">Backup in %s gespeichert</string>
+    <string name="no_backup_found_in_downloads">Kein Backup in %s gefunden</string>
     <string name="Documents">Dokumente</string>
     <string name="Downloads">Downloads</string>
     <string name="delete_everything">Alles löschen</string>
@@ -181,10 +181,10 @@
     <string name="nav_drawer_description">Erstellt mit Hilfe von ulan17</string>
     <string name="channel">Stundenplan</string>
     <string name="channel_desc">Eine Benachrichtigung über deine Fächer</string>
-    <string name="delete_content">Soll %1$s gelöscht werden?</string>
-    <string name="delete_week">das Fach %1$s</string>
-    <string name="delete_note">die Notiz %1$s</string>
-    <string name="delete_exam">die Prüfung %1$s</string>
+    <string name="delete_content">Soll %s gelöscht werden?</string>
+    <string name="delete_week">das Fach %s</string>
+    <string name="delete_note">die Notiz %s</string>
+    <string name="delete_exam">die Prüfung %s</string>
     <string name="about_libs_title">Open-Source Bibliotheken</string>
 
     <string name="start_of_school">Schulstart (Nur beim ersten Start einstellen)</string>
@@ -255,7 +255,7 @@
     <string name="intelligent_auto_fill_desc">Automatisch die passenden Start-/End-Zeiten zu deinen Eingaben auswählen.</string>
     <string name="channel_important">Stundenplan wichtig</string>
     <string name="notification_reminder_setting">Benachrichtigung vor Unterrichtsbeginn</string>
-    <string name="notification_reminder_settings_desc">Es wird eine laute Benachrichtung %1$s Minuten vor Unterrichtsbeginn gesendet.</string>
+    <string name="notification_reminder_settings_desc">Es wird eine laute Benachrichtung %s Minuten vor Unterrichtsbeginn gesendet.</string>
     <string name="notification_notification_end_setting">Benachrichtigung am Unterrichtsende</string>
     <string name="notification_notification_end_setting_desc">Es wird eine lautlose Benachrichtigung am Unterrichtsende gesendet, um dich über dein nächstes Fach zu informieren.</string>
     <string name="do_not_disturb_turn_off_desc">Nach Ende des Unterrichts den Nicht-Stören-Modus automatisch wieder deaktivieren.</string>

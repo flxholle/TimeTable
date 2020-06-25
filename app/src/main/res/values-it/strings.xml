@@ -91,7 +91,7 @@
     <string name="notification_alarm_setting">A tempo fisso</string>
     <string name="notification_alarm_setting_desc">Mostra la notifica in un momento specifico</string>
     <string name="notification_reminder_setting">Ricordare prima di iniziare l\'argomento</string>
-    <string name="notification_reminder_settings_desc">Invia una notifica ad alta voce %1$s minuti prima dell\'inizio dell\'argomento.</string>
+    <string name="notification_reminder_settings_desc">Invia una notifica ad alta voce %s minuti prima dell\'inizio dell\'argomento.</string>
     <string name="notification_notification_end_setting">Ricordare alla fine dell\'argomento</string>
     <string name="notification_notification_end_setting_desc">Invia una notifica silenziosa alla fine dell\'argomento per informarti sul tuo prossimo argomento.</string>
 
@@ -132,19 +132,19 @@
     <string name="do_not_disturb_setting">Automatico Non disturbare</string>
     <string name="do_not_disturb_settings_desc">Commutare automaticamente per non disturbare la modalità durante i soggetti.</string>
     <string name="do_not_disturb_turn_off">Anche spegnere</string>
-    <string name="backup_successful">Il backup è stato salvato in %1$s</string>
+    <string name="backup_successful">Il backup è stato salvato in %s</string>
     <string name="backup_failed">Backup fallito</string>
     <string name="import_successful">Ripristino riuscito</string>
     <string name="import_failed">Ripristino fallito</string>
     <string name="restore">Ripristinare</string>
-    <string name="no_backup_found_in_downloads">Nessun backup trovato in %1$s</string>
+    <string name="no_backup_found_in_downloads">Nessun backup trovato in %s</string>
     <string name="Documents">Documenti</string>
     <string name="Downloads">Downloads</string>
     <string name="colorPickerDialog_preset">Preimpostazioni</string>
-    <string name="delete_content">%1$s deve essere cancellato?</string>
-    <string name="delete_week">il soggetto %1$s</string>
-    <string name="delete_note">la nota %1$s</string>
-    <string name="delete_exam">l\'esame %1$s</string>
+    <string name="delete_content">%s deve essere cancellato?</string>
+    <string name="delete_week">il soggetto %s</string>
+    <string name="delete_note">la nota %s</string>
+    <string name="delete_exam">l\'esame %s</string>
     <string name="delete_everything">Cancellare tutto</string>
     <string name="delete_everything_desc">Tutti i dati dell\'orario devono essere cancellati irrimediabilmente?
         \nÈ consigliabile creare un backup in anticipo!</string>

@@ -127,19 +127,19 @@
     <string name="do_not_disturb_setting">No molestar automáticamente</string>
     <string name="do_not_disturb_settings_desc">Cambia automáticamente al modo No molestar durante los cursos.</string>
     <string name="do_not_disturb_turn_off">También desactivar</string>
-    <string name="backup_successful">Respaldo guardado a %1$s</string>
+    <string name="backup_successful">Respaldo guardado a %s</string>
     <string name="backup_failed">Respaldo fallido</string>
     <string name="import_successful">Restauración completa</string>
     <string name="import_failed">Restauración fallida</string>
     <string name="restore">Restaurar</string>
-    <string name="no_backup_found_in_downloads">No se encontró respaldo en %1$s</string>
+    <string name="no_backup_found_in_downloads">No se encontró respaldo en %s</string>
     <string name="Documents">Documentos</string>
     <string name="Downloads">Descargas</string>
     <string name="colorPickerDialog_preset">Preselecciones</string>
-    <string name="delete_content">Debería eliminarse %1$s?</string>
-    <string name="delete_week">el curso %1$s</string>
-    <string name="delete_note">la nota %1$s</string>
-    <string name="delete_exam">el examen %1$s</string>
+    <string name="delete_content">Debería eliminarse %s?</string>
+    <string name="delete_week">el curso %s</string>
+    <string name="delete_note">la nota %s</string>
+    <string name="delete_exam">el examen %s</string>
     <string name="delete_everything">Borrar todo</string>
     <string name="delete_everything_desc">¿Deseas borrar todo el cronograma de forma irreversible?
         \n¡Se aconseja crear un respaldo de antemano!</string>
@@ -229,7 +229,7 @@
     <string name="intelligent_auto_fill_desc">Selecciona automáticamente la hora de inicio/fin de coincidencia de tus entradas.</string>
     <string name="notification_reminder_setting">Recuerde antes de que comience el tema</string>
     <string name="channel_important">Cronograma importante</string>
-    <string name="notification_reminder_settings_desc">Envíe una notificación fuerte %1$s minutos antes de que comience el curso.</string>
+    <string name="notification_reminder_settings_desc">Envíe una notificación fuerte %s minutos antes de que comience el curso.</string>
     <string name="notification_notification_end_setting">Recordar al final del tema</string>
     <string name="notification_notification_end_setting_desc">Envíe una notificación silenciosa al final del curso para informarle sobre su próximo tema.</string>
     <string name="do_not_disturb_turn_off_desc">Apague el modo de no perturbación al final de los sujetos.</string>
