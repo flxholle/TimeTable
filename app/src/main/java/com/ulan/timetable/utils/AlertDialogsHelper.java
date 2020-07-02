@@ -755,8 +755,8 @@ public class AlertDialogsHelper {
                                     .setData(CalendarContract.Events.CONTENT_URI)
                                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, timeCalendar.getTimeInMillis())
                                     .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, timeCalendar.getTimeInMillis())
-                                    .putExtra(CalendarContract.Events.TITLE, subject.getText().toString())
-                                    .putExtra(CalendarContract.Events.DESCRIPTION, description.getText().toString());
+                                    .putExtra(CalendarContract.Events.TITLE, homework.getSubject())
+                                    .putExtra(CalendarContract.Events.DESCRIPTION, homework.getDescription());
                             try {
                                 activity.startActivity(intent);
                             } catch (ActivityNotFoundException e2) {
@@ -914,8 +914,8 @@ public class AlertDialogsHelper {
                                         .setData(CalendarContract.Events.CONTENT_URI)
                                         .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, timeCalendar.getTimeInMillis())
                                         .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, timeCalendar.getTimeInMillis())
-                                        .putExtra(CalendarContract.Events.TITLE, subject.getText().toString())
-                                        .putExtra(CalendarContract.Events.DESCRIPTION, description.getText().toString());
+                                        .putExtra(CalendarContract.Events.TITLE, homework.getSubject())
+                                        .putExtra(CalendarContract.Events.DESCRIPTION, homework.getDescription());
                                 try {
                                     activity.startActivity(intent);
                                 } catch (ActivityNotFoundException e2) {
@@ -1216,7 +1216,7 @@ public class AlertDialogsHelper {
         room.setText(exam.getRoom());
         date.setText(exam.getDate());
         time.setText(exam.getTime());
-        if (!exam.getTime().trim().isEmpty()) {
+        if (exam.getTime() != null && !exam.getTime().trim().isEmpty()) {
             hour.setText("" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), activity));
             time.setText(exam.getTime());
         } else {
@@ -1406,9 +1406,9 @@ public class AlertDialogsHelper {
                                     .setData(CalendarContract.Events.CONTENT_URI)
                                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, timeCalendar.getTimeInMillis())
                                     .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, timeCalendar.getTimeInMillis())
-                                    .putExtra(CalendarContract.Events.TITLE, subject.getText().toString())
-                                    .putExtra(CalendarContract.Events.DESCRIPTION, teacher.getText().toString())
-                                    .putExtra(CalendarContract.Events.EVENT_LOCATION, room.getText().toString());
+                                    .putExtra(CalendarContract.Events.TITLE, exam.getSubject())
+                                    .putExtra(CalendarContract.Events.DESCRIPTION, exam.getTeacher())
+                                    .putExtra(CalendarContract.Events.EVENT_LOCATION, exam.getRoom());
                             try {
                                 activity.startActivity(intent);
                             } catch (ActivityNotFoundException e2) {
@@ -1631,9 +1631,9 @@ public class AlertDialogsHelper {
                                     .setData(CalendarContract.Events.CONTENT_URI)
                                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, timeCalendar.getTimeInMillis())
                                     .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, timeCalendar.getTimeInMillis())
-                                    .putExtra(CalendarContract.Events.TITLE, subject.getText().toString())
-                                    .putExtra(CalendarContract.Events.DESCRIPTION, teacher.getText().toString())
-                                    .putExtra(CalendarContract.Events.EVENT_LOCATION, room.getText().toString());
+                                    .putExtra(CalendarContract.Events.TITLE, exam.getSubject())
+                                    .putExtra(CalendarContract.Events.DESCRIPTION, exam.getTeacher())
+                                    .putExtra(CalendarContract.Events.EVENT_LOCATION, exam.getRoom());
                             try {
                                 activity.startActivity(intent);
                             } catch (ActivityNotFoundException e2) {
