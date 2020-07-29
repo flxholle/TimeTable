@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.quwepiro:TimetableView:master-SNAPSHOT@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e16f8711aa5ab8c4b2598c3bc595ccf/jetified-TimetableView-master-SNAPSHOT/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e16f8711aa5ab8c4b2598c3bc595ccf/jetified-TimetableView-master-SNAPSHOT/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e16f8711aa5ab8c4b2598c3bc595ccf/jetified-TimetableView-master-SNAPSHOT/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.quwepiro/TimetableView/master-SNAPSHOT/4e6b822bd3c0082d85613225c53fec31b4168dd1/TimetableView-master-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

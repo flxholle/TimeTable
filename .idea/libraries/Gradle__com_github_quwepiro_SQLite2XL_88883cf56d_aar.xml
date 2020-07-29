@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.quwepiro:SQLite2XL:88883cf56d@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7114a3006965a6de5b0d7cf91db9f05e/jetified-SQLite2XL-88883cf56d/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7114a3006965a6de5b0d7cf91db9f05e/jetified-SQLite2XL-88883cf56d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7114a3006965a6de5b0d7cf91db9f05e/jetified-SQLite2XL-88883cf56d/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.quwepiro/SQLite2XL/88883cf56d/440e185fa2a10b7ad760a80fb3e09851b30a27d6/SQLite2XL-88883cf56d-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.quwepiro/SQLite2XL/88883cf56d/df5d37e46ce4598b33fd1da1b520551a5e3c01be/SQLite2XL-88883cf56d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

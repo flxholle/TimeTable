@@ -47,10 +47,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation 'com.github.asdoi:ColorPickerDialog:a1d628430b'
-    implementation 'com.github.asdoi:SQLite2XL:88883cf56d'
+    implementation 'com.github.quwepiro:ColorPickerDialog:a1d628430b'
+    implementation 'com.github.quwepiro:SQLite2XL:88883cf56d'
     implementation 'saschpe.android:customtabs:3.0.2'
-    implementation "com.mikepenz:aboutlibraries:8.1.2"
+    implementation "com.mikepenz:aboutlibraries:8.3.0"
     //noinspection NewerVersionAvailable,GradleDependency
     implementation 'org.apache.poi:poi:3.16'
     implementation 'com.github.stephenvinouze:shapetextdrawable:1.0.0'
@@ -59,6 +59,6 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:0.9.6'
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
     implementation 'com.github.IamIsPra:Sheriff:1.0.0'
-    implementation 'com.github.asdoi:TimetableUI:master-SNAPSHOT'
-    implementation 'com.github.asdoi:TimetableView:master-SNAPSHOT'
+    implementation 'com.github.quwepiro:TimetableUI:master-SNAPSHOT'
+    implementation 'com.github.quwepiro:TimetableView:master-SNAPSHOT'
 }

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.quwepiro.ColorPickerDialog:imagepicker:a1d628430b@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b3b9ac3bf606ddd0a8f890e39d5eef9a/jetified-imagepicker-a1d628430b/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b3b9ac3bf606ddd0a8f890e39d5eef9a/jetified-imagepicker-a1d628430b/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b3b9ac3bf606ddd0a8f890e39d5eef9a/jetified-imagepicker-a1d628430b/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.quwepiro.ColorPickerDialog/imagepicker/a1d628430b/29d16f77a884edac80c774c6d98004db9e1fa46/imagepicker-a1d628430b-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
