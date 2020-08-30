@@ -30,6 +30,15 @@
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="12sp" />
 
+        <Spinner
+            android:id="@+id/profile_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:popupBackground="?android:attr/windowBackground"
+            android:visibility="gone"
+            app:popupTheme="?attr/popupMenuStyle" />
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

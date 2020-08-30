@@ -13,6 +13,9 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,7 @@ import com.pd.chocobar.ChocoBar;
 import com.ulan.timetable.R;
 import com.ulan.timetable.adapters.FragmentsTabAdapter;
 import com.ulan.timetable.fragments.WeekdayFragment;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.DbHelper;
@@ -46,6 +50,7 @@ import com.ulan.timetable.utils.ShortcutUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import info.isuru.sheriff.enums.SheriffPermission;
 import info.isuru.sheriff.helper.Sheriff;
@@ -67,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTheme(PreferenceUtil.getGeneralThemeNoActionBar(this));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ProfileManagement.initProfiles(this);
+
         if (Build.VERSION.SDK_INT >= 25) {
             ShortcutUtils.Companion.createShortcuts(this);
         }
@@ -91,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initAll() {
         NotificationUtil.sendNotificationCurrentLesson(this, false);
         PreferenceUtil.setDoNotDisturb(this, PreferenceUtil.doNotDisturbDontAskAgain(this));
+        initSpinner();
 
         setupWeeksTV();
 
@@ -119,6 +128,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setupCustomDialog();
 
         if (switchSevenDays) changeFragments(true);
+    }
+
+    private boolean dontfire = true;
+
+    private void initSpinner() {
+        //Set Profiles
+        Spinner parentSpinner = findViewById(R.id.profile_spinner);
+
+        if (ProfileManagement.isMoreThanOneProfile()) {
+            parentSpinner.setVisibility(View.VISIBLE);
+            parentSpinner.setEnabled(true);
+            List<String> list = ProfileManagement.getProfileListNames();
+            list.add(getString(R.string.profiles_edit));
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            parentSpinner.setAdapter(dataAdapter);
+            dontfire = true;
+            parentSpinner.setSelection(ProfileManagement.getSelectedProfilePosition(this));
+            parentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(@NonNull AdapterView<?> parent, View view, int position, long id) {
+                    if (dontfire) {
+                        dontfire = false;
+                        return;
+                    }
+
+                    String item = parent.getItemAtPosition(position).toString();
+                    if (item.equals(getString(R.string.profiles_edit))) {
+                        Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        //Change profile position
+                        ProfileManagement.setSelectedProfile(getApplicationContext(), position);
+                        startActivity(new Intent(getBaseContext(), MainActivity.class));
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+        } else {
+            parentSpinner.setVisibility(View.GONE);
+            parentSpinner.setEnabled(false);
+        }
     }
 
     private void setupWeeksTV() {
@@ -238,6 +295,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .withAboutDescription(getString(R.string.nav_drawer_description))
                     .withAboutAppName(getString(R.string.app_name))
                     .start(this);
+        } else if (item.getItemId() == R.id.action_profiles) {
+            Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+            startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

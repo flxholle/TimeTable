@@ -9,6 +9,11 @@
         app:iconTint="@android:color/white"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/action_profiles"
+        android:orderInCategory="100"
+        android:title="@string/profiles"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_backup"
         android:orderInCategory="100"
         android:title="@string/backup"

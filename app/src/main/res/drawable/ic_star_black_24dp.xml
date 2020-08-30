@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (c) 2020 Felix Hollederer
   ~     This file is part of GymWenApp.
   ~
@@ -15,17 +15,13 @@
   ~     You should have received a copy of the GNU General Public License
   ~     along with GymWenApp.  If not, see <https://www.gnu.org/licenses/>.
   -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <gradient
-        android:startColor="#36dad2"
-        android:endColor="#5877e6"
-        android:angle="45" />
-
-    <size
-        android:width="25dp"
-        android:height="25dp" />
-    <corners android:radius="5dp" />
-
-
-</shape>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M12,17.27L18.18,21l-1.64,-7.03L22,9.24l-7.19,-0.61L12,2 9.19,8.63 2,9.24l5.46,4.73L5.82,21z" />
+</vector>

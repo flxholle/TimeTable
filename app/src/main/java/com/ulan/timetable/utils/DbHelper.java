@@ -13,6 +13,7 @@ import com.ulan.timetable.model.Homework;
 import com.ulan.timetable.model.Note;
 import com.ulan.timetable.model.Teacher;
 import com.ulan.timetable.model.Week;
+import com.ulan.timetable.profiles.ProfileManagement;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 6;
     private static final String DB_NAME = "timetabledb";
-    private static final String DB_NAME_ODD_WEEK = "timetabledb_odd";
+    private static final String ODD_WEEK_POSTFIX = "_odd";
     private static final String TIMETABLE = "timetable";
     private static final String WEEK_ID = "id";
     private static final String WEEK_SUBJECT = "subject";
@@ -76,16 +77,23 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     @NonNull
-    public static String getDBName(Context context) {
-        return getDBName(context, Calendar.getInstance());
+    public static String getDBName(@NonNull Context context, @NonNull Calendar now) {
+        int selectedProfile = ProfileManagement.getSelectedProfilePosition(context);
+        String dbName;
+        if (selectedProfile == 0)
+            dbName = DB_NAME; //If the app was installed before the profiles were added
+        else
+            dbName = DB_NAME + "_" + selectedProfile;
+
+        if (PreferenceUtil.isEvenWeek(context, now))
+            return dbName;
+        else
+            return dbName + ODD_WEEK_POSTFIX;
     }
 
     @NonNull
-    private static String getDBName(Context context, Calendar now) {
-        if (PreferenceUtil.isEvenWeek(context, now))
-            return DB_NAME;
-        else
-            return DB_NAME_ODD_WEEK;
+    public static String getDBName(Context context) {
+        return getDBName(context, Calendar.getInstance());
     }
 
     public void onCreate(@NonNull SQLiteDatabase db) {

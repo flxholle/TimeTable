@@ -235,4 +235,15 @@
     <string name="show_preselection_list">Show preselection list</string>
     <string name="set_preselection_elements">Set the elements of the list</string>
     <string name="de_select_all">De-/Select all</string>
+
+    <!-- Profiles -->
+    <string name="profiles_add">Add Profile\u2026</string>
+    <string name="profiles_delete_submit_heading">Are you sure?</string>
+    <string name="profiles_edit">Edit\u2026</string>
+    <string name="profiles_delete_message">Are you sure that you want to delete User %s</string>
+    <string name="profiles">Profiles</string>
+    <string name="add_profile_button">Add profile</string>
+    <string name="add">Add</string>
+    <string name="profile_default_name">Default</string>
+    <string name="profile_empty_name">NewProfile</string>
 </resources>
