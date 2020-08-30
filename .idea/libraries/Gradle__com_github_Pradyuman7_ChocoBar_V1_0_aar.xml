@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.Pradyuman7:ChocoBar:V1.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5136df43560bbfc522e6fbb645c52ab0/jetified-ChocoBar-V1.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2a0c7887e7fe87a74e20c98778b3ea2c/jetified-ChocoBar-V1.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5136df43560bbfc522e6fbb645c52ab0/jetified-ChocoBar-V1.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5136df43560bbfc522e6fbb645c52ab0/jetified-ChocoBar-V1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5136df43560bbfc522e6fbb645c52ab0/jetified-ChocoBar-V1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2a0c7887e7fe87a74e20c98778b3ea2c/jetified-ChocoBar-V1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2a0c7887e7fe87a74e20c98778b3ea2c/jetified-ChocoBar-V1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2a0c7887e7fe87a74e20c98778b3ea2c/jetified-ChocoBar-V1.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
