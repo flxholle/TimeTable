@@ -12,7 +12,8 @@
         android:id="@+id/action_profiles"
         android:orderInCategory="100"
         android:title="@string/profiles"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_baseline_accessibility_new_24"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_backup"
         android:orderInCategory="100"

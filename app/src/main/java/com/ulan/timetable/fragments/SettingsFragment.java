@@ -15,6 +15,7 @@ import androidx.preference.PreferenceManager;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.ulan.timetable.R;
 import com.ulan.timetable.activities.TimeSettingsActivity;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.utils.PreferenceUtil;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             setTurnOff();
             return true;
         });
+        myPref.setVisible(ProfileManagement.isPreferredProfile());
 
         ListPreference mp = findPreference("theme");
         Objects.requireNonNull(mp).setOnPreferenceChangeListener((preference, newValue) -> {
@@ -124,7 +126,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void setTurnOff() {
-        boolean show = PreferenceUtil.isAutomaticDoNotDisturb(requireContext());
+        boolean show = PreferenceUtil.isAutomaticDoNotDisturb(requireContext()) && ProfileManagement.isPreferredProfile();
         findPreference("do_not_disturb_turn_off").setVisible(show);
     }
 

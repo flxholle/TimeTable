@@ -135,7 +135,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/app/extra/android-studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/add/baseline_add_24.xml" />
+                                      <entry key="url" value="jar:file:/app/extra/android-studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/accessibility_new/baseline_accessibility_new_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -146,7 +146,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_baseline_add_24" />
+                            <entry key="outputName" value="ic_baseline_accessibility_new_24" />
                             <entry key="sourceFile" value="$USER_HOME$" />
                           </map>
                         </option>

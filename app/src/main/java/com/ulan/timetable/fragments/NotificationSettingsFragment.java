@@ -13,6 +13,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.ulan.timetable.R;
 import com.ulan.timetable.activities.SettingsActivity;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.receivers.DailyReceiver;
 import com.ulan.timetable.utils.PreferenceUtil;
 
@@ -79,7 +80,7 @@ public class NotificationSettingsFragment extends PreferenceFragmentCompat {
         boolean show = PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean("timetableNotif", true);
         findPreference("alwaysNotification").setVisible(show);
         findPreference("alarm").setVisible(show);
-        findPreference("reminder").setVisible(show);
-        findPreference("notification_end").setVisible(show);
+        findPreference("reminder").setVisible(show && ProfileManagement.isPreferredProfile());
+        findPreference("notification_end").setVisible(show && ProfileManagement.isPreferredProfile());
     }
 }
