@@ -114,7 +114,7 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
                 break;
             case R.id.btn_confirm:
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-                DayAppWidgetProvider.updateAppWidgetConfig(appWidgetManager, mAppWidgetId, getSettingColor(), getTimeStyle(), this);
+                DayAppWidgetProvider.updateAppWidgetConfig(appWidgetManager, mAppWidgetId, getSettingColor(), getTimeStyle(), getProfile(), this);
                 Intent resultValue = new Intent();
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
                 setResult(RESULT_OK, resultValue);
@@ -174,6 +174,11 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
             default:
                 return AppWidgetConstants.TIME_STYLE_FIRST;
         }
+    }
+
+    public int getProfile() {
+        //TODO
+        return 0;
     }
 
     @Override

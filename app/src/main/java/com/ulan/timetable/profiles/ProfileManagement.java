@@ -160,6 +160,10 @@ public abstract class ProfileManagement {
             preferredProfile = value;
     }
 
+    public static boolean isPreferredProfile() {
+        return (preferredProfile < getSize() && preferredProfile >= 0) || !isMoreThanOneProfile();
+    }
+
     public static int loadPreferredProfilePosition() {
         if (preferredProfile < 0 || preferredProfile >= getSize())
             return 0;

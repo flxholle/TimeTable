@@ -43,6 +43,7 @@ import com.github.stephenvinouze.shapetextdrawable.ShapeTextDrawable;
 import com.ulan.timetable.R;
 import com.ulan.timetable.activities.MainActivity;
 import com.ulan.timetable.model.Week;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.receivers.NotificationDismissButtonReceiver;
 
 import java.util.ArrayList;
@@ -56,25 +57,35 @@ public class NotificationUtil {
     private static final String CHANNEL_ID = "notification";
     private static final String CHANNEL_ID_LOUD = "notificationLoud";
 
-    public static void sendNotificationSummary(@NonNull Context context, boolean alert) {
+    public static void sendNotificationSummary(Context context, boolean alert) {
+        ProfileManagement.initProfiles(context);
+        for (int i = 0; i < ProfileManagement.getSize(); i++) {
+            sendNotificationSummary(context, alert, i, NOTIFICATION_SUMMARY_ID + i);
+        }
+    }
+
+    private static void sendNotificationSummary(@NonNull Context context, boolean alert, int profilePosition, int notificationID) {
         new Thread(() -> {
-            DbHelper db = new DbHelper(context);
+            DbHelper db = new DbHelper(context, profilePosition);
             String lessons = getLessons(db.getWeek(getCurrentDay(Calendar.getInstance().get(Calendar.DAY_OF_WEEK))), context);
             if (lessons == null)
                 return;
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "id")
                     .setSmallIcon(R.drawable.ic_assignment_black_24dp)
-                    .setContentTitle(context.getString(R.string.notification_summary_title))
+                    .setContentTitle(context.getString(R.string.notification_summary_title) + (ProfileManagement.isMoreThanOneProfile() ? " (" + ProfileManagement.getProfile(profilePosition).getName() + ")" : ""))
                     .setStyle(new NotificationCompat.BigTextStyle().bigText(lessons));
 
-            sendNotification(context, alert, builder, NOTIFICATION_SUMMARY_ID);
+            sendNotification(context, alert, builder, notificationID);
         }).start();
     }
 
     public static void sendNotificationCurrentLesson(@NonNull Context context, boolean alert) {
+        ProfileManagement.initProfiles(context);
+        if (!ProfileManagement.isPreferredProfile())
+            return;
         new Thread(() -> {
-            DbHelper db = new DbHelper(context);
+            DbHelper db = new DbHelper(context, ProfileManagement.getPreferredProfilePosition());
             ArrayList<Week> weeks = db.getWeek(getCurrentDay(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)));
             Week nextWeek = WeekUtils.getNextWeek(weeks);
             if (nextWeek == null)

@@ -58,7 +58,7 @@ public class ProfileActivityFragment extends Fragment {
         adapter = new ProfileListAdapter(requireContext(), 0);
         ((ListView) root.findViewById(R.id.profile_list)).setAdapter(adapter);
 
-        root.findViewById(R.id.profile_add_button).setOnClickListener((View v) -> openAddDialog());
+        requireActivity().findViewById(R.id.fab).setOnClickListener((View v) -> openAddDialog());
         return root;
     }
 

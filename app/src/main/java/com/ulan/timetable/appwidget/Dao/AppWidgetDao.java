@@ -18,12 +18,13 @@ public class AppWidgetDao extends BaseDao {
 
     private static final String TABLE_NAME = "app_widget";
 
-    public static void saveAppWidgetConfig(int appWidgetId, int backgroundColor, int timeStyle, Context context) {
+    public static void saveAppWidgetConfig(int appWidgetId, int backgroundColor, int timeStyle, int profile, Context context) {
         SQLiteDatabase db = DBManager.getDb(context);
 
-        ContentValues values = new ContentValues(4);
+        ContentValues values = new ContentValues(5);
         values.put("backgroundColor", backgroundColor);
         values.put("timeStyle", timeStyle);
+        values.put("profilePosition", profile);
 
         String whereClause = "appWidgetId = ?";
         String[] whereArgs = {String.valueOf(appWidgetId)};
@@ -168,6 +169,55 @@ public class AppWidgetDao extends BaseDao {
         cursor.close();
 
         return currentTime;
+    }
+//
+//    public static void saveAppWidgetProfile(int appWidgetId, int profilePosition, Context context) {
+//        SQLiteDatabase db = DBManager.getDb(context);
+//
+//        ContentValues values = new ContentValues(2);
+//        values.put("profilePosition", profilePosition);
+//
+//        String whereClause = "appWidgetId = ?";
+//        String[] whereArgs = {String.valueOf(appWidgetId)};
+//
+//        int number = update(db, TABLE_NAME, values, whereClause, whereArgs);
+//
+//        if (number == 0) {
+//            // 使用insertOrReplace会重置其他列的数据
+//            values.put("appWidgetId", appWidgetId);
+//            insert(db, TABLE_NAME, values);
+//        }
+//
+//        DBManager.close(db);
+//    }
+
+    public static int getAppWidgetProfile(int appWidgetId, int defaultProfile, Context context) {
+        SQLiteDatabase db = DBManager.getDb(context);
+        String selection = "appWidgetId = ?";
+        String[] selectionArgs = {String.valueOf(appWidgetId)};
+        String[] columns = {"profilePosition"};
+        Cursor cursor = queryComplex(db, TABLE_NAME, columns, selection, selectionArgs, null, null, null, null);
+        int count = cursor.getCount();
+
+        if (count == 0) {
+            cursor.close();
+            return defaultProfile;
+        }
+
+        int currentProfileIndex = cursor.getColumnIndex("profilePosition");
+        int currentProfile = 0;
+
+        if (cursor.moveToNext()) {// id只存在一个，所以不用while
+            currentProfile = cursor.getInt(currentProfileIndex);
+        }
+
+        if (currentProfile == 0) {
+            currentProfile = defaultProfile;
+        }
+
+        cursor.close();
+
+        return currentProfile;
     }
 
     public static void deleteAppWidget(int appWidgetId, Context context) {

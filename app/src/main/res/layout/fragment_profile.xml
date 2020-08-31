@@ -40,24 +40,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:foregroundGravity="top"
-        app:layout_constraintBottom_toTopOf="@+id/profile_add_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_title" />
-
-    <Button
-        android:id="@+id/profile_add_button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="5dp"
-        android:text="@string/add_profile_button"
-        android:textColor="@android:color/white"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

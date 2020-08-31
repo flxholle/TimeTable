@@ -72,13 +72,20 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, getDBName(context), null, DB_VERSION);
     }
 
+    public DbHelper(Context context, int selectedProfile) {
+        super(context, getDBName(context, Calendar.getInstance(), selectedProfile), null, DB_VERSION);
+    }
+
     public DbHelper(Context context, Calendar now) {
         super(context, getDBName(context, now), null, DB_VERSION);
     }
 
+    public DbHelper(Context context, int selectedProfile, Calendar now) {
+        super(context, getDBName(context, now, selectedProfile), null, DB_VERSION);
+    }
+
     @NonNull
-    public static String getDBName(@NonNull Context context, @NonNull Calendar now) {
-        int selectedProfile = ProfileManagement.getSelectedProfilePosition(context);
+    private static String getDBName(@NonNull Context context, @NonNull Calendar now, int selectedProfile) {
         String dbName;
         if (selectedProfile == 0)
             dbName = DB_NAME; //If the app was installed before the profiles were added
@@ -94,6 +101,10 @@ public class DbHelper extends SQLiteOpenHelper {
     @NonNull
     public static String getDBName(Context context) {
         return getDBName(context, Calendar.getInstance());
+    }
+
+    private static String getDBName(Context context, Calendar now) {
+        return getDBName(context, now, ProfileManagement.getSelectedProfilePosition(context));
     }
 
     public void onCreate(@NonNull SQLiteDatabase db) {

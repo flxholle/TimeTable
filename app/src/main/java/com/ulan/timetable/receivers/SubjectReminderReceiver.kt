@@ -3,6 +3,7 @@ package com.ulan.timetable.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.ulan.timetable.profiles.ProfileManagement
 import com.ulan.timetable.utils.DbHelper
 import com.ulan.timetable.utils.NotificationUtil
 import com.ulan.timetable.utils.PreferenceUtil
@@ -22,8 +23,11 @@ class SubjectReminderReceiver : BroadcastReceiver() {
 
 
 fun setSubjectReminder(context: Context) {
+    ProfileManagement.initProfiles(context)
+    if (!ProfileManagement.isPreferredProfile())
+        return
     Thread(Runnable {
-        val dbHelper = DbHelper(context)
+        val dbHelper = DbHelper(context, ProfileManagement.getPreferredProfilePosition())
         val calendar = Calendar.getInstance()
         val currentDay = NotificationUtil.getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK))
         val weeks = dbHelper.getWeek(currentDay)

@@ -15,23 +15,17 @@
   ~     You should have received a copy of the GNU General Public License
   ~     along with GymWenApp.  If not, see <https://www.gnu.org/licenses/>.
   -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <gradient
+        android:startColor="#36dad2"
+        android:endColor="#5877e6"
+        android:angle="45" />
 
-    <FrameLayout
-        android:id="@+id/fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <size
+        android:width="25dp"
+        android:height="25dp" />
+    <corners android:radius="5dp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</shape>

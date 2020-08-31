@@ -120,8 +120,8 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    static void updateAppWidgetConfig(@NonNull AppWidgetManager appWidgetManager, int appWidgetId, int backgroundColor, int timeStyle, @NonNull Context context) {
-        AppWidgetDao.saveAppWidgetConfig(appWidgetId, backgroundColor, timeStyle, context);
+    static void updateAppWidgetConfig(@NonNull AppWidgetManager appWidgetManager, int appWidgetId, int backgroundColor, int timeStyle, int profile, @NonNull Context context) {
+        AppWidgetDao.saveAppWidgetConfig(appWidgetId, backgroundColor, timeStyle, profile, context);
 
         Intent intent = new Intent(context, DayAppWidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);

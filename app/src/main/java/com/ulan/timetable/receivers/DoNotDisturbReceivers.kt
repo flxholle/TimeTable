@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import com.ulan.timetable.profiles.ProfileManagement
 import com.ulan.timetable.utils.DbHelper
 import com.ulan.timetable.utils.NotificationUtil
 import com.ulan.timetable.utils.PreferenceUtil
@@ -77,9 +78,12 @@ fun setDoNotDisturb(context: Context, on: Boolean) {
 }
 
 fun setDoNotDisturbReceivers(context: Context, onlyReceivers: Boolean = false) {
+    ProfileManagement.initProfiles(context)
+    if (!ProfileManagement.isPreferredProfile())
+        return
     setSubjectReminder(context)
-    Thread(Runnable {
-        val dbHelper = DbHelper(context)
+    Thread {
+        val dbHelper = DbHelper(context, ProfileManagement.getPreferredProfilePosition())
         val calendar = Calendar.getInstance()
         val currentDay = NotificationUtil.getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK))
         val weeks = dbHelper.getWeek(currentDay)
@@ -125,5 +129,5 @@ fun setDoNotDisturbReceivers(context: Context, onlyReceivers: Boolean = false) {
                 PreferenceUtil.setOneTimeAlarm(context, TurnOffReceiver::class.java, lastCalendar.get(Calendar.HOUR_OF_DAY), lastCalendar.get(Calendar.MINUTE), 0, TurnOffReceiver.TurnOff_ID)
             }
         }
-    }).start()
+    }.start()
 }

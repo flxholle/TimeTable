@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "class_table.db";
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 4;
 
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -41,9 +41,23 @@ class DataBaseHelper extends SQLiteOpenHelper {
             case 3:
                 upgradeFrom2To3(db);
                 break;
+            case 4:
+                upgradeFrom3To4(db);
+                break;
             default:
                 throw new IllegalStateException("Don't know how to upgrade to " + version);
         }
+    }
+
+    private void upgradeFrom3To4(@NonNull SQLiteDatabase db) {
+//        db.execSQL("CREATE TEMPORARY TABLE widget_backup(_id INTEGER , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1)");
+//        db.execSQL("INSERT INTO widget_backup SELECT _id , appWidgetId , currentTime , backgroundColor , timeStyle , weekStyle FROM app_widget");
+//        db.execSQL("DROP TABLE app_widget");
+//
+//        db.execSQL("CREATE TABLE app_widget(_id INTEGER PRIMARY KEY AUTOINCREMENT , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1, profilePosition INTEGER DEFAULT 0, UNIQUE(appWidgetId))");
+//        db.execSQL("INSERT INTO app_widget (appWidgetId , currentTime , backgroundColor , timeStyle , weekStyle) SELECT appWidgetId , currentTime , backgroundColor , timeStyle , weekStyle FROM widget_backup");
+//        db.execSQL("DROP TABLE widget_backup");
+        db.execSQL("ALTER TABLE app_widget ADD COLUMN profilePosition INTEGER DEFAULT 0;");
     }
 
     private void upgradeFrom2To3(@NonNull SQLiteDatabase db) {
@@ -68,38 +82,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS table_2");
     }
 
-    @Override
-    public void onDowngrade(@NonNull SQLiteDatabase db, int oldVersion, int newVersion) {
-        for (int version = oldVersion - 1; version >= newVersion; version--) {
-            downgrade(db, version);
-        }
-    }
-
-    private void downgrade(@NonNull SQLiteDatabase db, int version) {
-        switch (version) {
-            case 2:
-                downgradeFrom3To2(db);
-                break;
-            case 1:
-                downgradeFrom2To1(db);
-                break;
-            default:
-                throw new IllegalStateException("Don't know how to downgrade to " + version);
-        }
-    }
-
-    private void downgradeFrom3To2(@NonNull SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS app_widget");
-    }
-
-    private void downgradeFrom2To1(@NonNull SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS course_classroom");
-        db.execSQL("CREATE TABLE table_2(_id INTEGER PRIMARY KEY AUTOINCREMENT , week INTEGER , section INTEGER , time INTEGER , startWeek INTEGER , endWeek INTEGER , doubleWeek INTEGER , course CHAR , classroom CHAR)");
-    }
-
     private void createTables(@NonNull SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE table_1(_id INTEGER PRIMARY KEY AUTOINCREMENT , week INTEGER , section INTEGER , time INTEGER , startWeek INTEGER , endWeek INTEGER , doubleWeek INTEGER , course CHAR , classroom CHAR)");
-        db.execSQL("CREATE TABLE course_classroom(_id INTEGER PRIMARY KEY AUTOINCREMENT , course CHAR , classroom CHAR)");
         db.execSQL("CREATE TABLE app_widget(_id INTEGER PRIMARY KEY AUTOINCREMENT , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1 , UNIQUE(appWidgetId))");
     }
 }

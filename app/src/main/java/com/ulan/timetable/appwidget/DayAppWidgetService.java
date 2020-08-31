@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.ulan.timetable.R;
 import com.ulan.timetable.appwidget.Dao.AppWidgetDao;
 import com.ulan.timetable.model.Week;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
 import com.ulan.timetable.utils.WeekUtils;
@@ -49,7 +50,9 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         long currentTime = AppWidgetDao.getAppWidgetCurrentTime(mAppWidgetId, System.currentTimeMillis(), mContext);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(currentTime);
-        content = new DbHelper(mContext, calendar).getWeek(getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK)));
+        ProfileManagement.initProfiles(mContext);
+        int profile = AppWidgetDao.getAppWidgetProfile(mAppWidgetId, ProfileManagement.loadPreferredProfilePosition(), mContext);
+        content = new DbHelper(mContext, profile, calendar).getWeek(getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK)));
     }
 
     @Override
