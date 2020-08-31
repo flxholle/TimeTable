@@ -61,7 +61,7 @@ public abstract class ProfileManagement {
         return profileList;
     }
 
-    public static void reload(Context context) {
+    private static void reload(Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String pref = sharedPref.getString("profiles", "");
         ArrayList<Profile> pList = new ArrayList<>();
@@ -81,6 +81,7 @@ public abstract class ProfileManagement {
         }
         profileList = pList;
         preferredProfile = sharedPref.getInt("preferred_position", 0);
+        resetSelectedProfile(context);
     }
 
     public static boolean isUninit() {
@@ -130,7 +131,7 @@ public abstract class ProfileManagement {
     }
 
     public static void resetSelectedProfile(Context context) {
-        setSelectedProfile(context, 0);
+        setSelectedProfile(context, loadPreferredProfilePosition());
     }
 
     public static Profile getSelectedProfile(Context context) {
