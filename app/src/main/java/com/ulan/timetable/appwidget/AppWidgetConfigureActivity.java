@@ -2,19 +2,29 @@ package com.ulan.timetable.appwidget;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.ulan.timetable.R;
 import com.ulan.timetable.appwidget.Dao.AppWidgetDao;
+import com.ulan.timetable.profiles.Profile;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.utils.PreferenceUtil;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -29,6 +39,8 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
     private SeekBar mSbIntensity;
     private TextView mTvIntensity;
     private TextView mTvTimeStyle;
+
+    private int selectedProfile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +77,9 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
         mSbIntensity = findViewById(R.id.sb_intensity);
         mRgTimeStyle = findViewById(R.id.rg_time_style);
         mTvTimeStyle = findViewById(R.id.tv_time_style);
+
+        ListView listView = findViewById(R.id.widget_creation_profile_list);
+        listView.setAdapter(new ProfileListAdapter(getBaseContext(), 0));
     }
 
     private void setListener() {
@@ -177,12 +192,68 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
     }
 
     public int getProfile() {
-        //TODO
-        return 0;
+        if (selectedProfile < ProfileManagement.getSize() && selectedProfile > 0)
+            return selectedProfile;
+        else
+            return 0;
     }
 
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    class ProfileListAdapter extends ArrayAdapter<String[]> {
+
+        ProfileListAdapter(@NonNull Context con, int resource) {
+            super(con, resource);
+        }
+
+        @NotNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NotNull ViewGroup parent) {
+            if (convertView == null) {
+                convertView = getLayoutInflater().inflate(R.layout.list_profiles_entry, null);
+            }
+
+            return generateView(convertView, position);
+        }
+
+        @Override
+        public int getCount() {
+            return ProfileManagement.getSize();
+        }
+
+        @NonNull
+        private View generateView(@NonNull View base, int position) {
+            Profile p = ProfileManagement.getProfile(position);
+            TextView name = base.findViewById(R.id.profilelist_name);
+            name.setText(p.getName());
+            ImageButton edit = base.findViewById(R.id.profilelist_edit);
+            edit.setVisibility(View.GONE);
+
+            ImageButton delete = base.findViewById(R.id.profilelist_delete);
+            delete.setVisibility(View.GONE);
+
+            ImageButton star = base.findViewById(R.id.profilelist_preferred);
+            if (position == selectedProfile) {
+                star.setImageResource(R.drawable.ic_star_black_24dp);
+            } else {
+                star.setImageResource(R.drawable.ic_star_border_black_24dp);
+            }
+
+            star.setOnClickListener((View v) -> {
+                if (selectedProfile == position) {
+                    selectedProfile = -1;
+                    star.setImageResource(R.drawable.ic_star_border_black_24dp);
+                } else {
+                    selectedProfile = position;
+                    star.setImageResource(R.drawable.ic_star_black_24dp);
+                }
+                notifyDataSetChanged();
+            });
+
+            return base;
+        }
     }
 }

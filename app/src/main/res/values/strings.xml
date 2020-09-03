@@ -246,4 +246,5 @@
     <string name="add">Add</string>
     <string name="profile_default_name">Default</string>
     <string name="profile_empty_name">NewProfile</string>
+    <string name="select_profile">Select profile</string>
 </resources>

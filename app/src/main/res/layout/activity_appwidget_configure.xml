@@ -6,6 +6,8 @@
 
     <TextView
         android:id="@+id/tv_bg_color"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -41,6 +43,8 @@
 
     <TextView
         android:id="@+id/tv_intensity"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -104,6 +108,29 @@
             android:text="@string/style_3" />
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/select_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb_intensity" />
+
+    <ListView
+        android:id="@+id/widget_creation_profile_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:foregroundGravity="top"
+        app:layout_constraintBottom_toTopOf="@+id/btn_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btn_confirm"
