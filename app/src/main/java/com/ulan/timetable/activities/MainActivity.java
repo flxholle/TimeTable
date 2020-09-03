@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private static final String filename = "Timetable_Backup.xls";
+    private static final String backup_filename = "Timetable_Backup.xls";
 
     @SuppressWarnings("deprecation")
     public void backup() {
@@ -355,13 +355,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         String path = Environment.getExternalStoragePublicDirectory(Build.VERSION.SDK_INT >= 19 ? Environment.DIRECTORY_DOCUMENTS : Environment.DIRECTORY_DOWNLOADS).toString();
 //        SimpleDateFormat timeStampFormat = new SimpleDateFormat("yyyyMMdd");
-//        Date myDate = new Date();
-//        String filename = timeStampFormat.format(myDate);
+//        String filename = timeStampFormat.format(new Date());
 
         AppCompatActivity activity = this;
 
+        File folder = new File(path);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
         SQLiteToExcel sqliteToExcel = new SQLiteToExcel(this, DbHelper.getDBName(this), path);
-        sqliteToExcel.exportAllTables(filename, new SQLiteToExcel.ExportListener() {
+        sqliteToExcel.exportAllTables(backup_filename, new SQLiteToExcel.ExportListener() {
             @Override
             public void onStart() {
 
@@ -379,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onError(Exception e) {
                 runOnUiThread(() -> ChocoBar.builder().setActivity(activity)
-                        .setText(getString(R.string.backup_failed))
+                        .setText(getString(R.string.backup_failed) + ": " + e.toString())
                         .setDuration(ChocoBar.LENGTH_LONG)
                         .red()
                         .show());
@@ -396,7 +400,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
-        String path = Environment.getExternalStoragePublicDirectory(Build.VERSION.SDK_INT >= 19 ? Environment.DIRECTORY_DOCUMENTS : Environment.DIRECTORY_DOWNLOADS).toString() + File.separator + filename;
+        String path = Environment.getExternalStoragePublicDirectory(Build.VERSION.SDK_INT >= 19 ? Environment.DIRECTORY_DOCUMENTS : Environment.DIRECTORY_DOWNLOADS).toString() + File.separator + backup_filename;
         File file = new File(path);
         if (!file.exists()) {
             ChocoBar.builder().setActivity(this)
@@ -431,7 +435,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onError(Exception e) {
                 runOnUiThread(() -> ChocoBar.builder().setActivity(activity)
-                        .setText(getString(R.string.import_failed))
+                        .setText(getString(R.string.import_failed) + ": " + e.toString())
                         .setDuration(ChocoBar.LENGTH_LONG)
                         .red()
                         .show());
