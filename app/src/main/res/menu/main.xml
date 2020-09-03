@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:orderInCategory="100"
-        android:title="@string/settings"
-        app:iconTint="@android:color/white"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/action_profiles"
         android:orderInCategory="100"
         android:title="@string/profiles"
         android:icon="@drawable/ic_people_black_24dp"
+        app:iconTint="@android:color/white"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/settings"
         app:iconTint="@android:color/white"
         app:showAsAction="ifRoom" />
     <item
