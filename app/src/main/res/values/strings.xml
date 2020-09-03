@@ -247,4 +247,7 @@
     <string name="profile_default_name">Default</string>
     <string name="profile_empty_name">NewProfile</string>
     <string name="select_profile">Select profile</string>
+    <string name="preferred_profile_explanation">Markiere ein Profil mit einem Stern.
+        \nDieses Profil wird automatisch beim Starten der App angezeigt.
+        \nAußerdem werden auf Basis des Stundenplans des markierten Profils die Benachrichtigungen am Stundenbeginn gesendet und das Smartphone in den Nicht-Stören Modus versetzt.</string>
 </resources>
