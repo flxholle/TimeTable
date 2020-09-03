@@ -240,14 +240,13 @@
     <string name="profiles_add">Add Profile\u2026</string>
     <string name="profiles_delete_submit_heading">Are you sure?</string>
     <string name="profiles_edit">Edit\u2026</string>
-    <string name="profiles_delete_message">Are you sure that you want to delete User %s</string>
+    <string name="profiles_delete_message">Are you sure that you want to delete profile %s</string>
     <string name="profiles">Profiles</string>
     <string name="add_profile_button">Add profile</string>
     <string name="add">Add</string>
     <string name="profile_default_name">Default</string>
-    <string name="profile_empty_name">NewProfile</string>
     <string name="select_profile">Select profile</string>
-    <string name="preferred_profile_explanation">Markiere ein Profil mit einem Stern.
-        \nDieses Profil wird automatisch beim Starten der App angezeigt.
-        \nAußerdem werden auf Basis des Stundenplans des markierten Profils die Benachrichtigungen am Stundenbeginn gesendet und das Smartphone in den Nicht-Stören Modus versetzt.</string>
+    <string name="preferred_profile_explanation">Mark a profile with a star.
+        \nThis profile is automatically displayed when the app is started.
+        \nIn addition, based on this profile, notifications are sent at the beginning of the hour and the smartphone is set to the Do Not Disturb mode.</string>
 </resources>

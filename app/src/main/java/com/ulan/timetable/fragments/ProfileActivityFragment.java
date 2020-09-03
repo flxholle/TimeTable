@@ -139,12 +139,9 @@ public class ProfileActivityFragment extends Fragment {
         builder.onPositive((dialog, which) -> {
             //Add Profile
             String inputText = input.getText().toString();
-            String name;
-            if (inputText.trim().isEmpty())
-                name = requireContext().getString(R.string.profile_empty_name) + (ProfileManagement.getSize() + 1);
-            else
-                name = inputText;
-            ProfileManagement.addProfile(new Profile(name));
+            if (!inputText.trim().isEmpty())
+                ProfileManagement.addProfile(new Profile(inputText));
+            adapter.notifyDataSetChanged();
         });
 
         builder.onNegative((dialog, which) -> dialog.dismiss());
@@ -180,7 +177,6 @@ public class ProfileActivityFragment extends Fragment {
             //Do not enter empty text
             ProfileManagement.editProfile(position, new Profile(nameText.trim().isEmpty() ? profile.getName() : nameText));
             adapter.notifyDataSetChanged();
-            dialog.dismiss();
         });
 
         builder.onNegative((dialog, which) -> dialog.dismiss());
@@ -199,7 +195,6 @@ public class ProfileActivityFragment extends Fragment {
                     DbHelper dbHelper = new DbHelper(getContext());
                     dbHelper.deleteAll();
                     adapter.notifyDataSetChanged();
-                    dialog.dismiss();
                 })
                 .onNegative((dialog, which) -> dialog.dismiss())
                 .negativeText(getString(R.string.no))

@@ -263,4 +263,17 @@
     <string name="show_preselection_list">Vorauswahlliste anzeigen</string>
     <string name="set_preselection_elements">Elemente der Liste festlegen</string>
     <string name="de_select_all">Alles an-/abwählen</string>
+
+    <string name="profiles_add">Profil hinzufügen\u2026</string>
+    <string name="profiles_delete_submit_heading">Bestätigen</string>
+    <string name="profiles_edit">Bearbeiten\u2026</string>
+    <string name="profiles_delete_message">Sind sie sicher, dass Profil %s gelöscht werden soll?</string>
+    <string name="profiles">Profile</string>
+    <string name="add_profile_button">Profil hinzufügen</string>
+    <string name="add">Hinzufügen</string>
+    <string name="profile_default_name">Standard</string>
+    <string name="select_profile">Profil auswählen</string>
+    <string name="preferred_profile_explanation">Markiere ein Profil mit einem Stern.
+        \nDieses Profil wird automatisch beim Starten der App angezeigt.
+        \nAußerdem werden auf Basis dieses Profils die Benachrichtigungen am Stundenbeginn gesendet und das Smartphone in den Nicht-Stören Modus versetzt.</string>
 </resources>
