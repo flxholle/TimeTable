@@ -78,8 +78,9 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
         mRgTimeStyle = findViewById(R.id.rg_time_style);
         mTvTimeStyle = findViewById(R.id.tv_time_style);
 
+        ProfileManagement.initProfiles(this);
         ListView listView = findViewById(R.id.widget_creation_profile_list);
-        listView.setAdapter(new ProfileListAdapter(getBaseContext(), 0));
+        listView.setAdapter(new ProfileListAdapter(this, 0));
     }
 
     private void setListener() {

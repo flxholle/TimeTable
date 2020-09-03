@@ -32,7 +32,6 @@ public class AppWidgetDao extends BaseDao {
         int number = update(db, TABLE_NAME, values, whereClause, whereArgs);
 
         if (number == 0) {
-
             values.put("appWidgetId", appWidgetId);
             insert(db, TABLE_NAME, values);
         }

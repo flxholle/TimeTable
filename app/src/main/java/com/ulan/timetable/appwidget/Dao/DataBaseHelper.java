@@ -50,14 +50,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     private void upgradeFrom3To4(@NonNull SQLiteDatabase db) {
-//        db.execSQL("CREATE TEMPORARY TABLE widget_backup(_id INTEGER , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1)");
-//        db.execSQL("INSERT INTO widget_backup SELECT _id , appWidgetId , currentTime , backgroundColor , timeStyle , weekStyle FROM app_widget");
-//        db.execSQL("DROP TABLE app_widget");
-//
-//        db.execSQL("CREATE TABLE app_widget(_id INTEGER PRIMARY KEY AUTOINCREMENT , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1, profilePosition INTEGER DEFAULT 0, UNIQUE(appWidgetId))");
-//        db.execSQL("INSERT INTO app_widget (appWidgetId , currentTime , backgroundColor , timeStyle , weekStyle) SELECT appWidgetId , currentTime , backgroundColor , timeStyle , weekStyle FROM widget_backup");
-//        db.execSQL("DROP TABLE widget_backup");
-        db.execSQL("ALTER TABLE app_widget ADD COLUMN profilePosition INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE app_widget ADD profilePosition INTEGER DEFAULT 0;");
     }
 
     private void upgradeFrom2To3(@NonNull SQLiteDatabase db) {
@@ -83,6 +76,6 @@ class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     private void createTables(@NonNull SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE app_widget(_id INTEGER PRIMARY KEY AUTOINCREMENT , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1 , UNIQUE(appWidgetId))");
+        db.execSQL("CREATE TABLE app_widget(_id INTEGER PRIMARY KEY AUTOINCREMENT , appWidgetId INTEGER , currentTime INTEGER , backgroundColor INTEGER DEFAULT -1 , timeStyle INTEGER DEFAULT -1 , weekStyle INTEGER DEFAULT -1 , profilePosition INTEGER DEFAULT 0 , UNIQUE(appWidgetId))");
     }
 }

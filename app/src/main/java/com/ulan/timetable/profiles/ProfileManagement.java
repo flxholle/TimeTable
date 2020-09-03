@@ -68,6 +68,7 @@ public abstract class ProfileManagement {
         if (pref.trim().isEmpty()) {
             String name = context.getString(R.string.profile_default_name);
             pList.add(new Profile(name));
+            save(context, true);
         } else {
             String[] profiles = pref.split("" + splitChar);
             for (String s : profiles) {
