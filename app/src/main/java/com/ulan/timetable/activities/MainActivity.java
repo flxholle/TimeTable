@@ -1,13 +1,13 @@
 package com.ulan.timetable.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -48,9 +48,12 @@ import com.ulan.timetable.utils.PreferenceUtil;
 import com.ulan.timetable.utils.ShortcutUtils;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import info.isuru.sheriff.enums.SheriffPermission;
 import info.isuru.sheriff.helper.Sheriff;
@@ -342,30 +345,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private static final String backup_filename = "Timetable_Backup.xls";
+    //Backup
+    private static final int CREATE_BACKUP_REQUEST_CODE = 40;
+    private static final int OPEN_BACKUP_REQUEST_CODE = 41;
+    private static final String BACKUP_FILENAME = "Timetable_Backup.xls";
+
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        super.onActivityResult(requestCode, resultCode, resultData);
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CREATE_BACKUP_REQUEST_CODE) {
+                if (resultData != null) {
+                    //Get File path
+                    backup(getFilePath(resultData));
+                }
+            } else if (requestCode == OPEN_BACKUP_REQUEST_CODE) {
+                if (resultData != null) {
+                    //Get File path
+                    restore(getFilePath(resultData));
+                }
+            }
+
+        }
+    }
+
+    private String getFilePath(Intent intent) {
+        Uri uri = intent.getData();
+        File file = new File(uri.getPath());//create path from uri
+        final String[] split = file.getPath().split(":");//split the path.
+        String filePath = split[1];//assign it to a string(your choice).
+        return "/storage/emulated/0/" + filePath;
+    }
+
+    public void backup() {
+        SimpleDateFormat timeStampFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+        String filename = timeStampFormat.format(new Date());
+
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/vnd.ms-excel");
+        intent.putExtra(Intent.EXTRA_TITLE, "Timetable_Backup_" + filename + ".xls");
+
+        startActivityForResult(intent, CREATE_BACKUP_REQUEST_CODE);
+    }
 
     @SuppressWarnings("deprecation")
-    public void backup() {
+    public void backup(String path) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            requestPermission(this::backup, SheriffPermission.STORAGE);
+            requestPermission(() -> backup(path), SheriffPermission.STORAGE);
             return;
         }
 
-        String path = Environment.getExternalStoragePublicDirectory(Build.VERSION.SDK_INT >= 19 ? Environment.DIRECTORY_DOCUMENTS : Environment.DIRECTORY_DOWNLOADS).toString();
-//        SimpleDateFormat timeStampFormat = new SimpleDateFormat("yyyyMMdd");
-//        String filename = timeStampFormat.format(new Date());
+//        String path = Environment.getExternalStoragePublicDirectory(Build.VERSION.SDK_INT >= 19 ? Environment.DIRECTORY_DOCUMENTS : Environment.DIRECTORY_DOWNLOADS).toString();
+//        File folder = new File(path);
+//        if (!folder.exists()) {
+//            folder.mkdirs();
+//        }
 
         AppCompatActivity activity = this;
 
-        File folder = new File(path);
-        if (!folder.exists()) {
-            folder.mkdirs();
-        }
-
         SQLiteToExcel sqliteToExcel = new SQLiteToExcel(this, DbHelper.getDBName(this), path);
-        sqliteToExcel.exportAllTables(backup_filename, new SQLiteToExcel.ExportListener() {
+        sqliteToExcel.exportAllTables(path, new SQLiteToExcel.ExportListener() {
             @Override
             public void onStart() {
 
@@ -391,8 +433,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    @SuppressWarnings("deprecation")
     public void restore() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/vnd.ms-excel");
+
+        startActivityForResult(intent, OPEN_BACKUP_REQUEST_CODE);
+    }
+
+    @SuppressWarnings("deprecation")
+    public void restore(String path) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
@@ -400,16 +450,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
-        String path = Environment.getExternalStoragePublicDirectory(Build.VERSION.SDK_INT >= 19 ? Environment.DIRECTORY_DOCUMENTS : Environment.DIRECTORY_DOWNLOADS).toString() + File.separator + backup_filename;
-        File file = new File(path);
-        if (!file.exists()) {
-            ChocoBar.builder().setActivity(this)
-                    .setText(getString(R.string.no_backup_found_in_downloads, Build.VERSION.SDK_INT >= 19 ? getString(R.string.Documents) : getString(R.string.Downloads)))
-                    .setDuration(ChocoBar.LENGTH_LONG)
-                    .red()
-                    .show();
-            return;
-        }
+//        String path = Environment.getExternalStoragePublicDirectory(Build.VERSION.SDK_INT >= 19 ? Environment.DIRECTORY_DOCUMENTS : Environment.DIRECTORY_DOWNLOADS).toString() + File.separator + BACKUP_FILENAME;
+//        File file = new File(path);
+//        if (!file.exists()) {
+//            ChocoBar.builder().setActivity(this)
+//                    .setText(getString(R.string.no_backup_found_in_downloads, Build.VERSION.SDK_INT >= 19 ? getString(R.string.Documents) : getString(R.string.Downloads)))
+//                    .setDuration(ChocoBar.LENGTH_LONG)
+//                    .red()
+//                    .show();
+//            return;
+//        }
 
         AppCompatActivity activity = this;
         DbHelper dbHelper = new DbHelper(this);
