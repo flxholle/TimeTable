@@ -148,7 +148,7 @@ public class ProfileActivityFragment extends Fragment {
 
         builder.positiveText(R.string.add);
         builder.negativeText(R.string.cancel);
-        builder.build().show();
+        builder.show();
     }
 
     private void openEditDialog(int position) {

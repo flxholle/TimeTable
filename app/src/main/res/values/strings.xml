@@ -248,5 +248,5 @@
     <string name="select_profile">Select profile</string>
     <string name="preferred_profile_explanation">Mark a profile with a star.
         \nThis profile is automatically displayed when the app is started.
-        \nIn addition, based on this profile, notifications are sent at the beginning of the hour and the smartphone is set to the Do Not Disturb mode.</string>
+        \nIn addition, based on this profile data, notifications are sent at the beginning of the lessons and the smartphone is set to the \"Do Not Disturb\" mode.</string>
 </resources>

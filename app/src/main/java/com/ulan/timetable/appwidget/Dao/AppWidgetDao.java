@@ -169,26 +169,6 @@ public class AppWidgetDao extends BaseDao {
 
         return currentTime;
     }
-//
-//    public static void saveAppWidgetProfile(int appWidgetId, int profilePosition, Context context) {
-//        SQLiteDatabase db = DBManager.getDb(context);
-//
-//        ContentValues values = new ContentValues(2);
-//        values.put("profilePosition", profilePosition);
-//
-//        String whereClause = "appWidgetId = ?";
-//        String[] whereArgs = {String.valueOf(appWidgetId)};
-//
-//        int number = update(db, TABLE_NAME, values, whereClause, whereArgs);
-//
-//        if (number == 0) {
-//            // 使用insertOrReplace会重置其他列的数据
-//            values.put("appWidgetId", appWidgetId);
-//            insert(db, TABLE_NAME, values);
-//        }
-//
-//        DBManager.close(db);
-//    }
 
     public static int getAppWidgetProfile(int appWidgetId, int defaultProfile, Context context) {
         SQLiteDatabase db = DBManager.getDb(context);
@@ -206,7 +186,7 @@ public class AppWidgetDao extends BaseDao {
         int currentProfileIndex = cursor.getColumnIndex("profilePosition");
         int currentProfile = 0;
 
-        if (cursor.moveToNext()) {// id只存在一个，所以不用while
+        if (cursor.moveToNext()) {
             currentProfile = cursor.getInt(currentProfileIndex);
         }
 

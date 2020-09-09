@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        ProfileManagement.resetSelectedProfile(this);
+        ProfileManagement.resetSelectedProfile();
         ProfileManagement.checkPreferredProfile();
         ProfileManagement.save(this, true);
         Intent i = new Intent(this, MainActivity.class);

@@ -34,6 +34,7 @@ public abstract class ProfileManagement {
     @NonNull
     private static ArrayList<Profile> profileList = new ArrayList<>();
     private static int preferredProfile;
+    private static int selectedProfile;
 
     public static Profile getProfile(int pos) {
         return profileList.get(pos);
@@ -82,10 +83,10 @@ public abstract class ProfileManagement {
         }
         profileList = pList;
         preferredProfile = sharedPref.getInt("preferred_position", 0);
-        resetSelectedProfile(context);
+        resetSelectedProfile();
     }
 
-    public static boolean isUninit() {
+    private static boolean isUninit() {
         return getProfileList() == null || getProfileList().size() == 0;
     }
 
@@ -104,6 +105,7 @@ public abstract class ProfileManagement {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("profiles", all.toString());
         editor.putInt("preferred_position", preferredProfile);
+        editor.putInt("selected", selectedProfile);
         if (apply)
             editor.apply();
         else
@@ -124,24 +126,20 @@ public abstract class ProfileManagement {
     }
 
     //Positions
-    public static void setSelectedProfile(Context context, int position) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("selected", position);
-        editor.apply();
+    public static void setSelectedProfile(int position) {
+        selectedProfile = position;
     }
 
-    public static void resetSelectedProfile(Context context) {
-        setSelectedProfile(context, loadPreferredProfilePosition());
+    public static void resetSelectedProfile() {
+        setSelectedProfile(loadPreferredProfilePosition());
     }
 
-    public static Profile getSelectedProfile(Context context) {
-        return getProfile(getSelectedProfilePosition(context));
+    public static Profile getSelectedProfile() {
+        return getProfile(getSelectedProfilePosition());
     }
 
-    public static int getSelectedProfilePosition(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPref.getInt("selected", 0);
+    public static int getSelectedProfilePosition() {
+        return selectedProfile;
     }
 
     //Preferred Profile

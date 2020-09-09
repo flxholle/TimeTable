@@ -138,14 +138,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (ProfileManagement.isMoreThanOneProfile()) {
             parentSpinner.setVisibility(View.VISIBLE);
-            parentSpinner.setEnabled(true);
+            dontfire = true;
             List<String> list = ProfileManagement.getProfileListNames();
             list.add(getString(R.string.profiles_edit));
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             parentSpinner.setAdapter(dataAdapter);
-            dontfire = true;
-            parentSpinner.setSelection(ProfileManagement.getSelectedProfilePosition(this));
+            parentSpinner.setSelection(ProfileManagement.getSelectedProfilePosition());
             parentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(@NonNull AdapterView<?> parent, View view, int position, long id) {
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         finish();
                     } else {
                         //Change profile position
-                        ProfileManagement.setSelectedProfile(getApplicationContext(), position);
+                        ProfileManagement.setSelectedProfile(position);
                         startActivity(new Intent(getBaseContext(), MainActivity.class));
                         finish();
                     }
@@ -174,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         } else {
             parentSpinner.setVisibility(View.GONE);
-            parentSpinner.setEnabled(false);
         }
     }
 
@@ -266,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        ProfileManagement.resetSelectedProfile(this);
+        ProfileManagement.resetSelectedProfile();
         finishAffinity();
     }
 

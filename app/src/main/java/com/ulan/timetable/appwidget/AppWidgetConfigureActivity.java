@@ -80,7 +80,7 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
 
         ProfileManagement.initProfiles(this);
         ListView listView = findViewById(R.id.widget_creation_profile_list);
-        listView.setAdapter(new ProfileListAdapter(this, 0));
+        listView.setAdapter(new ProfileListAdapter(this));
     }
 
     private void setListener() {
@@ -206,8 +206,8 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
 
     class ProfileListAdapter extends ArrayAdapter<String[]> {
 
-        ProfileListAdapter(@NonNull Context con, int resource) {
-            super(con, resource);
+        ProfileListAdapter(@NonNull Context con) {
+            super(con, 0);
         }
 
         @NotNull

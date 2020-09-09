@@ -104,7 +104,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private static String getDBName(Context context, Calendar now) {
-        return getDBName(context, now, ProfileManagement.getSelectedProfilePosition(context));
+        return getDBName(context, now, ProfileManagement.getSelectedProfilePosition());
     }
 
     public void onCreate(@NonNull SQLiteDatabase db) {
