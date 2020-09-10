@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             folder.mkdirs();
         }
 
-        SQLiteToExcel sqliteToExcel = new SQLiteToExcel(this, DbHelper.getDBName(this), path);
+        SQLiteToExcel sqliteToExcel = new SQLiteToExcel(this, DbHelper.getDBName(ProfileManagement.getSelectedProfilePosition()), path);
         sqliteToExcel.exportAllTables(backup_filename, new SQLiteToExcel.ExportListener() {
             @Override
             public void onStart() {
@@ -413,7 +413,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DbHelper dbHelper = new DbHelper(this);
         dbHelper.deleteAll();
 
-        ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), DbHelper.getDBName(this), false);
+        ExcelToSQLite excelToSQLite = new ExcelToSQLite(getApplicationContext(), DbHelper.getDBName(ProfileManagement.getSelectedProfilePosition()), false);
         excelToSQLite.importFromFile(path, new ExcelToSQLite.ImportListener() {
             @Override
             public void onStart() {

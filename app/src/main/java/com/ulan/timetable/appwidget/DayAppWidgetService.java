@@ -52,7 +52,7 @@ public class DayAppWidgetService extends RemoteViewsService {
             calendar.setTimeInMillis(currentTime);
             ProfileManagement.initProfiles(mContext);
             int profile = AppWidgetDao.getAppWidgetProfile(mAppWidgetId, ProfileManagement.loadPreferredProfilePosition(), mContext);
-            content = new DbHelper(mContext, profile, calendar).getWeek(getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK)));
+            content = new DbHelper(mContext, profile).getWeek(getCurrentDay(calendar.get(Calendar.DAY_OF_WEEK)), calendar);
         }
 
         @Override

@@ -60,35 +60,35 @@ public class WeekUtils {
 
     @NonNull
     public static ArrayList<Week> getAllWeeks(@NonNull DbHelper dbHelper) {
-        return getWeeks(dbHelper, new String[]{WeekdayFragment.KEY_MONDAY_FRAGMENT,
+        String[] keys = new String[]{WeekdayFragment.KEY_MONDAY_FRAGMENT,
                 WeekdayFragment.KEY_TUESDAY_FRAGMENT,
                 WeekdayFragment.KEY_WEDNESDAY_FRAGMENT,
                 WeekdayFragment.KEY_THURSDAY_FRAGMENT,
                 WeekdayFragment.KEY_FRIDAY_FRAGMENT,
                 WeekdayFragment.KEY_SATURDAY_FRAGMENT,
-                WeekdayFragment.KEY_SUNDAY_FRAGMENT});
+                WeekdayFragment.KEY_SUNDAY_FRAGMENT};
+
+        Calendar calendar = Calendar.getInstance();
+        ArrayList<Week> customWeeks = getWeeks(dbHelper, keys, calendar);
+
+        calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) - 1);
+        customWeeks.addAll(getWeeks(dbHelper, keys, calendar));
+        return removeDuplicates(customWeeks);
     }
 
     @NonNull
-    public static ArrayList<Week> getWeeks(@NonNull DbHelper dbHelper, @NonNull String[] keys) {
+    private static ArrayList<Week> getWeeks(@NonNull DbHelper dbHelper, @NonNull String[] keys, Calendar calendar) {
         ArrayList<Week> weeks = new ArrayList<>();
         for (String key : keys) {
-            weeks.addAll(dbHelper.getWeek(key));
+            weeks.addAll(dbHelper.getWeek(key, calendar));
         }
         return weeks;
     }
 
     @NotNull
     public static ArrayList<Week> getPreselection(@NonNull AppCompatActivity activity) {
-        Calendar calendar = Calendar.getInstance();
-        DbHelper dbHelper = new DbHelper(activity, calendar);
+        DbHelper dbHelper = new DbHelper(activity);
         ArrayList<Week> customWeeks = getAllWeeks(dbHelper);
-
-        calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) - 1);
-        dbHelper = new DbHelper(activity, calendar);
-        customWeeks.addAll(getAllWeeks(dbHelper));
-
-        customWeeks = removeDuplicates(customWeeks);
 
         ArrayList<String> subjects = new ArrayList<>();
         for (Week w : customWeeks) {
