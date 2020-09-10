@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:tint="?android:attr/textColorPrimary"
         app:srcCompat="@drawable/ic_delete_black_24dp" />
 
 
@@ -46,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:tint="?android:attr/textColorPrimary"
         app:srcCompat="@drawable/ic_star_border_black_24dp" />
 
     <ImageButton
@@ -53,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:tint="?android:attr/textColorPrimary"
         app:srcCompat="@drawable/ic_edit_black_24dp" />
 
 </LinearLayout>
