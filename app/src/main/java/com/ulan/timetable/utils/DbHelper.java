@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.NonNull;
 
+import com.ulan.timetable.fragments.WeekdayFragment;
 import com.ulan.timetable.model.Exam;
 import com.ulan.timetable.model.Homework;
 import com.ulan.timetable.model.Note;
@@ -24,11 +25,13 @@ import java.util.Calendar;
 
 //TODO: Rewrite to Kotlin and RoomDB
 public class DbHelper extends SQLiteOpenHelper {
+    private Context context;
 
-    private static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 7;
     private static final String DB_NAME = "timetabledb";
-    private static final String ODD_WEEK_POSTFIX = "_odd";
+
     private static final String TIMETABLE = "timetable";
+    private static final String TIMETABLE_ODD = "timetable_odd";
     private static final String WEEK_ID = "id";
     private static final String WEEK_SUBJECT = "subject";
     private static final String WEEK_FRAGMENT = "fragment";
@@ -69,46 +72,32 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String EXAMS_COLOR = "color";
 
     public DbHelper(Context context) {
-        super(context, getDBName(context), null, DB_VERSION);
+        super(context, getDBName(ProfileManagement.loadPreferredProfilePosition()), null, DB_VERSION);
+        this.context = context;
     }
 
     public DbHelper(Context context, int selectedProfile) {
-        super(context, getDBName(context, Calendar.getInstance(), selectedProfile), null, DB_VERSION);
+        super(context, getDBName(selectedProfile), null, DB_VERSION);
+        this.context = context;
     }
 
-    public DbHelper(Context context, Calendar now) {
-        super(context, getDBName(context, now), null, DB_VERSION);
-    }
-
-    public DbHelper(Context context, int selectedProfile, Calendar now) {
-        super(context, getDBName(context, now, selectedProfile), null, DB_VERSION);
+    private DbHelper(Context context, boolean odd) {
+        super(context, DB_NAME + "_odd", null, 6);
+        this.context = context;
     }
 
     @NonNull
-    private static String getDBName(@NonNull Context context, @NonNull Calendar now, int selectedProfile) {
+    public static String getDBName(int selectedProfile) {
         String dbName;
         if (selectedProfile == 0)
             dbName = DB_NAME; //If the app was installed before the profiles were added
         else
             dbName = DB_NAME + "_" + selectedProfile;
-
-        if (PreferenceUtil.isEvenWeek(context, now))
-            return dbName;
-        else
-            return dbName + ODD_WEEK_POSTFIX;
-    }
-
-    @NonNull
-    public static String getDBName(Context context) {
-        return getDBName(context, Calendar.getInstance());
-    }
-
-    private static String getDBName(Context context, Calendar now) {
-        return getDBName(context, now, ProfileManagement.getSelectedProfilePosition());
+        return dbName;
     }
 
     public void onCreate(@NonNull SQLiteDatabase db) {
-        String CREATE_TIMETABLE = "CREATE TABLE " + TIMETABLE + "("
+        String CREATE_TIMETABLE = "CREATE TABLE IF NOT EXISTS " + TIMETABLE + "("
                 + WEEK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + WEEK_SUBJECT + " TEXT,"
                 + WEEK_FRAGMENT + " TEXT,"
@@ -118,20 +107,30 @@ public class DbHelper extends SQLiteOpenHelper {
                 + WEEK_TO_TIME + " TEXT,"
                 + WEEK_COLOR + " INTEGER" + ")";
 
-        String CREATE_HOMEWORKS = "CREATE TABLE " + HOMEWORKS + "("
+        String CREATE_TIMETABLE_ODD = "CREATE TABLE IF NOT EXISTS " + TIMETABLE_ODD + "("
+                + WEEK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + WEEK_SUBJECT + " TEXT,"
+                + WEEK_FRAGMENT + " TEXT,"
+                + WEEK_TEACHER + " TEXT,"
+                + WEEK_ROOM + " TEXT,"
+                + WEEK_FROM_TIME + " TEXT,"
+                + WEEK_TO_TIME + " TEXT,"
+                + WEEK_COLOR + " INTEGER" + ")";
+
+        String CREATE_HOMEWORKS = "CREATE TABLE IF NOT EXISTS " + HOMEWORKS + "("
                 + HOMEWORKS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + HOMEWORKS_SUBJECT + " TEXT,"
                 + HOMEWORKS_DESCRIPTION + " TEXT,"
                 + HOMEWORKS_DATE + " TEXT,"
                 + HOMEWORKS_COLOR + " INTEGER" + ")";
 
-        String CREATE_NOTES = "CREATE TABLE " + NOTES + "("
+        String CREATE_NOTES = "CREATE TABLE IF NOT EXISTS " + NOTES + "("
                 + NOTES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NOTES_TITLE + " TEXT,"
                 + NOTES_TEXT + " TEXT,"
                 + NOTES_COLOR + " INTEGER" + ")";
 
-        String CREATE_TEACHERS = "CREATE TABLE " + TEACHERS + "("
+        String CREATE_TEACHERS = "CREATE TABLE IF NOT EXISTS " + TEACHERS + "("
                 + TEACHERS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TEACHERS_NAME + " TEXT,"
                 + TEACHERS_POST + " TEXT,"
@@ -139,7 +138,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + TEACHERS_EMAIL + " TEXT,"
                 + TEACHERS_COLOR + " INTEGER" + ")";
 
-        String CREATE_EXAMS = "CREATE TABLE " + EXAMS + "("
+        String CREATE_EXAMS = "CREATE TABLE IF NOT EXISTS " + EXAMS + "("
                 + EXAMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + EXAMS_SUBJECT + " TEXT,"
                 + EXAMS_TEACHER + " TEXT,"
@@ -149,6 +148,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + EXAMS_COLOR + " INTEGER" + ")";
 
         db.execSQL(CREATE_TIMETABLE);
+        db.execSQL(CREATE_TIMETABLE_ODD);
         db.execSQL(CREATE_HOMEWORKS);
         db.execSQL(CREATE_NOTES);
         db.execSQL(CREATE_TEACHERS);
@@ -157,31 +157,54 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(@NonNull SQLiteDatabase db, int oldVersion, int newVersion) {
+        onCreate(db);
         switch (oldVersion) {
-            case 1:
-                db.execSQL("DROP TABLE IF EXISTS " + TIMETABLE);
-
-            case 2:
-                db.execSQL("DROP TABLE IF EXISTS " + HOMEWORKS);
-
-            case 3:
-                db.execSQL("DROP TABLE IF EXISTS " + NOTES);
-
-            case 4:
-                db.execSQL("DROP TABLE IF EXISTS " + TEACHERS);
-
-            case 5:
-                db.execSQL("DROP TABLE IF EXISTS " + EXAMS);
+            default:
+            case 6:
+                migrateEvenOddWeeks(db);
                 break;
         }
-        onCreate(db);
+    }
+
+    private void migrateEvenOddWeeks(SQLiteDatabase db) {
+        String[] keys = new String[]{WeekdayFragment.KEY_MONDAY_FRAGMENT,
+                WeekdayFragment.KEY_TUESDAY_FRAGMENT,
+                WeekdayFragment.KEY_WEDNESDAY_FRAGMENT,
+                WeekdayFragment.KEY_THURSDAY_FRAGMENT,
+                WeekdayFragment.KEY_FRIDAY_FRAGMENT,
+                WeekdayFragment.KEY_SATURDAY_FRAGMENT,
+                WeekdayFragment.KEY_SUNDAY_FRAGMENT};
+
+        ArrayList<Week> oldOddWeeks = new ArrayList<>();
+        DbHelper oldDbHelper = new DbHelper(context, true);
+        for (String key : keys) {
+            oldOddWeeks.addAll(oldDbHelper.getWeek(key, TIMETABLE));
+        }
+
+        for (Week week : oldOddWeeks) {
+            insertWeek(week, TIMETABLE_ODD, db);
+        }
     }
 
     /**
      * Methods for Week fragments
      **/
-    public void insertWeek(@NonNull Week week) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    private String getTimetableTable() {
+        return getTimetableTable(Calendar.getInstance());
+    }
+
+    private String getTimetableTable(Calendar now) {
+        if (PreferenceUtil.isEvenWeek(context, now))
+            return TIMETABLE;
+        else
+            return TIMETABLE_ODD;
+    }
+
+    public void insertWeek(Week week) {
+        insertWeek(week, getTimetableTable(), this.getWritableDatabase());
+    }
+
+    private void insertWeek(@NonNull Week week, String tableName, SQLiteDatabase db) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(WEEK_SUBJECT, week.getSubject());
         contentValues.put(WEEK_FRAGMENT, week.getFragment());
@@ -190,14 +213,14 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(WEEK_FROM_TIME, week.getFromTime());
         contentValues.put(WEEK_TO_TIME, week.getToTime());
         contentValues.put(WEEK_COLOR, week.getColor());
-        db.insert(TIMETABLE, null, contentValues);
-        db.update(TIMETABLE, contentValues, WEEK_FRAGMENT, null);
-        db.close();
+        db.insert(tableName, null, contentValues);
+        db.update(tableName, contentValues, WEEK_FRAGMENT, null);
+//        db.close();
     }
 
     public void deleteWeekById(@NonNull Week week) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TIMETABLE, WEEK_ID + " = ? ", new String[]{String.valueOf(week.getId())});
+        db.delete(getTimetableTable(), WEEK_ID + " = ? ", new String[]{String.valueOf(week.getId())});
         db.close();
     }
 
@@ -210,20 +233,29 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(WEEK_FROM_TIME, week.getFromTime());
         contentValues.put(WEEK_TO_TIME, week.getToTime());
         contentValues.put(WEEK_COLOR, week.getColor());
-        db.update(TIMETABLE, contentValues, WEEK_ID + " = " + week.getId(), null);
+        db.update(getTimetableTable(), contentValues, WEEK_ID + " = " + week.getId(), null);
         db.close();
     }
 
-    @NonNull
     public ArrayList<Week> getWeek(String fragment) {
+        return getWeek(fragment, Calendar.getInstance());
+    }
+
+    public ArrayList<Week> getWeek(String fragment, Calendar now) {
+        return getWeek(fragment, getTimetableTable(now));
+    }
+
+    @NonNull
+    private ArrayList<Week> getWeek(String fragment, String dbName) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Week> weeklist = new ArrayList<>();
         Week week;
-        Cursor cursor = db.rawQuery("SELECT * FROM ( SELECT * FROM " + TIMETABLE + " ORDER BY " + WEEK_FROM_TIME + " ) WHERE " + WEEK_FRAGMENT + " LIKE '" + fragment + "%'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM ( SELECT * FROM " + dbName + " ORDER BY " + WEEK_FROM_TIME + " ) WHERE " + WEEK_FRAGMENT + " LIKE '" + fragment + "%'", null);
         while (cursor.moveToNext()) {
             week = new Week();
             week.setId(cursor.getInt(cursor.getColumnIndex(WEEK_ID)));
+            week.setFragment(cursor.getString(cursor.getColumnIndex(WEEK_FRAGMENT)));
             week.setSubject(cursor.getString(cursor.getColumnIndex(WEEK_SUBJECT)));
             week.setTeacher(cursor.getString(cursor.getColumnIndex(WEEK_TEACHER)));
             week.setRoom(cursor.getString(cursor.getColumnIndex(WEEK_ROOM)));
@@ -450,6 +482,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void deleteAll() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TIMETABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TIMETABLE_ODD);
         db.execSQL("DROP TABLE IF EXISTS " + HOMEWORKS);
         db.execSQL("DROP TABLE IF EXISTS " + NOTES);
         db.execSQL("DROP TABLE IF EXISTS " + TEACHERS);
