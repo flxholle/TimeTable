@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".3"
             android:text="@string/name_dialog"
-            android:textColor="@android:color/black" />
+            android:textColor="?android:attr/textColorPrimary" />
 
         <EditText
             android:id="@+id/name_dialog"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".3"
             android:text="@string/post_dialog"
-            android:textColor="@android:color/black" />
+            android:textColor="?android:attr/textColorPrimary" />
 
         <EditText
             android:id="@+id/post_dialog"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".3"
             android:text="@string/phonenumber_dialog"
-            android:textColor="@android:color/black" />
+            android:textColor="?android:attr/textColorPrimary" />
 
         <EditText
             android:id="@+id/phonenumber_dialog"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".3"
             android:text="@string/email_dialog"
-            android:textColor="@android:color/black" />
+            android:textColor="?android:attr/textColorPrimary" />
 
         <EditText
             android:id="@+id/email_dialog"
