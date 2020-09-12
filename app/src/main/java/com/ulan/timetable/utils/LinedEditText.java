@@ -3,7 +3,6 @@ package com.ulan.timetable.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -28,7 +27,7 @@ public class LinedEditText extends EditText {
         mRect = new Rect();
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mPaint.setColor(Color.parseColor("#008577"));
+        mPaint.setColor(PreferenceUtil.getTextColorSecondary(context));
     }
 
     @Override
