@@ -72,7 +72,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String EXAMS_COLOR = "color";
 
     public DbHelper(Context context) {
-        super(context, getDBName(ProfileManagement.loadPreferredProfilePosition()), null, DB_VERSION);
+        super(context, getDBName(ProfileManagement.getSelectedProfilePosition()), null, DB_VERSION);
         this.context = context;
     }
 
