@@ -1,7 +1,7 @@
 <h1 align=center>
 <img src="logo-files/horizontal.png" width=50%>
 </h1>
-Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! The repository on Github will remain as a mirror. Please do not submit Pull requests or issues on GitHub.
+Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! The repository on Github will remain as a mirror. Please do not submit pull requests or issues on GitHub.
 
 # TimeTable
 
@@ -30,6 +30,12 @@ Some other features I added:
 ### Contribute
 
 You are welcome to contribute with issues, pull requests and ideas. And to contribute to this project, please fork the project and submit a pull request. 
+
+### Todo:
+ - Add a print option
+ - Backup all profiles
+ - Rewrite Database to RoomDB
+ - Rewrite class 'AlertDialogsHelper'
 
 ### Screenshots
 <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_1.png" width="31%" style="max-width:100%;"> &nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_2.png" width="31%" style="max-width:100%;">
