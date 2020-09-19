@@ -1,5 +1,6 @@
 package com.ulan.timetable.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,6 +57,7 @@ public class SettingsActivity extends AppCompatActivity implements PreferenceFra
     public void onBackPressed() {
         super.onBackPressed();
         if (loadedFragments == 0) {
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         } else {
             loadedFragments--;

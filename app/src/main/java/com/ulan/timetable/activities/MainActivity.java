@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onStart() {
         super.onStart();
         DoNotDisturbReceiversKt.setDoNotDisturbReceivers(this, false);
-        setupWeeksTV();
     }
 
     private void initAll() {
@@ -279,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (item.getItemId() == R.id.action_settings) {
             Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settings);
+            finish();
         } else if (item.getItemId() == R.id.action_backup) {
             backup();
         } else if (item.getItemId() == R.id.action_restore) {
@@ -317,6 +317,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (itemId == R.id.settings) {
             Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settings);
+            finish();
         } else if (itemId == R.id.schoolwebsitemenu) {
             String schoolWebsite = PreferenceManager.getDefaultSharedPreferences(this).getString(SettingsActivity.KEY_SCHOOL_WEBSITE_SETTING, null);
             if (!TextUtils.isEmpty(schoolWebsite)) {

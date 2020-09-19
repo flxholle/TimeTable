@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.quwepiro:TimetableUI:master-SNAPSHOT@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6624fc4f9f2ffd122422dda5cd31a814/jetified-TimetableUI-master-SNAPSHOT/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6624fc4f9f2ffd122422dda5cd31a814/jetified-TimetableUI-master-SNAPSHOT/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6624fc4f9f2ffd122422dda5cd31a814/jetified-TimetableUI-master-SNAPSHOT/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2baf45800392ac0334f9d481478b8b7/jetified-TimetableUI-master-SNAPSHOT/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2baf45800392ac0334f9d481478b8b7/jetified-TimetableUI-master-SNAPSHOT/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2baf45800392ac0334f9d481478b8b7/jetified-TimetableUI-master-SNAPSHOT/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
