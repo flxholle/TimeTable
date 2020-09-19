@@ -41,6 +41,7 @@ public class ExamsAdapter extends ArrayAdapter<Exam> {
 
     @NonNull
     private final AppCompatActivity mActivity;
+    private final DbHelper dbHelper;
     @NonNull
     private final ArrayList<Exam> examlist;
     private Exam exam;
@@ -56,8 +57,9 @@ public class ExamsAdapter extends ArrayAdapter<Exam> {
         ImageView popup;
     }
 
-    public ExamsAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Exam> objects) {
+    public ExamsAdapter(DbHelper dbHelper, @NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Exam> objects) {
         super(activity, resource, objects);
+        this.dbHelper = dbHelper;
         mActivity = activity;
         mListView = listView;
         examlist = objects;
@@ -129,22 +131,21 @@ public class ExamsAdapter extends ArrayAdapter<Exam> {
         holder.popup.setOnClickListener(v -> {
             ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);
             final PopupMenu popup = new PopupMenu(theme, holder.popup);
-            final DbHelper db = new DbHelper(mActivity);
             popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(@NonNull MenuItem item) {
                     int itemId = item.getItemId();
                     if (itemId == R.id.delete_popup) {
                         AlertDialogsHelper.getDeleteDialog(getContext(), () -> {
-                            db.deleteExamById(Objects.requireNonNull(getItem(position)));
-                            db.updateExam(Objects.requireNonNull(getItem(position)));
+                            dbHelper.deleteExamById(Objects.requireNonNull(getItem(position)));
+                            dbHelper.updateExam(Objects.requireNonNull(getItem(position)));
                             examlist.remove(position);
                             notifyDataSetChanged();
                         }, getContext().getString(R.string.delete_exam, exam.getSubject()));
                         return true;
                     } else if (itemId == R.id.edit_popup) {
                         final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_exam, null);
-                        AlertDialogsHelper.getEditExamDialog(mActivity, alertLayout, examlist, mListView, position);
+                        AlertDialogsHelper.getEditExamDialog(dbHelper, mActivity, alertLayout, examlist, mListView, position);
                         notifyDataSetChanged();
                         return true;
                     }

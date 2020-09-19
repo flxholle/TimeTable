@@ -42,6 +42,7 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
 
     @NonNull
     private final AppCompatActivity mActivity;
+    private final DbHelper dbHelper;
     private final int mResource;
     @NonNull
     private final ArrayList<Teacher> teacherlist;
@@ -57,8 +58,9 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
         ImageView popup;
     }
 
-    public TeachersAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Teacher> objects) {
+    public TeachersAdapter(DbHelper dbHelper, @NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Teacher> objects) {
         super(activity, resource, objects);
+        this.dbHelper = dbHelper;
         mActivity = activity;
         mListView = listView;
         mResource = resource;
@@ -158,22 +160,21 @@ public class TeachersAdapter extends ArrayAdapter<Teacher> {
 
         holder.cardView.setCardBackgroundColor(teacher.getColor());
         holder.popup.setOnClickListener(v -> {
-            final DbHelper db = new DbHelper(mActivity);
             ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);
             final PopupMenu popup = new PopupMenu(theme, holder.popup);
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.delete_popup:
-                            db.deleteTeacherById(Objects.requireNonNull(getItem(position)));
-                            db.updateTeacher(Objects.requireNonNull(getItem(position)));
+                            dbHelper.deleteTeacherById(Objects.requireNonNull(getItem(position)));
+                            dbHelper.updateTeacher(Objects.requireNonNull(getItem(position)));
                             teacherlist.remove(position);
                             notifyDataSetChanged();
                             return true;
 
                         case R.id.edit_popup:
                             final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_teacher, null);
-                            AlertDialogsHelper.getEditTeacherDialog(mActivity, alertLayout, teacherlist, mListView, position);
+                            AlertDialogsHelper.getEditTeacherDialog(dbHelper, mActivity, alertLayout, teacherlist, mListView, position);
                             notifyDataSetChanged();
                             return true;
                         default:

@@ -50,7 +50,7 @@ public class TeachersActivity extends AppCompatActivity {
     private void setupAdapter() {
         db = new DbHelper(context);
         listView = findViewById(R.id.teacherlist);
-        adapter = new TeachersAdapter(TeachersActivity.this, listView, R.layout.listview_teachers_adapter, db.getTeacher());
+        adapter = new TeachersAdapter(db, TeachersActivity.this, listView, R.layout.listview_teachers_adapter, db.getTeacher());
         listView.setAdapter(adapter);
     }
 
@@ -109,6 +109,6 @@ public class TeachersActivity extends AppCompatActivity {
 
     private void setupCustomDialog() {
         final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_teacher, null);
-        AlertDialogsHelper.getAddTeacherDialog(TeachersActivity.this, alertLayout, adapter);
+        AlertDialogsHelper.getAddTeacherDialog(db, TeachersActivity.this, alertLayout, adapter);
     }
 }

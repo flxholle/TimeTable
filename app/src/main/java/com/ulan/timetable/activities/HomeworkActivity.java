@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ulan.timetable.R;
 import com.ulan.timetable.adapters.HomeworkAdapter;
 import com.ulan.timetable.model.Homework;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
@@ -32,16 +33,19 @@ public class HomeworkActivity extends AppCompatActivity {
     private ListView listView;
     private HomeworkAdapter adapter;
     private DbHelper db;
-    private int listposition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(PreferenceUtil.getGeneralTheme(this));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homeworks);
-        initAll();
         if (ACTION_ADD_HOMEWORK.equalsIgnoreCase(getIntent().getAction())) {
+            db = new DbHelper(this, ProfileManagement.loadPreferredProfilePosition());
+            initAll();
             findViewById(R.id.fab).performClick();
+        } else {
+            db = new DbHelper(context);
+            initAll();
         }
     }
 
@@ -52,9 +56,8 @@ public class HomeworkActivity extends AppCompatActivity {
     }
 
     private void setupAdapter() {
-        db = new DbHelper(context);
         listView = findViewById(R.id.homeworklist);
-        adapter = new HomeworkAdapter(HomeworkActivity.this, listView, R.layout.listview_homeworks_adapter, db.getHomework());
+        adapter = new HomeworkAdapter(db, HomeworkActivity.this, listView, R.layout.listview_homeworks_adapter, db.getHomework());
         listView.setAdapter(adapter);
     }
 
@@ -63,7 +66,6 @@ public class HomeworkActivity extends AppCompatActivity {
         listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
             @Override
             public void onItemCheckedStateChanged(@NonNull ActionMode mode, int position, long id, boolean checked) {
-                listposition = position;
                 final int checkedCount = listView.getCheckedItemCount();
                 mode.setTitle(checkedCount + " " + getResources().getString(R.string.selected));
                 if (checkedCount == 0) mode.finish();
@@ -110,6 +112,6 @@ public class HomeworkActivity extends AppCompatActivity {
 
     private void setupCustomDialog() {
         final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_homework, null);
-        AlertDialogsHelper.getAddHomeworkDialog(HomeworkActivity.this, alertLayout, adapter);
+        AlertDialogsHelper.getAddHomeworkDialog(db, HomeworkActivity.this, alertLayout, adapter);
     }
 }

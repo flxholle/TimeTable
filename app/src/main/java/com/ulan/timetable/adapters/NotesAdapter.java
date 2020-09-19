@@ -38,6 +38,7 @@ public class NotesAdapter extends ArrayAdapter<Note> {
 
     @NonNull
     private final AppCompatActivity mActivity;
+    private final DbHelper dbHelper;
     @NonNull
     private final ArrayList<Note> notelist;
     private Note note;
@@ -49,8 +50,9 @@ public class NotesAdapter extends ArrayAdapter<Note> {
         CardView cardView;
     }
 
-    public NotesAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Note> objects) {
+    public NotesAdapter(DbHelper dbHelper, @NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Note> objects) {
         super(activity, resource, objects);
+        this.dbHelper = dbHelper;
         mActivity = activity;
         mListView = listView;
         notelist = objects;
@@ -89,22 +91,21 @@ public class NotesAdapter extends ArrayAdapter<Note> {
         holder.popup.setOnClickListener(v -> {
             ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);
             final PopupMenu popup = new PopupMenu(theme, holder.popup);
-            final DbHelper db = new DbHelper(mActivity);
             popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(@NonNull MenuItem item) {
                     int itemId = item.getItemId();
                     if (itemId == R.id.delete_popup) {
                         AlertDialogsHelper.getDeleteDialog(getContext(), () -> {
-                            db.deleteNoteById(Objects.requireNonNull(getItem(position)));
-                            db.updateNote(Objects.requireNonNull(getItem(position)));
+                            dbHelper.deleteNoteById(Objects.requireNonNull(getItem(position)));
+                            dbHelper.updateNote(Objects.requireNonNull(getItem(position)));
                             notelist.remove(position);
                             notifyDataSetChanged();
                         }, getContext().getString(R.string.delete_note, note.getTitle()));
                         return true;
                     } else if (itemId == R.id.edit_popup) {
                         final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_note, null);
-                        AlertDialogsHelper.getEditNoteDialog(mActivity, alertLayout, notelist, mListView, position);
+                        AlertDialogsHelper.getEditNoteDialog(dbHelper, mActivity, alertLayout, notelist, mListView, position);
                         notifyDataSetChanged();
                         return true;
                     }

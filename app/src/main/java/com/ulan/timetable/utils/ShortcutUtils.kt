@@ -75,11 +75,11 @@ class ShortcutUtils {
         }
 
         private fun createNotesShortcut(context: Context): ShortcutInfo {
-            return createShortcut(context, "open_notes", context.getString(R.string.notes_activity_title), R.drawable.ic_event_note_black_24dp, Intent(context, NotesActivity::class.java).setAction(Intent.ACTION_VIEW))
+            return createShortcut(context, "open_notes", context.getString(R.string.notes_activity_title), R.drawable.ic_event_note_black_24dp, Intent(context, NotesActivity::class.java).setAction(NotesActivity.ACTION_SHOW))
         }
 
         private fun createSummaryShortcut(context: Context): ShortcutInfo {
-            return createShortcut(context, "summary", context.getString(R.string.summary_activity_title), R.drawable.ic_assignment_black_24dp, Intent(context, SummaryActivity::class.java).setAction(Intent.ACTION_VIEW))
+            return createShortcut(context, "summary", context.getString(R.string.summary_activity_title), R.drawable.ic_assignment_black_24dp, Intent(context, SummaryActivity::class.java).setAction(SummaryActivity.ACTION_SHOW))
         }
     }
 }

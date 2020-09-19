@@ -44,6 +44,7 @@ public class WeekAdapter extends ArrayAdapter<Week> {
 
     @NonNull
     private final AppCompatActivity mActivity;
+    private final DbHelper dbHelper;
     @NonNull
     private final ArrayList<Week> weeklist;
     private Week week;
@@ -58,8 +59,9 @@ public class WeekAdapter extends ArrayAdapter<Week> {
         CardView cardView;
     }
 
-    public WeekAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Week> objects) {
+    public WeekAdapter(DbHelper dbHelper, @NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Week> objects) {
         super(activity, resource, objects);
+        this.dbHelper = dbHelper;
         mActivity = activity;
         weeklist = objects;
         mListView = listView;
@@ -133,15 +135,14 @@ public class WeekAdapter extends ArrayAdapter<Week> {
         holder.popup.setOnClickListener(v -> {
             ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);
             final PopupMenu popup = new PopupMenu(theme, holder.popup);
-            final DbHelper db = new DbHelper(mActivity);
             popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(@NonNull MenuItem item) {
                     int itemId = item.getItemId();
                     if (itemId == R.id.delete_popup) {
                         AlertDialogsHelper.getDeleteDialog(getContext(), () -> {
-                            db.deleteWeekById(Objects.requireNonNull(getItem(position)));
-                            db.updateWeek(Objects.requireNonNull(getItem(position)));
+                            dbHelper.deleteWeekById(Objects.requireNonNull(getItem(position)));
+                            dbHelper.updateWeek(Objects.requireNonNull(getItem(position)));
                             weeklist.remove(position);
                             notifyDataSetChanged();
                             DoNotDisturbReceiversKt.setDoNotDisturbReceivers(mActivity, false);
@@ -149,7 +150,7 @@ public class WeekAdapter extends ArrayAdapter<Week> {
                         return true;
                     } else if (itemId == R.id.edit_popup) {
                         final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_subject, null);
-                        AlertDialogsHelper.getEditSubjectDialog(mActivity, alertLayout, () -> notifyDataSetChanged(), weeklist.get(position));
+                        AlertDialogsHelper.getEditSubjectDialog(dbHelper, mActivity, alertLayout, () -> notifyDataSetChanged(), weeklist.get(position));
                         notifyDataSetChanged();
                         return true;
                     }

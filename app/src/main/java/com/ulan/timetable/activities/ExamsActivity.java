@@ -48,7 +48,7 @@ public class ExamsActivity extends AppCompatActivity {
     private void setupAdapter() {
         db = new DbHelper(context);
         listView = findViewById(R.id.examslist);
-        adapter = new ExamsAdapter(ExamsActivity.this, listView, R.layout.listview_exams_adapter, db.getExam());
+        adapter = new ExamsAdapter(db, ExamsActivity.this, listView, R.layout.listview_exams_adapter, db.getExam());
         listView.setAdapter(adapter);
     }
 
@@ -103,6 +103,6 @@ public class ExamsActivity extends AppCompatActivity {
 
     private void setupCustomDialog() {
         final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_exam, null);
-        AlertDialogsHelper.getAddExamDialog(ExamsActivity.this, alertLayout, adapter);
+        AlertDialogsHelper.getAddExamDialog(db, ExamsActivity.this, alertLayout, adapter);
     }
 }

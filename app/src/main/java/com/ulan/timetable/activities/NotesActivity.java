@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ulan.timetable.R;
 import com.ulan.timetable.adapters.NotesAdapter;
 import com.ulan.timetable.model.Note;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class NotesActivity extends AppCompatActivity {
+    public static final String ACTION_SHOW = "showNotes";
 
     @NonNull
     public static final String KEY_NOTE = "note";
@@ -39,6 +41,12 @@ public class NotesActivity extends AppCompatActivity {
         setTheme(PreferenceUtil.getGeneralTheme(this));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+
+        if (ACTION_SHOW.equalsIgnoreCase(getIntent().getAction())) {
+            db = new DbHelper(this, ProfileManagement.loadPreferredProfilePosition());
+        } else {
+            db = new DbHelper(this);
+        }
         initAll();
     }
 
@@ -49,9 +57,8 @@ public class NotesActivity extends AppCompatActivity {
     }
 
     private void setupAdapter() {
-        db = new DbHelper(context);
         listView = findViewById(R.id.notelist);
-        adapter = new NotesAdapter(NotesActivity.this, listView, R.layout.listview_notes_adapter, db.getNote());
+        adapter = new NotesAdapter(db, NotesActivity.this, listView, R.layout.listview_notes_adapter, db.getNote());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(context, NoteInfoActivity.class);
@@ -111,7 +118,7 @@ public class NotesActivity extends AppCompatActivity {
 
     private void setupCustomDialog() {
         final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_note, null);
-        AlertDialogsHelper.getAddNoteDialog(NotesActivity.this, alertLayout, adapter);
+        AlertDialogsHelper.getAddNoteDialog(db, NotesActivity.this, alertLayout, adapter);
     }
 
     @Override

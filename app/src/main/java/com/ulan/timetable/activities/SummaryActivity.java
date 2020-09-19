@@ -18,6 +18,7 @@ import com.github.tlaabs.timetableview.TimetableView;
 import com.ulan.timetable.R;
 import com.ulan.timetable.fragments.WeekdayFragment;
 import com.ulan.timetable.model.Week;
+import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
@@ -32,9 +33,12 @@ import me.yaoandy107.ntut_timetable.model.CourseInfo;
 import me.yaoandy107.ntut_timetable.model.StudentCourse;
 
 public class SummaryActivity extends AppCompatActivity {
+    public static final String ACTION_SHOW = "showSummary";
+
     private int lessonDuration;
     private String schoolStart;
-    ArrayList<ArrayList<Week>> weeks = new ArrayList<>();
+    private ArrayList<ArrayList<Week>> weeks = new ArrayList<>();
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,11 @@ public class SummaryActivity extends AppCompatActivity {
 
         findViewById(R.id.courseTable).setVisibility(View.GONE);
 
-        DbHelper dbHelper = new DbHelper(this);
+        if (ACTION_SHOW.equalsIgnoreCase(getIntent().getAction())) {
+            dbHelper = new DbHelper(this, ProfileManagement.loadPreferredProfilePosition());
+        } else {
+            dbHelper = new DbHelper(this);
+        }
         weeks = new ArrayList<>();
         weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
         weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));
@@ -133,7 +141,7 @@ public class SummaryActivity extends AppCompatActivity {
         courseTable.setOnCourseClickListener(view -> {
             CustomCourseInfo item = (CustomCourseInfo) view.getTag();
             final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_subject, null);
-            AlertDialogsHelper.getEditSubjectDialog(this, alertLayout, this::recreate, item.getWeek());
+            AlertDialogsHelper.getEditSubjectDialog(dbHelper, this, alertLayout, this::recreate, item.getWeek());
         });
     }
 

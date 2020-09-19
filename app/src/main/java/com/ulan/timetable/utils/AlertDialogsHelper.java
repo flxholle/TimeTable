@@ -60,7 +60,7 @@ import me.jfenn.colorpickerdialog.views.picker.RGBPickerView;
 public class AlertDialogsHelper {
     //TODO: Rewrite Dialogs to and returning a dialog object, without activity
 
-    public static void getEditSubjectDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull Runnable runOnSafe, @NonNull final Week week) {
+    public static void getEditSubjectDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull Runnable runOnSafe, @NonNull final Week week) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subject_dialog);
         editTextHashs.put(R.string.subject, subject);
@@ -205,7 +205,7 @@ public class AlertDialogsHelper {
                         if (event == null || !event.isShiftPressed()) {
                             // the user is done typing.
                             //AutoFill other fields
-                            for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                            for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                                 if (w.getSubject().equalsIgnoreCase(v.getText().toString())) {
                                     if (teacher.getText().toString().trim().isEmpty())
                                         teacher.setText(w.getTeacher());
@@ -224,7 +224,7 @@ public class AlertDialogsHelper {
         );
         subject.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                     if (w.getSubject().equalsIgnoreCase(((EditText) v).getText().toString())) {
                         if (teacher.getText().toString().trim().isEmpty())
                             teacher.setText(w.getTeacher());
@@ -272,13 +272,12 @@ public class AlertDialogsHelper {
             } else if (!from_time.getText().toString().matches(".*\\d+.*") || !to_time.getText().toString().matches(".*\\d+.*")) {
                 Snackbar.make(alertLayout, R.string.time_error, Snackbar.LENGTH_LONG).show();
             } else {
-                DbHelper db = new DbHelper(activity);
                 ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                 week.setSubject(subject.getText().toString());
                 week.setTeacher(teacher.getText().toString());
                 week.setRoom(room.getText().toString());
                 week.setColor(buttonColor.getColor());
-                db.updateWeek(week);
+                dbHelper.updateWeek(week);
                 runOnSafe.run();
                 databaseChanged(activity);
                 dialog.dismiss();
@@ -286,7 +285,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getAddSubjectDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final FragmentsTabAdapter adapter, @NonNull final ViewPager viewPager) {
+    public static void getAddSubjectDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final FragmentsTabAdapter adapter, @NonNull final ViewPager viewPager) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subject_dialog);
         subject.requestFocus();
@@ -450,7 +449,7 @@ public class AlertDialogsHelper {
                         if (event == null || !event.isShiftPressed()) {
                             // the user is done typing.
                             //AutoFill other fields
-                            for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                            for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                                 if (w.getSubject().equalsIgnoreCase(v.getText().toString())) {
                                     if (teacher.getText().toString().trim().isEmpty())
                                         teacher.setText(w.getTeacher());
@@ -469,7 +468,7 @@ public class AlertDialogsHelper {
         );
         subject.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                     if (w.getSubject().equalsIgnoreCase(((EditText) v).getText().toString())) {
                         if (teacher.getText().toString().trim().isEmpty())
                             teacher.setText(w.getTeacher());
@@ -531,7 +530,7 @@ public class AlertDialogsHelper {
                             select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
 
                             String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
-                            ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                            ArrayList<Week> weeks = dbHelper.getWeek(key);
                             int valueNew = 1;
                             if (weeks.size() > 0) {
                                 valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
@@ -548,7 +547,7 @@ public class AlertDialogsHelper {
                         .positiveText(R.string.new_subject)
                         .onPositive((dialog1, which) -> {
                             String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
-                            ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                            ArrayList<Week> weeks = dbHelper.getWeek(key);
                             int valueNew = 1;
                             if (weeks.size() > 0) {
                                 valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
@@ -565,7 +564,7 @@ public class AlertDialogsHelper {
                         .show();
             } else {
                 String key = ((WeekdayFragment) adapter.getItem(viewPager.getCurrentItem())).getKey();
-                ArrayList<Week> weeks = new DbHelper(activity).getWeek(key);
+                ArrayList<Week> weeks = dbHelper.getWeek(key);
                 int valueNew = 1;
                 if (weeks.size() > 0) {
                     valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
@@ -611,7 +610,7 @@ public class AlertDialogsHelper {
                 week.setTeacher(teacher.getText().toString());
                 week.setRoom(room.getText().toString());
                 week.setColor(buttonColor.getColor());
-                new DbHelper(activity).insertWeek(week);
+                dbHelper.insertWeek(week);
                 adapter.notifyDataSetChanged();
                 databaseChanged(activity);
                 cancel.performClick();
@@ -619,7 +618,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getEditHomeworkDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Homework> adapter, @NonNull final ListView listView, int listposition) {
+    public static void getEditHomeworkDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Homework> adapter, @NonNull final ListView listView, int listposition) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subjecthomework);
         editTextHashs.put(R.string.subject, subject);
@@ -675,7 +674,7 @@ public class AlertDialogsHelper {
                         if (event == null || !event.isShiftPressed()) {
                             // the user is done typing.
                             //AutoFill other fields
-                            for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                            for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                                 if (w.getSubject().equalsIgnoreCase(v.getText().toString())) {
                                     select_color.setBackgroundColor(w.getColor());
                                     select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
@@ -692,7 +691,7 @@ public class AlertDialogsHelper {
         );
         subject.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                     if (w.getSubject().equalsIgnoreCase(((EditText) v).getText().toString())) {
                         select_color.setBackgroundColor(w.getColor());
                         select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
@@ -736,7 +735,7 @@ public class AlertDialogsHelper {
                 homework.setSubject(subject.getText().toString());
                 homework.setDescription(description.getText().toString());
                 homework.setColor(buttonColor.getColor());
-                new DbHelper(activity).updateHomework(homework);
+                dbHelper.updateHomework(homework);
                 homeworkAdapter.notifyDataSetChanged();
                 dialog.dismiss();
 
@@ -770,7 +769,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getAddHomeworkDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final HomeworkAdapter adapter) {
+    public static void getAddHomeworkDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final HomeworkAdapter adapter) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subjecthomework);
         editTextHashs.put(R.string.subject, subject);
@@ -822,7 +821,7 @@ public class AlertDialogsHelper {
                         if (event == null || !event.isShiftPressed()) {
                             // the user is done typing.
                             //AutoFill other fields
-                            for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                            for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                                 if (w.getSubject().equalsIgnoreCase(v.getText().toString())) {
                                     select_color.setBackgroundColor(w.getColor());
                                     select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
@@ -839,7 +838,7 @@ public class AlertDialogsHelper {
         );
         subject.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                     if (w.getSubject().equalsIgnoreCase(((EditText) v).getText().toString())) {
                         select_color.setBackgroundColor(w.getColor());
                         select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(w.getColor(), Color.WHITE, Color.BLACK));
@@ -884,7 +883,6 @@ public class AlertDialogsHelper {
                 homework.setDescription(description.getText().toString());
                 homework.setColor(buttonColor.getColor());
 
-                DbHelper dbHelper = new DbHelper(activity);
                 dbHelper.insertHomework(homework);
 
                 adapter.clear();
@@ -930,7 +928,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getEditTeacherDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Teacher> adapter, @NonNull final ListView listView, int listposition) {
+    public static void getEditTeacherDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Teacher> adapter, @NonNull final ListView listView, int listposition) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText name = alertLayout.findViewById(R.id.name_dialog);
         editTextHashs.put(R.string.name, name);
@@ -986,7 +984,6 @@ public class AlertDialogsHelper {
                     }
                 }
             } else {
-                DbHelper dbHelper = new DbHelper(activity);
                 TeachersAdapter teachersAdapter = (TeachersAdapter) listView.getAdapter();
                 ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                 teacher.setName(name.getText().toString());
@@ -1001,7 +998,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getAddTeacherDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final TeachersAdapter adapter) {
+    public static void getAddTeacherDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final TeachersAdapter adapter) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText name = alertLayout.findViewById(R.id.name_dialog);
         editTextHashs.put(R.string.name, name);
@@ -1052,7 +1049,6 @@ public class AlertDialogsHelper {
                     }
                 }
             } else {
-                DbHelper dbHelper = new DbHelper(activity);
                 ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                 teacher.setName(name.getText().toString());
                 teacher.setPost(post.getText().toString());
@@ -1076,7 +1072,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getEditNoteDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Note> adapter, @NonNull final ListView listView, int listposition) {
+    public static void getEditNoteDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Note> adapter, @NonNull final ListView listView, int listposition) {
         final EditText title = alertLayout.findViewById(R.id.titlenote);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Note note = adapter.get(listposition);
@@ -1121,7 +1117,6 @@ public class AlertDialogsHelper {
                 title.setError(activity.getResources().getString(R.string.title_error));
                 title.requestFocus();
             } else {
-                DbHelper dbHelper = new DbHelper(activity);
                 ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                 note.setTitle(title.getText().toString());
                 note.setColor(buttonColor.getColor());
@@ -1134,7 +1129,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getAddNoteDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final NotesAdapter adapter) {
+    public static void getAddNoteDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final NotesAdapter adapter) {
         final EditText title = alertLayout.findViewById(R.id.titlenote);
         title.requestFocus();
         final Button select_color = alertLayout.findViewById(R.id.select_color);
@@ -1179,7 +1174,6 @@ public class AlertDialogsHelper {
                 title.setError(activity.getResources().getString(R.string.title_error));
                 title.requestFocus();
             } else {
-                DbHelper dbHelper = new DbHelper(activity);
                 ColorDrawable buttonColor = (ColorDrawable) select_color.getBackground();
                 note.setTitle(title.getText().toString());
                 note.setColor(buttonColor.getColor());
@@ -1196,7 +1190,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getEditExamDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Exam> adapter, @NonNull final ListView listView, int listposition) {
+    public static void getEditExamDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ArrayList<Exam> adapter, @NonNull final ListView listView, int listposition) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subjectexam_dialog);
         editTextHashs.put(R.string.subject, subject);
@@ -1306,7 +1300,7 @@ public class AlertDialogsHelper {
                         if (event == null || !event.isShiftPressed()) {
                             // the user is done typing.
                             //AutoFill other fields
-                            for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                            for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                                 if (w.getSubject().equalsIgnoreCase(v.getText().toString())) {
                                     if (teacher.getText().toString().trim().isEmpty())
                                         teacher.setText(w.getTeacher());
@@ -1325,7 +1319,7 @@ public class AlertDialogsHelper {
         );
         subject.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                     if (w.getSubject().equalsIgnoreCase(((EditText) v).getText().toString())) {
                         if (teacher.getText().toString().trim().isEmpty())
                             teacher.setText(w.getTeacher());
@@ -1375,7 +1369,7 @@ public class AlertDialogsHelper {
                 exam.setRoom(room.getText().toString());
                 exam.setColor(buttonColor.getColor());
 
-                new DbHelper(activity).updateExam(exam);
+                dbHelper.updateExam(exam);
 
                 ExamsAdapter examsAdapter = (ExamsAdapter) listView.getAdapter();
                 examsAdapter.notifyDataSetChanged();
@@ -1422,7 +1416,7 @@ public class AlertDialogsHelper {
         });
     }
 
-    public static void getAddExamDialog(@NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ExamsAdapter adapter) {
+    public static void getAddExamDialog(DbHelper dbHelper, @NonNull final AppCompatActivity activity, @NonNull final View alertLayout, @NonNull final ExamsAdapter adapter) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subjectexam_dialog);
         editTextHashs.put(R.string.subject, subject);
@@ -1520,7 +1514,7 @@ public class AlertDialogsHelper {
                         if (event == null || !event.isShiftPressed()) {
                             // the user is done typing.
                             //AutoFill other fields
-                            for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                            for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                                 if (w.getSubject().equalsIgnoreCase(v.getText().toString())) {
                                     if (teacher.getText().toString().trim().isEmpty())
                                         teacher.setText(w.getTeacher());
@@ -1539,7 +1533,7 @@ public class AlertDialogsHelper {
         );
         subject.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                for (Week w : WeekUtils.getAllWeeks(new DbHelper(activity))) {
+                for (Week w : WeekUtils.getAllWeeks(dbHelper)) {
                     if (w.getSubject().equalsIgnoreCase(((EditText) v).getText().toString())) {
                         if (teacher.getText().toString().trim().isEmpty())
                             teacher.setText(w.getTeacher());
@@ -1590,7 +1584,6 @@ public class AlertDialogsHelper {
                 exam.setRoom(room.getText().toString());
                 exam.setColor(buttonColor.getColor());
 
-                DbHelper dbHelper = new DbHelper(activity);
                 dbHelper.insertExam(exam);
 
                 adapter.clear();

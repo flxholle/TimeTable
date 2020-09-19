@@ -37,6 +37,7 @@ public class HomeworkAdapter extends ArrayAdapter<Homework> {
 
     @NonNull
     private final AppCompatActivity mActivity;
+    private final DbHelper dbHelper;
     @NonNull
     private final ArrayList<Homework> homeworklist;
     private Homework homework;
@@ -50,8 +51,9 @@ public class HomeworkAdapter extends ArrayAdapter<Homework> {
         ImageView popup;
     }
 
-    public HomeworkAdapter(@NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Homework> objects) {
+    public HomeworkAdapter(DbHelper dbHelper, @NonNull AppCompatActivity activity, ListView listView, int resource, @NonNull ArrayList<Homework> objects) {
         super(activity, resource, objects);
+        this.dbHelper = dbHelper;
         mActivity = activity;
         mListView = listView;
         homeworklist = objects;
@@ -99,20 +101,19 @@ public class HomeworkAdapter extends ArrayAdapter<Homework> {
         holder.popup.setOnClickListener(v -> {
             ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);
             final PopupMenu popup = new PopupMenu(theme, holder.popup);
-            final DbHelper db = new DbHelper(mActivity);
             popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(@NonNull MenuItem item) {
                     int itemId = item.getItemId();
                     if (itemId == R.id.delete_popup) {
-                        db.deleteHomeworkById(Objects.requireNonNull(getItem(position)));
-                        db.updateHomework(Objects.requireNonNull(getItem(position)));
+                        dbHelper.deleteHomeworkById(Objects.requireNonNull(getItem(position)));
+                        dbHelper.updateHomework(Objects.requireNonNull(getItem(position)));
                         homeworklist.remove(position);
                         notifyDataSetChanged();
                         return true;
                     } else if (itemId == R.id.edit_popup) {
                         final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_homework, null);
-                        AlertDialogsHelper.getEditHomeworkDialog(mActivity, alertLayout, homeworklist, mListView, position);
+                        AlertDialogsHelper.getEditHomeworkDialog(dbHelper, mActivity, alertLayout, homeworklist, mListView, position);
                         notifyDataSetChanged();
                         return true;
                     }
