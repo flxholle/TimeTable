@@ -24,7 +24,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ulan.timetable.R;
 import com.ulan.timetable.fragments.ProfileActivityFragment;
 import com.ulan.timetable.profiles.ProfileManagement;
@@ -41,9 +40,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment, new ProfileActivityFragment()).commit();
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> onBackPressed());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
