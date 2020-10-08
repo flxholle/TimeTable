@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.asdoi.timetable",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 14,
+      "versionName": "1.4",
+      "enabled": true,
+      "outputFile": "app-release.apk"
+    }
+  ]
+}

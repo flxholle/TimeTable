@@ -142,8 +142,8 @@ public class PreferenceUtil {
                         .neutralText(R.string.dont_show_again)
                         .show();
             }
-            DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity, false);
         }
+        DoNotDisturbReceiversKt.setDoNotDisturbReceivers(activity, false);
     }
 
     public static boolean isDoNotDisturbTurnOff(Context context) {

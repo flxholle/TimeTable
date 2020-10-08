@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +102,7 @@ public class AlertDialogsHelper {
                             }
                         } catch (Exception ignore) {
                         }
-                    }, mHour, mMinute, true);
+                    }, mHour, mMinute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
         });
@@ -123,7 +124,7 @@ public class AlertDialogsHelper {
                             }
                         } catch (Exception ignore) {
                         }
-                    }, mHour, mMinute, true);
+                    }, mHour, mMinute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
         });
@@ -333,7 +334,7 @@ public class AlertDialogsHelper {
                             }
                         } catch (Exception ignore) {
                         }
-                    }, mHour, mMinute, true);
+                    }, mHour, mMinute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
         });
@@ -363,7 +364,7 @@ public class AlertDialogsHelper {
                             }
                         } catch (Exception ignore) {
                         }
-                    }, hour, minute, true);
+                    }, hour, minute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
         });
@@ -1248,7 +1249,7 @@ public class AlertDialogsHelper {
                         time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         exam.setTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
-                    }, mHour, mMinute, true);
+                    }, mHour, mMinute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
         });
@@ -1467,7 +1468,7 @@ public class AlertDialogsHelper {
                         time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         exam.setTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
                         hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
-                    }, mHour, mMinute, true);
+                    }, mHour, mMinute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
         });
