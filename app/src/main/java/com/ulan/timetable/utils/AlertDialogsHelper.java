@@ -304,7 +304,7 @@ public class AlertDialogsHelper {
         to_hour.setText(R.string.select_end_time);
 
         final Button select_color = alertLayout.findViewById(R.id.select_color);
-//        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(((ColorDrawable) select_color.getBackground()).getColor(), Color.WHITE, Color.BLACK));
+        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(((ColorDrawable) select_color.getBackground()).getColor(), Color.WHITE, Color.BLACK));
 
         final Week week = new Week();
 
@@ -1009,6 +1009,7 @@ public class AlertDialogsHelper {
         final EditText email = alertLayout.findViewById(R.id.email_dialog);
         editTextHashs.put(R.string.email, email);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
+        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(((ColorDrawable) select_color.getBackground()).getColor(), Color.WHITE, Color.BLACK));
         final Teacher teacher = new Teacher();
 
         select_color.setOnClickListener((View v) -> new ColorPickerDialog()
