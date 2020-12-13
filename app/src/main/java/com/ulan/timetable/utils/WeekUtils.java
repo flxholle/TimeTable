@@ -30,10 +30,12 @@ import com.ulan.timetable.model.Week;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Locale;
 
 public class WeekUtils {
@@ -221,5 +223,35 @@ public class WeekUtils {
         }
 
         return isEven;
+    }
+
+    public static String localizeDate(Context context, String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return localizeDate(context, dateFormat.parse(date));
+        } catch (Exception e) {
+            return date;
+        }
+    }
+
+    public static String localizeDate(Context context, Date date) {
+        java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+        return dateFormat.format(date);
+    }
+
+    public static String localizeTime(Context context, String time) {
+        int startHour = Integer.parseInt(time.substring(0, time.indexOf(":")));
+        int startMinute = Integer.parseInt(time.substring(time.indexOf(":") + 1));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, startHour);
+        calendar.set(Calendar.MINUTE, startMinute);
+
+        return localizeTime(context, new Date(calendar.getTimeInMillis()));
+    }
+
+    private static String localizeTime(Context context, Date date) {
+        java.text.DateFormat dateFormat = android.text.format.DateFormat.getTimeFormat(context);
+        return dateFormat.format(date);
     }
 }

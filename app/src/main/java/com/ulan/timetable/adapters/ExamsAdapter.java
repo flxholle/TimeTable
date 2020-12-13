@@ -119,13 +119,13 @@ public class ExamsAdapter extends ArrayAdapter<Exam> {
         holder.room.setText(exam.getRoom());
 
         if (PreferenceUtil.showTimes(getContext()))
-            holder.time.setText(exam.getTime());
+            holder.time.setText(WeekUtils.localizeTime(getContext(), exam.getTime()));
         else if (exam.getTime() != null && !exam.getTime().trim().isEmpty())
-            holder.time.setText("" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), getContext()));
+            holder.time.setText(WeekUtils.localizeTime(getContext(), "" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), getContext())));
         else
             holder.time.setText("");
 
-        holder.date.setText(exam.getDate());
+        holder.date.setText(WeekUtils.localizeDate(getContext(), exam.getDate()));
 
         holder.cardView.setCardBackgroundColor(exam.getColor());
         holder.popup.setOnClickListener(v -> {

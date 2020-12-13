@@ -47,6 +47,7 @@ import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -1210,11 +1211,10 @@ public class AlertDialogsHelper {
         subject.setText(exam.getSubject());
         teacher.setText(exam.getTeacher());
         room.setText(exam.getRoom());
-        date.setText(exam.getDate());
-        time.setText(exam.getTime());
+        date.setText(WeekUtils.localizeDate(activity, exam.getDate()));
         if (exam.getTime() != null && !exam.getTime().trim().isEmpty()) {
             hour.setText("" + WeekUtils.getMatchingScheduleBegin(exam.getTime(), activity));
-            time.setText(exam.getTime());
+            time.setText(WeekUtils.localizeTime(activity, exam.getTime()));
         } else {
             hour.setText("0");
             time.setText("0:0");
@@ -1228,7 +1228,12 @@ public class AlertDialogsHelper {
             int mMonth = calendar.get(Calendar.MONTH);
             int mdayofMonth = calendar.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(activity, (view, year, month, dayOfMonth) -> {
-                date.setText(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                date.setText(WeekUtils.localizeDate(activity, new Date(cal.getTimeInMillis())));
+
                 exam.setDate(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
             }, mYear, mMonth, mdayofMonth);
             datePickerDialog.setTitle(R.string.choose_date);
@@ -1246,9 +1251,10 @@ public class AlertDialogsHelper {
             }
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute) -> {
-                        time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        exam.setTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
+                        String newTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                        time.setText(WeekUtils.localizeTime(activity, newTime));
+                        exam.setTime(newTime);
+                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(newTime, activity));
                     }, mHour, mMinute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -1268,7 +1274,7 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                         exam.setTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         hour.setText("" + value);
                     })
@@ -1452,7 +1458,12 @@ public class AlertDialogsHelper {
             int mMonth = calendar.get(Calendar.MONTH);
             int mdayofMonth = calendar.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(activity, (view, year, month, dayOfMonth) -> {
-                date.setText(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                date.setText(WeekUtils.localizeDate(activity, new Date(cal.getTimeInMillis())));
+
                 exam.setDate(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
             }, mYear, mMonth, mdayofMonth);
             datePickerDialog.setTitle(R.string.choose_date);
@@ -1465,9 +1476,10 @@ public class AlertDialogsHelper {
             int mMinute = c.get(Calendar.MINUTE);
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute) -> {
-                        time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        exam.setTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
+                        String newTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                        time.setText(WeekUtils.localizeTime(activity, newTime));
+                        exam.setTime(newTime);
+                        hour.setText("" + WeekUtils.getMatchingScheduleBegin(newTime, activity));
                     }, mHour, mMinute, DateFormat.is24HourFormat(activity));
             timePickerDialog.setTitle(R.string.choose_time);
             timePickerDialog.show();
@@ -1482,7 +1494,7 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                         exam.setTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         hour.setText("" + value);
                     })
