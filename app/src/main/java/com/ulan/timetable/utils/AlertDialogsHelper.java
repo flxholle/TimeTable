@@ -80,8 +80,8 @@ public class AlertDialogsHelper {
         subject.setText(week.getSubject());
         teacher.setText(week.getTeacher());
         room.setText(week.getRoom());
-        from_time.setText(week.getFromTime());
-        to_time.setText(week.getToTime());
+        from_time.setText(WeekUtils.localizeTime(activity, week.getFromTime()));
+        to_time.setText(WeekUtils.localizeTime(activity, week.getToTime()));
         from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(week.getFromTime(), activity));
         to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(week.getToTime(), activity));
         select_color.setBackgroundColor(week.getColor() != 0 ? week.getColor() : Color.WHITE);
@@ -91,13 +91,14 @@ public class AlertDialogsHelper {
             int mMinute = Integer.parseInt(week.getFromTime().substring(week.getFromTime().indexOf(":") + 1));
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute) -> {
-                        from_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        week.setFromTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
+                        String newTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                        from_time.setText(WeekUtils.localizeTime(activity, newTime));
+                        week.setFromTime(newTime);
+                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(newTime, activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity);
                             if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(value, activity)));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
                             }
@@ -113,13 +114,14 @@ public class AlertDialogsHelper {
             int mMinute = Integer.parseInt(week.getToTime().substring(week.getToTime().indexOf(":") + 1));
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute1) -> {
-                        to_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
-                        week.setToTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
-                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
+                        String newTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1);
+                        to_time.setText(WeekUtils.localizeTime(activity, newTime));
+                        week.setToTime(newTime);
+                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(newTime, activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity);
                             if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
                             }
@@ -140,12 +142,12 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
                         try {
                             if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(value, activity)));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
                             }
@@ -165,12 +167,12 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                        to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(value, activity)));
                         week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
                         try {
                             if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
                             }
@@ -306,7 +308,7 @@ public class AlertDialogsHelper {
         to_hour.setText(R.string.select_end_time);
 
         final Button select_color = alertLayout.findViewById(R.id.select_color);
-        select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(((ColorDrawable) select_color.getBackground()).getColor(), Color.WHITE, Color.BLACK));
+        select_color.setTextColor(Color.BLACK);
 
         final Week week = new Week();
 
@@ -323,13 +325,14 @@ public class AlertDialogsHelper {
             }
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute) -> {
-                        from_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        week.setFromTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
-                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity));
+                        String newTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                        from_time.setText(WeekUtils.localizeTime(activity, newTime));
+                        week.setFromTime(newTime);
+                        from_hour.setText("" + WeekUtils.getMatchingScheduleBegin(newTime, activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleBegin(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute), activity);
                             if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(value, activity)));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
                             }
@@ -353,13 +356,14 @@ public class AlertDialogsHelper {
             }
             TimePickerDialog timePickerDialog = new TimePickerDialog(activity,
                     (view, hourOfDay, minute1) -> {
-                        to_time.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
-                        week.setToTime(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1));
-                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity));
+                        String newTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1);
+                        to_time.setText(WeekUtils.localizeTime(activity, newTime));
+                        week.setToTime(newTime);
+                        to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(newTime, activity));
                         try {
                             int value = WeekUtils.getMatchingScheduleEnd(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute1), activity);
                             if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
                             }
@@ -383,12 +387,12 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                        from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                         week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                         from_hour.setText("" + value);
                         try {
                             if (Integer.parseInt(to_hour.getText().toString()) < value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                                to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(value, activity)));
                                 week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                                 to_hour.setText("" + value);
                             }
@@ -411,12 +415,12 @@ public class AlertDialogsHelper {
                     .positiveText(R.string.select)
                     .onPositive((vi, w) -> {
                         int value = numberPicker.getValue();
-                        to_time.setText(WeekUtils.getMatchingTimeEnd(value, activity));
+                        to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(value, activity)));
                         week.setToTime(WeekUtils.getMatchingTimeEnd(value, activity));
                         to_hour.setText("" + value);
                         try {
                             if (Integer.parseInt(from_hour.getText().toString()) > value && PreferenceUtil.isIntelligentAutoFill(activity)) {
-                                from_time.setText(WeekUtils.getMatchingTimeBegin(value, activity));
+                                from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(value, activity)));
                                 week.setFromTime(WeekUtils.getMatchingTimeBegin(value, activity));
                                 from_hour.setText("" + value);
                             }
@@ -537,10 +541,10 @@ public class AlertDialogsHelper {
                             if (weeks.size() > 0) {
                                 valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
                             }
-                            from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                            from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(valueNew, activity)));
                             week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
                             from_hour.setText("" + valueNew);
-                            to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                            to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(valueNew, activity)));
                             week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
                             to_hour.setText("" + valueNew);
 
@@ -554,10 +558,10 @@ public class AlertDialogsHelper {
                             if (weeks.size() > 0) {
                                 valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
                             }
-                            from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                            from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(valueNew, activity)));
                             week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
                             from_hour.setText("" + valueNew);
-                            to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                            to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(valueNew, activity)));
                             week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
                             to_hour.setText("" + valueNew);
 
@@ -571,10 +575,10 @@ public class AlertDialogsHelper {
                 if (weeks.size() > 0) {
                     valueNew = WeekUtils.getMatchingScheduleEnd(weeks.get(weeks.size() - 1).getToTime(), activity) + 1;
                 }
-                from_time.setText(WeekUtils.getMatchingTimeBegin(valueNew, activity));
+                from_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeBegin(valueNew, activity)));
                 week.setFromTime(WeekUtils.getMatchingTimeBegin(valueNew, activity));
                 from_hour.setText("" + valueNew);
-                to_time.setText(WeekUtils.getMatchingTimeEnd(valueNew, activity));
+                to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(valueNew, activity)));
                 week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
                 to_hour.setText("" + valueNew);
 
