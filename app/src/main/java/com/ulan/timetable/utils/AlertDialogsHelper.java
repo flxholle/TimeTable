@@ -632,7 +632,7 @@ public class AlertDialogsHelper {
 
         subject.setText(homework.getSubject());
         description.setText(homework.getDescription());
-        date.setText(homework.getDate());
+        date.setText(WeekUtils.localizeDate(activity, homework.getDate()));
         select_color.setBackgroundColor(homework.getColor() != 0 ? homework.getColor() : Color.WHITE);
         select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(homework.getColor(), Color.WHITE, Color.BLACK));
 
@@ -642,7 +642,12 @@ public class AlertDialogsHelper {
             int mMonth = calendar.get(Calendar.MONTH);
             int mdayofMonth = calendar.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(activity, (view, year, month, dayOfMonth) -> {
-                date.setText(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                date.setText(WeekUtils.localizeDate(activity, new Date(cal.getTimeInMillis())));
+
                 homework.setDate(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
             }, mYear, mMonth, mdayofMonth);
             datePickerDialog.setTitle(R.string.choose_date);
@@ -790,7 +795,12 @@ public class AlertDialogsHelper {
             int mMonth = calendar.get(Calendar.MONTH);
             int mdayofMonth = calendar.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(activity, (view, year, month, dayOfMonth) -> {
-                date.setText(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                date.setText(WeekUtils.localizeDate(activity, new Date(cal.getTimeInMillis())));
+
                 homework.setDate(String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth));
             }, mYear, mMonth, mdayofMonth);
             datePickerDialog.setTitle(R.string.choose_date);
