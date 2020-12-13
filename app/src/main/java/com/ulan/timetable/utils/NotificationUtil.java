@@ -80,6 +80,13 @@ public class NotificationUtil {
         }).start();
     }
 
+    public static void removeNotificationCurrentLesson(@NonNull Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.cancel(NOTIFICATION_NEXT_WEEK_ID);
+        }
+    }
+
     public static void sendNotificationCurrentLesson(@NonNull Context context, boolean alert) {
         ProfileManagement.initProfiles(context);
         if (!ProfileManagement.isPreferredProfile())
