@@ -11,9 +11,10 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.ulan.timetable.R;
 import com.ulan.timetable.utils.PreferenceUtil;
+import com.ulan.timetable.utils.WeekUtils;
 
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -68,11 +69,8 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
         myPref = findPreference("term_start");
 
         Calendar calendar = PreferenceUtil.getTermStart(requireContext());
-        int mYear = calendar.get(Calendar.YEAR);
-        int mMonth = calendar.get(Calendar.MONTH);
-        int mDayofMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        Objects.requireNonNull(myPref).setTitle(getString(R.string.start_of_term) + " (" + String.format(Locale.getDefault(), "%02d-%02d-%02d", mYear, mMonth + 1, mDayofMonth) + ")");
+        Objects.requireNonNull(myPref).setTitle(getString(R.string.start_of_term) + " (" + WeekUtils.localizeDate(requireContext(), new Date(calendar.getTimeInMillis())) + ")");
         myPref.setOnPreferenceClickListener((p) -> {
             Calendar calendar2 = PreferenceUtil.getTermStart(requireContext());
             int mYear2 = calendar2.get(Calendar.YEAR);
@@ -81,7 +79,12 @@ public class TimeSettingsFragment extends PreferenceFragmentCompat {
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(requireActivity(), (view, year, month, dayOfMonth) -> {
                 PreferenceUtil.setTermStart(requireContext(), year, month, dayOfMonth);
-                p.setTitle(getString(R.string.start_of_term) + " (" + String.format(Locale.getDefault(), "%02d-%02d-%02d", year, month + 1, dayOfMonth) + ")");
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                p.setTitle(getString(R.string.start_of_term) + " (" + WeekUtils.localizeDate(requireContext(), new Date(cal.getTimeInMillis())) + ")");
             }, mYear2, mMonth2, mDayofMonth2);
 
             datePickerDialog.setTitle(R.string.choose_date);

@@ -240,14 +240,12 @@ public class WeekUtils {
     }
 
     public static String localizeTime(Context context, String time) {
-        int startHour = Integer.parseInt(time.substring(0, time.indexOf(":")));
-        int startMinute = Integer.parseInt(time.substring(time.indexOf(":") + 1));
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, startHour);
-        calendar.set(Calendar.MINUTE, startMinute);
-
-        return localizeTime(context, new Date(calendar.getTimeInMillis()));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        try {
+            return localizeTime(context, dateFormat.parse(time));
+        } catch (Exception e) {
+            return time;
+        }
     }
 
     private static String localizeTime(Context context, Date date) {
