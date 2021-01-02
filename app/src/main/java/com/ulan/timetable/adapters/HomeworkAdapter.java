@@ -26,6 +26,7 @@ import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.ColorPalette;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.PreferenceUtil;
+import com.ulan.timetable.utils.WeekUtils;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -96,7 +97,7 @@ public class HomeworkAdapter extends ArrayAdapter<Homework> {
 
         holder.subject.setText(homework.getSubject());
         holder.description.setText(homework.getDescription());
-        holder.date.setText(homework.getDate());
+        holder.date.setText(WeekUtils.localizeDate(getContext(), homework.getDate()));
         holder.cardView.setCardBackgroundColor(homework.getColor());
         holder.popup.setOnClickListener(v -> {
             ContextThemeWrapper theme = new ContextThemeWrapper(mActivity, PreferenceUtil.isDark(getContext()) ? R.style.Widget_AppCompat_PopupMenu : R.style.Widget_AppCompat_Light_PopupMenu);

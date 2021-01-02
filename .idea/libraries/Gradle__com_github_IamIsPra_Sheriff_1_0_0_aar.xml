@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.IamIsPra:Sheriff:1.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ff53d0e68229da0d10cf546952d27331/jetified-Sheriff-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ff53d0e68229da0d10cf546952d27331/jetified-Sheriff-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ff53d0e68229da0d10cf546952d27331/jetified-Sheriff-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/41cc86a338d55900516c5de056a58298/jetified-Sheriff-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/41cc86a338d55900516c5de056a58298/jetified-Sheriff-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/41cc86a338d55900516c5de056a58298/jetified-Sheriff-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
