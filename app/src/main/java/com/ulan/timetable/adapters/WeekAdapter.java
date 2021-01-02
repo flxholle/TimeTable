@@ -120,7 +120,7 @@ public class WeekAdapter extends ArrayAdapter<Week> {
         holder.room.setOnClickListener(null);
 
         if (PreferenceUtil.showTimes(getContext()))
-            holder.time.setText(week.getFromTime() + " - " + week.getToTime());
+            holder.time.setText(WeekUtils.localizeTime(getContext(), week.getFromTime()) + " - " + WeekUtils.localizeTime(getContext(), week.getToTime()));
         else {
             int start = WeekUtils.getMatchingScheduleBegin(week.getFromTime(), getContext());
             int end = WeekUtils.getMatchingScheduleEnd(week.getToTime(), getContext());
