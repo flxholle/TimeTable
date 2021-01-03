@@ -39,6 +39,8 @@ public class SummaryActivity extends AppCompatActivity {
     private String schoolStart;
     private ArrayList<ArrayList<Week>> weeks = new ArrayList<>();
     private DbHelper dbHelper;
+    private boolean startOnSunday;
+    private String[] header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class SummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
+        startOnSunday = PreferenceUtil.isWeekStartOnSunday(this);
         lessonDuration = PreferenceUtil.getPeriodLength(this);
         int[] oldTimes = PreferenceUtil.getStartTime(this);
         schoolStart = oldTimes[0] + ":" + oldTimes[1];
@@ -58,13 +61,37 @@ public class SummaryActivity extends AppCompatActivity {
             dbHelper = new DbHelper(this);
         }
         weeks = new ArrayList<>();
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_WEDNESDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_THURSDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_FRIDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SATURDAY_FRAGMENT));
-        weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SUNDAY_FRAGMENT));
+
+        if (!startOnSunday) {
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_WEDNESDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_THURSDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_FRIDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SATURDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SUNDAY_FRAGMENT));
+        } else {
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SUNDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_WEDNESDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_THURSDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_FRIDAY_FRAGMENT));
+            weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_SATURDAY_FRAGMENT));
+        }
+
+        header = getResources().getStringArray(R.array.timetable_header);
+
+        if (startOnSunday) {
+            List<String> headerList = Arrays.asList(header);
+            String sunday = headerList.get(headerList.size() - 1);
+            List<String> newHeader = new ArrayList<>();
+            newHeader.add(sunday);
+            for (int i = 0; i < headerList.size() - 1; i++) {
+                newHeader.add(headerList.get(i));
+            }
+            header = newHeader.toArray(new String[]{});
+        }
 
         if (PreferenceUtil.isSummaryLibrary1(this))
             setupCourseTableLibrary1();
@@ -134,7 +161,7 @@ public class SummaryActivity extends AppCompatActivity {
         // Set timetable
         studentCourse.setCourseList(courseInfoList);
 
-        courseTable.setHeader(getResources().getStringArray(R.array.timetable_header));
+        courseTable.setHeader(header);
         courseTable.setTextSize(14);
         courseTable.setStudentCourse(studentCourse);
 
@@ -230,15 +257,14 @@ public class SummaryActivity extends AppCompatActivity {
 
         int startHour = Integer.parseInt(schoolStart.substring(0, schoolStart.indexOf(":")));
 
-        String[] header = new String[8];
-        String[] resource = getResources().getStringArray(R.array.timetable_header);
-        System.arraycopy(resource, 0, header, 1, header.length - 1);
+        String[] newHeader = new String[8];
+        System.arraycopy(header, 0, newHeader, 1, newHeader.length - 1);
 
         TimetableView timetable = new TimetableView.Builder(this)
                 .setColumnCount(6 + (PreferenceUtil.isSevenDays(this) ? 2 : 0))
                 .setRowCount(10)
                 .setStartTime(startHour)
-                .setHeaderTitle(header)
+                .setHeaderTitle(newHeader)
                 .setStickerColors(colors.toArray(new String[]{}))
                 .build();
         timetable.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
