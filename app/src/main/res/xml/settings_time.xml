@@ -23,6 +23,18 @@
         app:iconSpaceReserved="false" />
     <SwitchPreferenceCompat
         android:defaultValue="false"
+        android:key="sevendays"
+        android:summary="@string/enable_seven_days_setting"
+        android:title="@string/seven_days_of_the_week"
+        app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="start_sunday"
+        android:summary="@string/start_week_on_sunday_summary"
+        android:title="@string/start_week_on_sunday"
+        app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
         android:key="two_weeks"
         android:title="@string/enable_even_odd_weeks"
         app:iconSpaceReserved="false" />

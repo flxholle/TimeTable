@@ -357,6 +357,10 @@ public class PreferenceUtil {
         return getBooleanSettings(context, SettingsActivity.KEY_SEVEN_DAYS_SETTING, false);
     }
 
+    public static boolean isWeekStartOnSunday(Context context) {
+        return getBooleanSettings(context, SettingsActivity.KEY_START_WEEK_ON_SUNDAY, false);
+    }
+
     public static boolean isSummaryLibrary1(Context context) {
         return getBooleanSettings(context, "summary_lib", true);
     }
