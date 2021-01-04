@@ -35,11 +35,9 @@ import me.yaoandy107.ntut_timetable.model.StudentCourse;
 public class SummaryActivity extends AppCompatActivity {
     public static final String ACTION_SHOW = "showSummary";
 
-    private int lessonDuration;
     private String schoolStart;
     private ArrayList<ArrayList<Week>> weeks = new ArrayList<>();
     private DbHelper dbHelper;
-    private boolean startOnSunday;
     private String[] header;
 
     @Override
@@ -48,8 +46,6 @@ public class SummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
-        startOnSunday = PreferenceUtil.isWeekStartOnSunday(this);
-        lessonDuration = PreferenceUtil.getPeriodLength(this);
         int[] oldTimes = PreferenceUtil.getStartTime(this);
         schoolStart = oldTimes[0] + ":" + oldTimes[1];
 
@@ -62,6 +58,7 @@ public class SummaryActivity extends AppCompatActivity {
         }
         weeks = new ArrayList<>();
 
+        boolean startOnSunday = PreferenceUtil.isWeekStartOnSunday(this);
         if (!startOnSunday) {
             weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_MONDAY_FRAGMENT));
             weeks.add(dbHelper.getWeek(WeekdayFragment.KEY_TUESDAY_FRAGMENT));

@@ -442,7 +442,7 @@ public class PreferenceUtil {
 
     public static boolean isEvenWeek(Context context, @NonNull Calendar now) {
         if (isTwoWeeksEnabled(context)) {
-            return WeekUtils.isEvenWeek(getTermStart(context), now);
+            return WeekUtils.isEvenWeek(getTermStart(context), now, isWeekStartOnSunday(context));
         } else
             return true;
     }
