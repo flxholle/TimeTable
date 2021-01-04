@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private FragmentsTabAdapter adapter;
     private ViewPager viewPager;
-    private boolean switchSevenDays;
 
     private static final int showNextDayAfterSpecificHour = 20;
 
@@ -122,11 +121,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        setupSevenDaysPref();
         setupFragments();
         setupCustomDialog();
-
-        if (switchSevenDays) changeFragments(true);
     }
 
     private boolean dontfire = true;
@@ -197,37 +193,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         WeekdayFragment wednesdayFragment = new WeekdayFragment(WeekdayFragment.KEY_WEDNESDAY_FRAGMENT);
         WeekdayFragment thursdayFragment = new WeekdayFragment(WeekdayFragment.KEY_THURSDAY_FRAGMENT);
         WeekdayFragment fridayFragment = new WeekdayFragment(WeekdayFragment.KEY_FRIDAY_FRAGMENT);
+        WeekdayFragment saturdayFragment = new WeekdayFragment(WeekdayFragment.KEY_SATURDAY_FRAGMENT);
+        WeekdayFragment sundayFragment = new WeekdayFragment(WeekdayFragment.KEY_SUNDAY_FRAGMENT);
 
-        adapter.addFragment(mondayFragment, getResources().getString(R.string.monday));
-        adapter.addFragment(tuesdayFragment, getResources().getString(R.string.tuesday));
-        adapter.addFragment(wednesdayFragment, getResources().getString(R.string.wednesday));
-        adapter.addFragment(thursdayFragment, getResources().getString(R.string.thursday));
-        adapter.addFragment(fridayFragment, getResources().getString(R.string.friday));
+        boolean startOnSunday = PreferenceUtil.isWeekStartOnSunday(this);
+        boolean showWeekend = PreferenceUtil.isSevenDays(this);
+
+        if (!startOnSunday) {
+            adapter.addFragment(mondayFragment, getResources().getString(R.string.monday));
+            adapter.addFragment(tuesdayFragment, getResources().getString(R.string.tuesday));
+            adapter.addFragment(wednesdayFragment, getResources().getString(R.string.wednesday));
+            adapter.addFragment(thursdayFragment, getResources().getString(R.string.thursday));
+            adapter.addFragment(fridayFragment, getResources().getString(R.string.friday));
+
+            if (showWeekend) {
+                adapter.addFragment(saturdayFragment, getResources().getString(R.string.saturday));
+                adapter.addFragment(sundayFragment, getResources().getString(R.string.sunday));
+            }
+        } else {
+            adapter.addFragment(sundayFragment, getResources().getString(R.string.sunday));
+            adapter.addFragment(mondayFragment, getResources().getString(R.string.monday));
+            adapter.addFragment(tuesdayFragment, getResources().getString(R.string.tuesday));
+            adapter.addFragment(wednesdayFragment, getResources().getString(R.string.wednesday));
+            adapter.addFragment(thursdayFragment, getResources().getString(R.string.thursday));
+
+            if (showWeekend) {
+                adapter.addFragment(fridayFragment, getResources().getString(R.string.friday));
+                adapter.addFragment(saturdayFragment, getResources().getString(R.string.saturday));
+            }
+        }
+
 
         viewPager.setAdapter(adapter);
 
         int day = getFragmentChoosingDay();
-        viewPager.setCurrentItem(day == 1 ? 6 : day - 2, true);
+        if (startOnSunday) {
+            viewPager.setCurrentItem(day - 1, true);
+        } else {
+            viewPager.setCurrentItem(day == 1 ? 6 : day - 2, true);
+        }
 
         tabLayout.setupWithViewPager(viewPager);
-    }
-
-    private void changeFragments(boolean isChecked) {
-        if (isChecked) {
-            TabLayout tabLayout = findViewById(R.id.tabLayout);
-            int day = getFragmentChoosingDay();
-            adapter.addFragment(new WeekdayFragment(WeekdayFragment.KEY_SATURDAY_FRAGMENT), getResources().getString(R.string.saturday));
-            adapter.addFragment(new WeekdayFragment(WeekdayFragment.KEY_SUNDAY_FRAGMENT), getResources().getString(R.string.sunday));
-            viewPager.setAdapter(adapter);
-            viewPager.setCurrentItem(day == 1 ? 6 : day - 2, true);
-            tabLayout.setupWithViewPager(viewPager);
-        } else {
-            if (adapter.getFragmentList().size() > 5) {
-                adapter.removeFragment(new WeekdayFragment(WeekdayFragment.KEY_SATURDAY_FRAGMENT), 5);
-                adapter.removeFragment(new WeekdayFragment(WeekdayFragment.KEY_SUNDAY_FRAGMENT), 5);
-            }
-        }
-        adapter.notifyDataSetChanged();
     }
 
     private int getFragmentChoosingDay() {
@@ -241,20 +247,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (day > 7) { //Calender.Saturday
             day = day - 7; //1 = Calendar.Sunday, 2 = Calendar.Monday etc.
         }
+
+        boolean startOnSunday = PreferenceUtil.isWeekStartOnSunday(this);
+        boolean showWeekend = PreferenceUtil.isSevenDays(this);
+
         //If Saturday/Sunday are hidden, switch to Monday
-        if (!switchSevenDays && (day == Calendar.SUNDAY || day == Calendar.SATURDAY)) {
+        if ((!startOnSunday && !showWeekend) && (day == Calendar.SATURDAY || day == Calendar.SUNDAY)) {
             day = Calendar.MONDAY;
+        } else if ((startOnSunday && !showWeekend) && (day == Calendar.FRIDAY || day == Calendar.SATURDAY)) {
+            day = Calendar.SUNDAY;
         }
+
         return day;
     }
 
     private void setupCustomDialog() {
         final View alertLayout = getLayoutInflater().inflate(R.layout.dialog_add_subject, null);
         AlertDialogsHelper.getAddSubjectDialog(new DbHelper(this), MainActivity.this, alertLayout, adapter, viewPager);
-    }
-
-    private void setupSevenDaysPref() {
-        switchSevenDays = PreferenceUtil.isSevenDays(this);
     }
 
     @Override

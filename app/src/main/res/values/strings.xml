@@ -83,6 +83,9 @@
     <string name="change_school_website_setting">Change school website</string>
     <string name="change_school_website_setting_summary">Change the URL of your school website</string>
 
+    <string name="start_week_on_sunday">Start week on Sunday</string>
+    <string name="start_week_on_sunday_summary">Change Even/Odd weeks on Sunday and use Friday and Saturday as weekend.</string>
+
     <string name="notification_visibility_setting">Show notification</string>
     <string name="notification_show_permanent_setting">Show permanently</string>
     <string name="notification_show_permanent_setting_desc">The notification can only be hidden manually</string>

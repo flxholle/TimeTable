@@ -35,13 +35,6 @@
         android:key="theme"
         android:title="@string/choose_theme_setting" />
 
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:icon="@drawable/ic_view_week_black_24dp"
-        android:key="sevendays"
-        android:summary="@string/enable_seven_days_setting"
-        android:title="@string/seven_days_of_the_week" />
-
     <EditTextPreference
         android:icon="@drawable/ic_open_in_browser_white_24dp"
         android:key="schoolwebsite"
