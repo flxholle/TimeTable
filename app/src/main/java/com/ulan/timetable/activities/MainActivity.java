@@ -240,10 +240,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        //If its after 18 o'clock, show the next day
+
+        //If its after 20 o'clock, show the next day
         if (hour >= showNextDayAfterSpecificHour) {
             day++;
         }
+
         if (day > 7) { //Calender.Saturday
             day = day - 7; //1 = Calendar.Sunday, 2 = Calendar.Monday etc.
         }

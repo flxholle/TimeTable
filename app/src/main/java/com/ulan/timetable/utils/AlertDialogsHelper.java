@@ -498,24 +498,6 @@ public class AlertDialogsHelper {
         //Preselection
         FloatingActionButton fab = activity.findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            if (PreferenceUtil.showTimes(activity)) {
-                from_hour.setVisibility(View.GONE);
-                from_time.setVisibility(View.VISIBLE);
-                from_time.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-
-                to_hour.setVisibility(View.GONE);
-                to_time.setVisibility(View.VISIBLE);
-                to_time.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-            } else {
-                from_hour.setVisibility(View.VISIBLE);
-                from_time.setVisibility(View.GONE);
-                from_hour.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-
-                to_hour.setVisibility(View.VISIBLE);
-                to_time.setVisibility(View.GONE);
-                to_hour.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, .7f));
-            }
-
             if (PreferenceUtil.isPreselectionList(activity)) {
                 ArrayList<Week> customWeeks = WeekUtils.getPreselection(activity);
 
