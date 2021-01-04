@@ -210,8 +210,13 @@ public class WeekUtils {
         return multiplier;
     }
 
-    public static boolean isEvenWeek(@NonNull Calendar termStart, @NonNull Calendar now) {
+    public static boolean isEvenWeek(@NonNull Calendar termStart1, @NonNull Calendar now1, boolean startOnSunday) {
         boolean isEven = true;
+
+        Calendar termStart = Calendar.getInstance(Locale.GERMAN);
+        termStart.setTimeInMillis(termStart1.getTimeInMillis());
+        Calendar now = Calendar.getInstance(Locale.GERMAN);
+        now.setTimeInMillis(now1.getTimeInMillis());
 
         int weekDifference = now.get(Calendar.WEEK_OF_YEAR) - termStart.get(Calendar.WEEK_OF_YEAR);
         if (weekDifference < 0) {
@@ -220,6 +225,12 @@ public class WeekUtils {
 
         for (int i = 0; i < weekDifference; i++) {
             isEven = !isEven;
+        }
+
+        if (startOnSunday) {
+            if (now.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                isEven = !isEven;
+            }
         }
 
         return isEven;

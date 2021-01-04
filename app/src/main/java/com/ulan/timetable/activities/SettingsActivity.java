@@ -17,6 +17,7 @@ import java.util.Objects;
 public class SettingsActivity extends AppCompatActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
     public static final String KEY_SEVEN_DAYS_SETTING = "sevendays";
     public static final String KEY_SCHOOL_WEBSITE_SETTING = "schoolwebsite";
+    public static final String KEY_START_WEEK_ON_SUNDAY = "start_sunday";
 
     public int loadedFragments = 0;
 

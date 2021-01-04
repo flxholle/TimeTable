@@ -357,6 +357,10 @@ public class PreferenceUtil {
         return getBooleanSettings(context, SettingsActivity.KEY_SEVEN_DAYS_SETTING, false);
     }
 
+    public static boolean isWeekStartOnSunday(Context context) {
+        return getBooleanSettings(context, SettingsActivity.KEY_START_WEEK_ON_SUNDAY, false);
+    }
+
     public static boolean isSummaryLibrary1(Context context) {
         return getBooleanSettings(context, "summary_lib", true);
     }
@@ -438,7 +442,7 @@ public class PreferenceUtil {
 
     public static boolean isEvenWeek(Context context, @NonNull Calendar now) {
         if (isTwoWeeksEnabled(context)) {
-            return WeekUtils.isEvenWeek(getTermStart(context), now);
+            return WeekUtils.isEvenWeek(getTermStart(context), now, isWeekStartOnSunday(context));
         } else
             return true;
     }
