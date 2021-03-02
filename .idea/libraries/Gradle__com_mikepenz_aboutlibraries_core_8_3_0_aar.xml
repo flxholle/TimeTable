@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mikepenz:aboutlibraries-core:8.3.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e64175b08e479861ec4f9958d2a87edb/jetified-aboutlibraries-core-8.3.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e64175b08e479861ec4f9958d2a87edb/jetified-aboutlibraries-core-8.3.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e64175b08e479861ec4f9958d2a87edb/jetified-aboutlibraries-core-8.3.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0917d7a2638d4c063e8c0c4c5e852d52/jetified-aboutlibraries-core-8.3.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0917d7a2638d4c063e8c0c4c5e852d52/jetified-aboutlibraries-core-8.3.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0917d7a2638d4c063e8c0c4c5e852d52/jetified-aboutlibraries-core-8.3.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/aboutlibraries-core/8.3.0/33216592595d565f6a8954184719795a0eeadb4d/aboutlibraries-core-8.3.0-javadoc.jar!/" />

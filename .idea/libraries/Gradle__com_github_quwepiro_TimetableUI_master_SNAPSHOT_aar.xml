@@ -13,6 +13,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/338228b1d7b267348b23ac550fbb21a4/jetified-TimetableUI-master-SNAPSHOT/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/338228b1d7b267348b23ac550fbb21a4/jetified-TimetableUI-master-SNAPSHOT/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/338228b1d7b267348b23ac550fbb21a4/jetified-TimetableUI-master-SNAPSHOT/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc4b8780c97028ee5c6847ab9f8dfdaf/jetified-TimetableUI-master-SNAPSHOT/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc4b8780c97028ee5c6847ab9f8dfdaf/jetified-TimetableUI-master-SNAPSHOT/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc4b8780c97028ee5c6847ab9f8dfdaf/jetified-TimetableUI-master-SNAPSHOT/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/26ec52eb9ee1b5ee26dbd1b00239dca6/jetified-TimetableUI-master-SNAPSHOT/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/26ec52eb9ee1b5ee26dbd1b00239dca6/jetified-TimetableUI-master-SNAPSHOT/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/26ec52eb9ee1b5ee26dbd1b00239dca6/jetified-TimetableUI-master-SNAPSHOT/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

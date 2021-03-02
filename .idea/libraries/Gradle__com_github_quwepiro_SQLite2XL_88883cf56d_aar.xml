@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.quwepiro:SQLite2XL:88883cf56d@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66e9c3ecf7aa81b8a310a961360a09ba/jetified-SQLite2XL-88883cf56d/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66e9c3ecf7aa81b8a310a961360a09ba/jetified-SQLite2XL-88883cf56d/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66e9c3ecf7aa81b8a310a961360a09ba/jetified-SQLite2XL-88883cf56d/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00588d3c007288f8b6b07f1f21bed48d/jetified-SQLite2XL-88883cf56d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00588d3c007288f8b6b07f1f21bed48d/jetified-SQLite2XL-88883cf56d/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00588d3c007288f8b6b07f1f21bed48d/jetified-SQLite2XL-88883cf56d/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.quwepiro/SQLite2XL/88883cf56d/440e185fa2a10b7ad760a80fb3e09851b30a27d6/SQLite2XL-88883cf56d-javadoc.jar!/" />

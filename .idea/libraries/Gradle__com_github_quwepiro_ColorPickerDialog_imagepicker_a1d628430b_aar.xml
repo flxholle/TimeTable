@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.quwepiro.ColorPickerDialog:imagepicker:a1d628430b@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/22c7262857d9d257d6a1ab062061edf8/jetified-imagepicker-a1d628430b/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/22c7262857d9d257d6a1ab062061edf8/jetified-imagepicker-a1d628430b/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/22c7262857d9d257d6a1ab062061edf8/jetified-imagepicker-a1d628430b/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8cf2a66773a65ca06b9437c380bb30b7/jetified-imagepicker-a1d628430b/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8cf2a66773a65ca06b9437c380bb30b7/jetified-imagepicker-a1d628430b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8cf2a66773a65ca06b9437c380bb30b7/jetified-imagepicker-a1d628430b/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
