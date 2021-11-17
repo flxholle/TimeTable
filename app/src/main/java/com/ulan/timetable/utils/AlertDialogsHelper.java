@@ -299,16 +299,37 @@ public class AlertDialogsHelper {
         final EditText room = alertLayout.findViewById(R.id.room_dialog);
 //        editTextHashs.put(R.string.room, room);
 
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                0.7f
+        );
+
         final TextView from_time = alertLayout.findViewById(R.id.from_time);
+        from_time.setLayoutParams(params);
         final TextView to_time = alertLayout.findViewById(R.id.to_time);
+        to_time.setLayoutParams(params);
         final TextView from_hour = alertLayout.findViewById(R.id.from_hour);
+        from_hour.setLayoutParams(params);
         final TextView to_hour = alertLayout.findViewById(R.id.to_hour);
+        to_hour.setLayoutParams(params);
+
+        if (PreferenceUtil.showTimes(activity)) {
+            from_time.setVisibility(View.VISIBLE);
+            to_time.setVisibility(View.VISIBLE);
+            from_hour.setVisibility(View.GONE);
+            to_hour.setVisibility(View.GONE);
+        } else {
+            from_time.setVisibility(View.GONE);
+            to_time.setVisibility(View.GONE);
+            from_hour.setVisibility(View.VISIBLE);
+            to_hour.setVisibility(View.VISIBLE);
+        }
 
         from_hour.setText(R.string.select_start_time);
         to_hour.setText(R.string.select_end_time);
 
         final Button select_color = alertLayout.findViewById(R.id.select_color);
-        select_color.setTextColor(Color.BLACK);
 
         final Week week = new Week();
 
@@ -546,6 +567,8 @@ public class AlertDialogsHelper {
                             to_time.setText(WeekUtils.localizeTime(activity, WeekUtils.getMatchingTimeEnd(valueNew, activity)));
                             week.setToTime(WeekUtils.getMatchingTimeEnd(valueNew, activity));
                             to_hour.setText("" + valueNew);
+                            select_color.setBackgroundColor(Color.WHITE);
+                            select_color.setTextColor(Color.BLACK);
 
                             dialog.show();
                         })

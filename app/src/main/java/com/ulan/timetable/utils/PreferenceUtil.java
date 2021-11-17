@@ -18,6 +18,8 @@
 
 package com.ulan.timetable.utils;
 
+import static android.content.Context.ALARM_SERVICE;
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -51,8 +53,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import static android.content.Context.ALARM_SERVICE;
 
 
 public class PreferenceUtil {
@@ -362,7 +362,7 @@ public class PreferenceUtil {
     }
 
     public static boolean isSummaryLibrary1(Context context) {
-        return getBooleanSettings(context, "summary_lib", true);
+        return getBooleanSettings(context, "summary_lib", !showTimes(context));
     }
 
     public static void setSummaryLibrary(Context context, boolean value) {

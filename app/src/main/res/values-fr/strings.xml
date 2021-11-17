@@ -141,7 +141,7 @@
     <string name="Documents">Documents</string>
     <string name="Downloads">Téléchargements</string>
     <string name="colorPickerDialog_preset">Présélections</string>
-    <string name="delete_content">Faut-il supprimer les %1$ ?</string>
+    <string name="delete_content">Faut-il supprimer les %s ?</string>
     <string name="delete_week">le sujet %s</string>
     <string name="delete_note">la note %s</string>
     <string name="delete_exam">l\'examen %s</string>
