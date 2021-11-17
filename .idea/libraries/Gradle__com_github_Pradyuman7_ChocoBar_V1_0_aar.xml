@@ -7,6 +7,7 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a29867234a220471358a76fcf353086/jetified-ChocoBar-V1.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01a87acf3621672292078ce69688c105/jetified-ChocoBar-V1.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ec27d185fda875a1f5b50b0cc4c9e90/jetified-ChocoBar-V1.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20fd71eb084b971606a0921262b3d27b/jetified-ChocoBar-V1.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f6297a2cab498b918e50e54185059c99/jetified-ChocoBar-V1.0/AndroidManifest.xml" />
@@ -27,6 +28,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ec27d185fda875a1f5b50b0cc4c9e90/jetified-ChocoBar-V1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ec27d185fda875a1f5b50b0cc4c9e90/jetified-ChocoBar-V1.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ec27d185fda875a1f5b50b0cc4c9e90/jetified-ChocoBar-V1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20fd71eb084b971606a0921262b3d27b/jetified-ChocoBar-V1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20fd71eb084b971606a0921262b3d27b/jetified-ChocoBar-V1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20fd71eb084b971606a0921262b3d27b/jetified-ChocoBar-V1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
