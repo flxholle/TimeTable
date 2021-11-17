@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Расписание</string>
+    <string name="navigation_drawer_open">Открыть панель навигации</string>
+    <string name="navigation_drawer_close">Скрыть панель навигации</string>
+    <string name="settings">Настройки</string>
+
+    <!-- Fragments strings -->
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="sunday">Воскресенье</string>
+    <string name="selected">Выбрано</string>
+
+    <!-- Main Activity strings -->
+    <string name="seven_days_of_the_week">Семидневная неделя</string>
+    <string name="subject">Предмет</string>
+    <string name="field_error">поле не может быть пустым!</string>
+    <string name="time_error">Поле \"Время\" не может быть пустым!</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Изменить</string>
+    <string name="school_website">Сайт школы</string>
+    <string name="please_set_school_website_url">Пожалуйста, укажите в настройках URL сайта вашего учебного заведения.</string>
+
+    <string name="add_subject">Добавить предмет</string>
+    <string name="edit_subject">Редактировать предмет</string>
+    <string name="teacher">Преподаватель</string>
+    <string name="room">Каб.</string>
+    <string name="time">Время</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="time_to_dialog">С:</string>
+    <string name="time_from_dialog">По:</string>
+    <string name="subject_dialog">Предмет:</string>
+    <string name="teacher_dialog">Преподаватель:</string>
+    <string name="room_dialog">Помещение:</string>
+    <string name="select_time">Укажите время</string>
+    <string name="select_color">Выберите цвет</string>
+    <string name="choose_time">Укажите время</string>
+    <string name="choose_date">Укажите дату</string>
+    <string name="choose_color">Выберите цвет</string>
+    <string name="select">Select</string>
+
+    <!-- Homeworks Activity strings -->
+    <string name="homework">Задания</string>
+    <string name="deadline_dialog">Срок сдачи:</string>
+    <string name="description_dialog">Описание:</string>
+    <string name="date_error">Поле \"Дата\" не может быть пустым!</string>
+    <string name="edit_homework">Редактировать задание</string>
+    <string name="add_homework">Добавить задание</string>
+    <string name="date">Дата</string>
+
+    <!-- Notes Activity strings -->
+    <string name="title_dialog">Заголовок:</string>
+    <string name="add_note">Добавить заметку</string>
+    <string name="edit_note">Редактировать заметку</string>
+    <string name="title_error">Заголовок не может быть пустым!</string>
+    <string name="title">Заголовок</string>
+    <string name="saved">Сохранено</string>
+
+    <!-- Teachers Activity strings -->
+    <string name="teachers">Преподаватель</string>
+    <string name="add_teacher">Добавить преподавателя</string>
+    <string name="edit_teacher">Редактировать преподавателя</string>
+    <string name="name_dialog">Имя:</string>
+    <string name="post_dialog">Почта:</string>
+    <string name="phonenumber_dialog">Телефон:</string>
+    <string name="email_dialog">E-mail:</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Телефон</string>
+    <string name="post">Почта</string>
+    <string name="email">E-mail</string>
+
+    <!-- Exams Activity strings -->
+    <string name="add_exam">Добавить экзамен</string>
+    <string name="date_dialog">Дата:</string>
+    <string name="time_dialog">Время:</string>
+
+    <!-- Settings Activity strings -->
+    <string name="enable_seven_days_setting">Разрешить полную (семидневную) неделю</string>
+    <string name="change_school_website_setting">Изменить сайт учебного заведения</string>
+    <string name="change_school_website_setting_summary">Замените URL на адрес сайта вашего учебного заведения</string>
+
+    <string name="start_week_on_sunday">Начало недели с воскресенья</string>
+    <string name="start_week_on_sunday_summary">Считать выходными пятницу и субботу и осуществлять переход четная/нечетная неделя по воскресеньям.</string>
+
+    <string name="notification_visibility_setting">Показывать уведомления</string>
+    <string name="notification_show_permanent_setting">Постоянное отображение</string>
+    <string name="notification_show_permanent_setting_desc">Скрыть уведомления можно будет только вручную</string>
+    <string name="notification_alarm_setting">В определенное время</string>
+    <string name="notification_alarm_setting_desc">Показывать уведомления в определенное время</string>
+    <string name="notification_reminder_setting">Напоминать перед началом предмета</string>
+    <string name="notification_reminder_settings_desc">Громкое уведомление за %s минут до начала предмета.</string>
+    <string name="notification_notification_end_setting">Напоминать по окончании предмета</string>
+    <string name="notification_notification_end_setting_desc">Бесшумное уведомление о следующем предмете по окончании предыдущего.</string>
+    <string name="notification_settings">Уведомление</string>
+
+    <string name="notification_dismiss">Скрыть</string>
+
+    <string name="permission_request_message">Для этой функции требуются несколько разрешений. Пожалуйста, предоставьте их для полной функциональности.</string>
+    <string name="permission_required">Требуется доступ!</string>
+    <string name="permission_required_description">Данные разрешения необходимы для полноценной функциональности</string>
+    <string name="permission_ok_button">Разрешить\u2026</string>
+    <string name="permission_cancel_button">Отклонить</string>
+
+    <string name="no">Нет</string>
+    <string name="are_you_sure">Вы уверены?</string>
+    <string name="yes">Да</string>
+    <string name="dont_show_again">Больше не показывать</string>
+    <string name="with_teacher"> </string>
+    <string name="share_msg_in_room">в аудитории</string>
+    <string name="version">Версия</string>
+    <string name="backup">Резервная копия</string>
+
+    <string name="description">Описание</string>
+
+    <string name="select_start_time">Начало</string>
+    <string name="select_end_time">Окончание</string>
+
+    <string name="homework_activity_title">Задания</string>
+    <string name="notes_activity_title">Заметки</string>
+    <string name="exams_activity_title">Экзамены</string>
+    <string name="notification_summary_title">Занятия сегодня:</string>
+    <string name="notification_next_week_title">Следующий урок</string>
+    <string name="nav_drawer_description">Форк ulan17</string>
+    <string name="time_from">с</string>
+
+    <string name="channel">Расписание</string>
+    <string name="channel_important">Важное</string>
+    <string name="channel_desc">Уведомление о занятиях</string>
+    <string name="do_not_disturb_permission_desc">Для автоматического переключения режима \"Не беспокоить\" приложению требуется соответствующее разрешение</string>
+    <string name="do_not_disturb_setting">Включать режим \"Не беспокоить\"</string>
+    <string name="do_not_disturb_settings_desc">Автоматически переключаться в режим \"Не беспокоить\" во время занятий.</string>
+    <string name="do_not_disturb_turn_off">А также выключать</string>
+    <string name="do_not_disturb_turn_off_desc">Отключать режим \"Не беспокоить\" по окончании занятий.</string>
+    <string name="backup_successful">Создана резервная копия в %s</string>
+    <string name="backup_failed">Не удалось создать резервную копию</string>
+    <string name="import_successful">Восстановление прошло успешно</string>
+    <string name="import_failed">Не удалось восстановить резервную копию</string>
+    <string name="restore">Восстановление</string>
+    <string name="no_backup_found_in_downloads">Не найдена резервная копия в %s</string>
+    <string name="Documents">Документы</string>
+    <string name="Downloads">Загрузки</string>
+    <string name="colorPickerDialog_preset">Выбрать</string>
+    <string name="delete_content">Действительно удалить %s?</string>
+    <string name="delete_week">предмет %s</string>
+    <string name="delete_note">заметка %s</string>
+    <string name="delete_exam">экзамен %s</string>
+    <string name="delete_everything">Удалить всё</string>
+    <string name="delete_everything_desc">Удалить расписание и все его данные без возможности восстановления?
+        \nРекомендуется предварительно создать резервную копию!</string>
+    <string name="successfully_deleted_everything">Удаление всех данных прошло успешно</string>
+    <string name="an_error_occurred">Произошла ошибка</string>
+
+    <string name="no_email_app">Не установлено приложение электронной почты</string>
+    <string name="no_navigation_app">Не установлено приложение навигации</string>
+    <string name="no_calendar_app">Не установлено приложение календаря</string>
+    <string name="add_to_calendar">Добавить это событие в календарь?</string>
+
+    <string name="choose_theme_setting">Выбрать тему</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_black">Черная</string>
+    <string name="theme_auto">Автоматически</string>
+
+    <string name="about_libs_title">Библиотеки с открытым исходным кодом</string>
+
+    <string name="summary_activity_title">Обзор</string>
+    <string name="change_summary_library">Изменить вид</string>
+    <string name="start_of_school">Начало занятий (необходимо только при первом запуске приложения)</string>
+    <string name="length_of_period">Продолжительность одного предмета (необходимо только при первом запуске приложения)</string>
+    <string name="minutes">минут</string>
+    <string name="lesson">урок</string>
+    <string name="show_times_instead_of_lessons">Показывать точное время предмета</string>
+    <string name="show_times_instead_of_lessons_desc">Отображать время предмета вместо его номера, например, 8:00 вместо 1</string>
+
+    <string-array name="timetable_header">
+        <item>Пн</item>
+        <item>Вт</item>
+        <item>Ср</item>
+        <item>Чт</item>
+        <item>Пт</item>
+        <item>Сб</item>
+        <item>Вс</item>
+    </string-array>
+
+    <string-array name="preselected_subjects">
+        <item>Русский язык</item>
+        <item>Литература</item>
+        <item>Биология</item>
+        <item>Химия</item>
+        <item>География</item>
+        <item>Окружающий мир</item>
+        <item>История</item>
+        <item>Математика</item>
+        <item>Физика</item>
+        <item>Английский</item>
+        <item>Французский</item>
+        <item>Немецкий</item>
+        <item>Музыка</item>
+        <item>Изобразительное искусство</item>
+        <item>Технология</item>
+        <item>Физическая культура</item>
+    </string-array>
+
+    <string name="pick_a_subject">Выберите предмет</string>
+    <string name="new_subject">Новый предмет</string>
+
+
+    <string name="app_widget_configure_intensity">Непрозрачность фона（%d%%）</string>
+    <string name="app_widget_configure_time_style">Вид времени（%s）</string>
+    <string name="configure_widget_controls">Настройки виджета</string>
+    <string name="background_color">Цвет фона</string>
+    <string name="black">Черный</string>
+    <string name="white">Белый</string>
+    <string name="background_color_intensity_15">Непрозрачность фона（15%）</string>
+    <string name="time_style_first_session_of_the_morning">Вид времени (первое занятие)</string>
+    <string name="style_1">Стиль 1</string>
+    <string name="style_2">Стиль 2</string>
+    <string name="style_3">Стиль 3</string>
+    <string name="no_class">Нет предметов</string>
+    <string name="confirm">Подтвердить</string>
+
+    <string name="time_settings">Настройки времени</string>
+    <string name="time_settings_desc">Настройки начала занятий и продолжительности уроков.</string>
+    <string name="ok">OK</string>
+    <string name="first_start_setup">Необходимо выполнить начальные настройки.</string>
+    <string name="start_of_term">Начало семестра</string>
+    <string name="start_of_term_desc">По этой дате мы определим, какая сегодня неделя, четная или нечетная.
+        \nПервая неделя семестра считается четной.
+        \nЕсли вы хотите переключать недели вручную, просто измените неделю начала семестра.</string>
+    <string name="enable_even_odd_weeks">Разрешить четные/нечетные недели</string>
+    <string name="even_week">Четная неделя</string>
+    <string name="odd_week">Нечетная неделя</string>
+    <string name="intelligent_auto_fill">Автоматически выбрать начало/окончание</string>
+    <string name="intelligent_auto_fill_desc">Автоматически выбирает время начала/окончания в соответствии с вводом.</string>
+    <string name="show_preselection_list">Показать встроенный список</string>
+    <string name="set_preselection_elements">Выберите элементы списка</string>
+    <string name="de_select_all">Выбрать/скрыть все</string>
+
+    <!-- Profiles -->
+    <string name="profiles_add">Добавить профиль\u2026</string>
+    <string name="profiles_delete_submit_heading">Вы уверены?</string>
+    <string name="profiles_edit">Редактировать\u2026</string>
+    <string name="profiles_delete_message">Вы точно хотите удалить профиль %s</string>
+    <string name="profiles">Профили</string>
+    <string name="add_profile_button">Добавить профиль</string>
+    <string name="add">Добавить</string>
+    <string name="profile_default_name">Без названия</string>
+    <string name="select_profile">Выберите профиль</string>
+    <string name="preferred_profile_explanation">Пометить профиль звездочкой.
+        \nЭтот профиль будет показан автоматически при запуске приложения.
+        \nКроме того, в соответствии с данными профиля отображаются уведомления о начале каждого урока и включается режим \"Не беспокоить.\"</string>
+</resources>
