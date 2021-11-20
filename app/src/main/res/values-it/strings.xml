@@ -205,7 +205,7 @@
     <string name="new_subject">Nuovo soggetto</string>
 
 
-    <string name="app_widget_configure_intensity">Intensità del colore di sfondo（%d%%%）</string>
+    <string name="app_widget_configure_intensity">Intensità del colore di sfondo（%d）</string>
     <string name="app_widget_configure_time_style">Stile a tempo（%s）</string>
     <string name="configure_widget_controls">Configurare i controlli dei widget</string>
     <string name="background_color">Colore di sfondo</string>

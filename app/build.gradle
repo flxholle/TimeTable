@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.asdoi.timetable"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 15
         versionName "1.5"
@@ -20,12 +19,6 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
-        //To Avoid MultiDex
-        debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-debug.pro'
-        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -34,31 +27,30 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.browser:browser:1.2.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.browser:browser:1.3.0'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'com.github.quwepiro:ColorPickerDialog:a1d628430b'
+    implementation 'me.jfenn.ColorPickerDialog:base:0.2.2'
     implementation 'com.github.quwepiro:SQLite2XL:88883cf56d'
     implementation 'saschpe.android:customtabs:3.0.2'
-    implementation "com.mikepenz:aboutlibraries:8.3.0"
+    implementation "com.mikepenz:aboutlibraries:8.9.4"
+    implementation 'com.github.stephenvinouze:shapetextdrawable:1.0.0'
+    implementation 'com.github.Pradyuman7:ChocoBar:V1.7'
+    implementation 'com.github.IamIsPra:Sheriff:1.0.2'
+    implementation 'com.github.quwepiro:TimetableUI:master-SNAPSHOT'
+    implementation 'com.github.quwepiro:TimetableView:master-SNAPSHOT'
     //noinspection NewerVersionAvailable,GradleDependency
     implementation 'org.apache.poi:poi:3.16'
-    implementation 'com.github.stephenvinouze:shapetextdrawable:1.0.0'
-    implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
     //noinspection GradleDependency
     implementation 'com.afollestad.material-dialogs:core:0.9.6'
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
-    implementation 'com.github.IamIsPra:Sheriff:1.0.0'
-    implementation 'com.github.quwepiro:TimetableUI:master-SNAPSHOT'
-    implementation 'com.github.quwepiro:TimetableView:master-SNAPSHOT'
 }
