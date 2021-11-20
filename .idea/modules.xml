@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TimeTable.iml" filepath="$PROJECT_DIR$/.idea/modules/TimeTable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TimeTable.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TimeTable.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TimeTableOld.iml" filepath="$PROJECT_DIR$/.idea/modules/TimeTableOld.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TimeTableOld.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TimeTableOld.app.iml" />
     </modules>
