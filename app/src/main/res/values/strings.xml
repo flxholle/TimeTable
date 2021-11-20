@@ -43,13 +43,13 @@
     <string name="choose_color">Choose color</string>
     <string name="select">Select</string>
 
-    <!-- Homeworks Activity strings -->
-    <string name="homework">Homework</string>
+    <!-- Assignment Activity strings -->
+    <string name="homework">Assignment</string>
     <string name="deadline_dialog">Deadline:</string>
     <string name="description_dialog">Description:</string>
     <string name="date_error">Date field cannot be empty!</string>
-    <string name="edit_homework">Edit homework</string>
-    <string name="add_homework">Add homework</string>
+    <string name="edit_homework">Edit assignment</string>
+    <string name="add_homework">Add assignment</string>
     <string name="date">Date</string>
 
     <!-- Notes Activity strings -->
@@ -119,7 +119,7 @@
     <string name="select_start_time">Start</string>
     <string name="select_end_time">End</string>
 
-    <string name="homework_activity_title">Homework</string>
+    <string name="homework_activity_title">Assignment</string>
     <string name="notes_activity_title">Notes</string>
     <string name="exams_activity_title">Exams</string>
     <string name="notification_summary_title">Today\'s lessons:</string>

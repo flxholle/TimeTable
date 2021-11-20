@@ -10,7 +10,7 @@
         android:title="@string/length_of_period"
         app:iconSpaceReserved="false" />
     <SwitchPreferenceCompat
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="show_times"
         android:summary="@string/show_times_instead_of_lessons_desc"
         android:title="@string/show_times_instead_of_lessons"

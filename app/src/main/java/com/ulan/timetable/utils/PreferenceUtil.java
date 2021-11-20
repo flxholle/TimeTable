@@ -405,7 +405,7 @@ public class PreferenceUtil {
     }
 
     public static boolean showTimes(Context context) {
-        return getBooleanSettings(context, "show_times", false);
+        return getBooleanSettings(context, "show_times", true);
     }
 
     //Even, odd weeks

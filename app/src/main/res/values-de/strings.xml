@@ -114,13 +114,13 @@
     <string name="choose_time">Zeit</string>
     <string name="choose_date">Datum</string>
 
-    <string name="homework_activity_title">Hausaufgaben</string>
+    <string name="homework_activity_title">Aufgaben</string>
     <string name="deadline_dialog">Deadline:</string>
     <string name="description_dialog">Beschreibung:</string>
     <string name="description">Beschreibung</string>
     <string name="date_error">Datumsfeld darf nicht leer sein!</string>
-    <string name="edit_homework">Hausaufgabe bearbeiten</string>
-    <string name="add_homework">Hausaufgabe hinzufügen</string>
+    <string name="edit_homework">Aufgabe bearbeiten</string>
+    <string name="add_homework">Aufgabe hinzufügen</string>
     <string name="date">Datum</string>
 
     <string name="notes_activity_title">Notizen</string>
@@ -162,7 +162,7 @@
     <string name="add_to_calendar">Soll dieses Ereignis zu deinem Kalender hinzugefügt werden?</string>
     <string name="school_website">Schulhomepage</string>
     <string name="please_set_school_website_url">Bitte stelle deine Schulhomepage in den Einstellungen ein.</string>
-    <string name="homework">Hausaufgaben</string>
+    <string name="homework">Aufgaben</string>
     <string name="title">Titel</string>
     <string name="teachers">Lehrer</string>
     <string name="add_teacher">Lehrer hinzufügen</string>
