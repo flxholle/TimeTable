@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorTeachers"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.NotesActivity"
+    tools:context="com.systems.automaton.classtimetableplanner.activities.NotesActivity"
     android:orientation="vertical">
 
     <LinearLayout
