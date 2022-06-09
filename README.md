@@ -1,22 +1,8 @@
 <h1 align=center>
-<img src="logo-files/horizontal.png" width=50%>
+<img src="https://github.com/automaton82/class-timetable-planner/blob/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" />
 </h1>
-Important: We moved to <a href="https://gitlab.com/asdoi/TimeTable">GitLab</a>! The repository on Github will remain as a mirror. Please do not submit pull requests or issues on GitHub.
 
-# TimeTable
-
-[![Fdroid](https://img.shields.io/f-droid/v/com.asdoi.timetable.svg)]()
-[![Release](https://img.shields.io/badge/dynamic/json.svg?label=Release&url=https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges.json?job=build_badges&query=release_tag&colorB=brightgreen&logo=gitlab)]()  
-[![License](https://img.shields.io/badge/dynamic/json.svg?label=License&url=https://gitlab.com/api/v4/projects/19059184?license=true&query=license.key&colorB=yellow)]()
-[![Commits since last release](https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges/commits_since_last_release.svg?job=build_badges)]()
-[![Commit activity](https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges/commit_activity.svg?job=build_badges)]()  
-[![Day the Repository has been created](https://gitlab.com/asdoi/TimeTable/-/jobs/artifacts/master/raw/badges/repository_creation_day.svg?job=build_badges)]()
-
-<a href="https://f-droid.org/en/packages/com.asdoi.timetable/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="130"></a>
-[<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
-      alt="Direct apk download"
-      height="130">](https://gitlab.com/asdoi/TimeTable/-/raw/master/app/release/app-release.apk)*
-
+# Class Timetable Planner
 
 Timetable is an Android Application, which allows you to save timetable, homeworks and notes.<br>
 This is an improved version of the <a href="https://github.com/ulan17/TimeTable">app from ulan17 </a>.<br>
@@ -38,11 +24,14 @@ You are welcome to contribute with issues, pull requests and ideas. And to contr
  - Rewrite class 'AlertDialogsHelper'
 
 ### Screenshots
-<img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_1.png" width="31%" style="max-width:100%;"> &nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_2.png" width="31%" style="max-width:100%;">
-<br>
-<img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_3.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_4.jpg" width="31%" style="max-width:100%;">&nbsp;&nbsp;&nbsp;&nbsp; <img alt="1 screenshot" src="fastlane/metadata/android/en-US/images/phoneScreenshots/timetable_screenshot_5.jpg" width="31%" style="max-width:100%;">
-
-*Made by <a href="https://github.com/smichel17">smichel17</a> from <a href="https://github.com/LibreShift/red-moon">LibreShift/red-moon</a>
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%200.png" width=175 />]()
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%201.png" width=175 />]()
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%202.png" width=175 />]()
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%203.png" width=175 />]()
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%204.png" width=175 />]()
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%205.png" width=175 />]()
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%206.png" width=175 />]()
+[<img src="https://github.com/automaton82/class-timetable-planner/blob/master/screenshots/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%207.png" width=175 />]()
 
 ### License
 
