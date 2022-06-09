@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ulan.timetable.activities.NoteInfoActivity">
+    tools:context="com.systems.automaton.classtimetableplanner.activities.NoteInfoActivity">
 
-    <com.ulan.timetable.utils.LinedEditText
+    <com.systems.automaton.classtimetableplanner.utils.LinedEditText
         android:padding="8dp"
         android:id="@+id/edittextNote"
         android:layout_width="match_parent"

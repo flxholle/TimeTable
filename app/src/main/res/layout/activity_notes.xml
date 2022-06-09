@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ulan.timetable.activities.NotesActivity">
+    tools:context="com.systems.automaton.classtimetableplanner.activities.NotesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
