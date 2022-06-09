@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.fragments.TimeSettingsFragment;
 import com.systems.automaton.classtimetableplanner.utils.PreferenceUtil;
 

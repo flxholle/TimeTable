@@ -25,7 +25,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.widget.ImageViewCompat;
 
 import com.pd.chocobar.ChocoBar;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.model.Teacher;
 import com.systems.automaton.classtimetableplanner.utils.AlertDialogsHelper;
 import com.systems.automaton.classtimetableplanner.utils.ColorPalette;

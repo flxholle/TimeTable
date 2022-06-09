@@ -24,7 +24,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.fragments.ProfileActivityFragment;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
 import com.systems.automaton.classtimetableplanner.utils.PreferenceUtil;

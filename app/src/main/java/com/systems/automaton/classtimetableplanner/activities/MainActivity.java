@@ -37,7 +37,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pd.chocobar.ChocoBar;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.FragmentsTabAdapter;
 import com.systems.automaton.classtimetableplanner.fragments.WeekdayFragment;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;

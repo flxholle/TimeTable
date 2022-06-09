@@ -40,7 +40,7 @@ import androidx.core.graphics.drawable.IconCompat;
 
 import com.github.stephenvinouze.shapetextdrawable.ShapeForm;
 import com.github.stephenvinouze.shapetextdrawable.ShapeTextDrawable;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.activities.MainActivity;
 import com.systems.automaton.classtimetableplanner.model.Week;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;

@@ -29,7 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.WeekAdapter;
 import com.systems.automaton.classtimetableplanner.model.Week;
 import com.systems.automaton.classtimetableplanner.utils.DbHelper;

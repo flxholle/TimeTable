@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.fragments.SettingsFragment;
 import com.systems.automaton.classtimetableplanner.utils.PreferenceUtil;
 

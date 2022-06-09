@@ -18,7 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.appwidget.Dao.AppWidgetDao;
 import com.systems.automaton.classtimetableplanner.profiles.Profile;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;

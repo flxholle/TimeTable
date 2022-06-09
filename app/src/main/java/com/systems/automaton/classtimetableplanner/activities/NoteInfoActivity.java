@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.model.Note;
 import com.systems.automaton.classtimetableplanner.utils.DbHelper;
 import com.systems.automaton.classtimetableplanner.utils.PreferenceUtil;

@@ -31,7 +31,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.pd.chocobar.ChocoBar;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.ExamsAdapter;
 import com.systems.automaton.classtimetableplanner.adapters.FragmentsTabAdapter;
 import com.systems.automaton.classtimetableplanner.adapters.HomeworkAdapter;
