@@ -105,12 +105,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View headerview = navigationView.getHeaderView(0);
-        TextView title = headerview.findViewById(R.id.nav_header_main_title);
-        title.setText(R.string.app_name);
-
-        TextView desc = headerview.findViewById(R.id.nav_header_main_desc);
-        desc.setText(R.string.nav_drawer_description);
 
         PreferenceManager.setDefaultValues(this, R.xml.settings, false);
         Toolbar toolbar = findViewById(R.id.toolbar);
