@@ -25,7 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 
 import java.util.ArrayList;
 

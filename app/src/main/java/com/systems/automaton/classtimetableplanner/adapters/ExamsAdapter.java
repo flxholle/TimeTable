@@ -22,7 +22,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.ImageViewCompat;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.activities.TeachersActivity;
 import com.systems.automaton.classtimetableplanner.model.Exam;
 import com.systems.automaton.classtimetableplanner.utils.AlertDialogsHelper;

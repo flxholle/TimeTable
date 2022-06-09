@@ -44,7 +44,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.preference.PreferenceManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.activities.SettingsActivity;
 import com.systems.automaton.classtimetableplanner.receivers.DoNotDisturbReceiversKt;
 

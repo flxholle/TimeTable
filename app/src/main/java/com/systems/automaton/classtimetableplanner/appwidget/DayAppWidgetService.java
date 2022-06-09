@@ -9,7 +9,7 @@ import android.widget.RemoteViewsService;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.appwidget.Dao.AppWidgetDao;
 import com.systems.automaton.classtimetableplanner.model.Week;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;

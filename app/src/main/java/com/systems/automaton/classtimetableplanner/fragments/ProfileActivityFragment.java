@@ -36,7 +36,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.profiles.Profile;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
 import com.systems.automaton.classtimetableplanner.utils.DbHelper;

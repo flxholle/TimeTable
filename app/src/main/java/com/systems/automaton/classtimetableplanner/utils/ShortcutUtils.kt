@@ -29,7 +29,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import com.ulan.timetable.R
+import com.systems.automaton.classtimetableplanner.R
 import com.systems.automaton.classtimetableplanner.activities.HomeworkActivity
 import com.systems.automaton.classtimetableplanner.activities.NotesActivity
 import com.systems.automaton.classtimetableplanner.activities.SummaryActivity

@@ -15,7 +15,7 @@ import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.activities.MainActivity;
 import com.systems.automaton.classtimetableplanner.appwidget.Dao.AppWidgetDao;
 import com.systems.automaton.classtimetableplanner.utils.PreferenceUtil;
@@ -31,10 +31,10 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
     int lastAppWidgetId = 0;
     String lastAction = null;
 
-    private static final String ACTION_RESTORE = "com.ulan.timetable" + ".ACTION_RESTORE";
-    private static final String ACTION_YESTERDAY = "com.ulan.timetable" + ".ACTION_YESTERDAY";
-    private static final String ACTION_TOMORROW = "com.ulan.timetable" + ".ACTION_TOMORROW";
-    private static final String ACTION_NEW_DAY = "com.ulan.timetable" + ".ACTION_NEW_DAY";
+    private static final String ACTION_RESTORE = "com.systems.automaton.classtimetableplanner" + ".ACTION_RESTORE";
+    private static final String ACTION_YESTERDAY = "com.systems.automaton.classtimetableplanner" + ".ACTION_YESTERDAY";
+    private static final String ACTION_TOMORROW = "com.systems.automaton.classtimetableplanner" + ".ACTION_TOMORROW";
+    private static final String ACTION_NEW_DAY = "com.systems.automaton.classtimetableplanner" + ".ACTION_NEW_DAY";
 
     private static final int ONE_DAY_MILLIS = 86400000;
 

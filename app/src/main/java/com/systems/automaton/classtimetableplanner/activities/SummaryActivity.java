@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat;
 import com.github.tlaabs.timetableview.Schedule;
 import com.github.tlaabs.timetableview.Time;
 import com.github.tlaabs.timetableview.TimetableView;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.fragments.WeekdayFragment;
 import com.systems.automaton.classtimetableplanner.model.Week;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;

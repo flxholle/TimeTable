@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.TeachersAdapter;
 import com.systems.automaton.classtimetableplanner.model.Teacher;
 import com.systems.automaton.classtimetableplanner.utils.AlertDialogsHelper;

@@ -11,7 +11,7 @@ import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.activities.SettingsActivity;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
 import com.systems.automaton.classtimetableplanner.receivers.DailyReceiver;

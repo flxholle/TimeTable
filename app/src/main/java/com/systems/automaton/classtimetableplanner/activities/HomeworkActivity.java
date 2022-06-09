@@ -13,7 +13,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ulan.timetable.R;
+import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.HomeworkAdapter;
 import com.systems.automaton.classtimetableplanner.model.Homework;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
