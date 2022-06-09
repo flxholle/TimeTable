@@ -17,12 +17,7 @@
   -->
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="?attr/colorPrimary" />
-
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@mipmap/ic_launcher_foreground" />
-    </item>
+    <item android:drawable="?attr/colorAccent" />
+    <item android:gravity="center"
+        android:drawable="@mipmap/ic_launcher" />
 </layer-list>
