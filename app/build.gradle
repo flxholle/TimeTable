@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'kotlin-android'
+//apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 32
@@ -8,8 +9,8 @@ android {
         applicationId "com.systems.automaton.classtimetableplanner"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 16
-        versionName "1.6"
+        versionCode 17
+        versionName "1.7"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -49,4 +50,9 @@ dependencies {
     //noinspection GradleDependency
     implementation 'com.afollestad.material-dialogs:core:0.9.6'
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
+
+    implementation 'com.android.billingclient:billing:5.0.0'
+    //implementation 'com.google.android.gms:play-services-ads:21.0.0'
+    //implementation platform('com.google.firebase:firebase-bom:29.3.0')
+    //implementation 'com.google.firebase:firebase-analytics-ktx'
 }
