@@ -7,6 +7,7 @@ import android.content.ContextWrapper
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.ViewGroup
+import androidx.preference.PreferenceManager
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
@@ -32,10 +33,18 @@ class AdManager {
             .build()
         MobileAds.setRequestConfiguration(requestConfiguration)
 
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        isDisabled = sharedPrefs.getBoolean(context.getString(R.string.sp_remove_ads), false) == true
+
         //prepareAd(context)
     }
 
     fun createAdView(context: Context, viewGroup: ViewGroup) {
+
+        if (isDisabled) {
+            return
+        }
+
         val localAdView = AdView(context)
         viewGroup.addView(localAdView)
         localAdView.adUnitId = context.getString(R.string.ad_unit_id)

@@ -49,4 +49,13 @@
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/settings" />
     </group>
+
+    <group
+        android:id="@+id/menu_down_below"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/remove_ads"
+            android:icon="@drawable/ic_love"
+            android:title="@string/remove_ads" />
+    </group>
 </menu>
