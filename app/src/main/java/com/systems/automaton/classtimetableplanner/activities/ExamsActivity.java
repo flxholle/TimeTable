@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.ExamsAdapter;
+import com.systems.automaton.classtimetableplanner.ads.AdManager;
 import com.systems.automaton.classtimetableplanner.model.Exam;
 import com.systems.automaton.classtimetableplanner.utils.AlertDialogsHelper;
 import com.systems.automaton.classtimetableplanner.utils.DbHelper;
@@ -43,6 +44,7 @@ public class ExamsActivity extends AppCompatActivity {
         setupAdapter();
         setupListViewMultiSelect();
         setupCustomDialog();
+        AdManager.instance.createAdView(getApplicationContext(), findViewById(R.id.ad_container));
     }
 
     private void setupAdapter() {

@@ -31,6 +31,7 @@ import androidx.fragment.app.Fragment;
 
 import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.WeekAdapter;
+import com.systems.automaton.classtimetableplanner.ads.AdManager;
 import com.systems.automaton.classtimetableplanner.model.Week;
 import com.systems.automaton.classtimetableplanner.utils.DbHelper;
 import com.systems.automaton.classtimetableplanner.utils.FragmentHelper;
@@ -69,6 +70,7 @@ public class WeekdayFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_weekday, container, false);
+        AdManager.instance.createAdView(requireContext(), view.findViewById(R.id.ad_container));
         return view;
     }
 

@@ -52,7 +52,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
 
     implementation 'com.android.billingclient:billing:5.0.0'
-    //implementation 'com.google.android.gms:play-services-ads:21.0.0'
+    implementation 'com.google.android.gms:play-services-ads:21.0.0'
     //implementation platform('com.google.firebase:firebase-bom:29.3.0')
     //implementation 'com.google.firebase:firebase-analytics-ktx'
 }

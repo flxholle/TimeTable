@@ -19,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -39,6 +38,8 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pd.chocobar.ChocoBar;
 import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.FragmentsTabAdapter;
+import com.systems.automaton.classtimetableplanner.ads.AdManager;
+import com.systems.automaton.classtimetableplanner.ads.BillingManager;
 import com.systems.automaton.classtimetableplanner.fragments.WeekdayFragment;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
 import com.systems.automaton.classtimetableplanner.receivers.DoNotDisturbReceiversKt;
@@ -118,6 +119,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setupFragments();
         setupCustomDialog();
+
+        if (!AdManager.instance.isInitialized()) {
+            AdManager.instance.initialize(this);
+        }
+        if (!BillingManager.instance.isInitialized()) {
+            AdManager.instance.initialize(this);
+        }
     }
 
     private boolean dontfire = true;

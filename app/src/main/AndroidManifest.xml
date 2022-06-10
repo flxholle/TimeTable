@@ -132,6 +132,11 @@
         <service
             android:name="com.systems.automaton.classtimetableplanner.appwidget.DayAppWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <!-- AdMob -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/ad_app_id" />
     </application>
 
 </manifest>
