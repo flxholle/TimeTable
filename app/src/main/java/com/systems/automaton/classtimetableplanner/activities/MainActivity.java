@@ -40,6 +40,7 @@ import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.FragmentsTabAdapter;
 import com.systems.automaton.classtimetableplanner.ads.AdManager;
 import com.systems.automaton.classtimetableplanner.ads.BillingManager;
+import com.systems.automaton.classtimetableplanner.ads.EventManager;
 import com.systems.automaton.classtimetableplanner.fragments.WeekdayFragment;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
 import com.systems.automaton.classtimetableplanner.receivers.DoNotDisturbReceiversKt;
@@ -124,6 +125,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if (!BillingManager.instance.isInitialized()) {
             BillingManager.instance.initialize(this);
+        }
+        if (!EventManager.instance.isInitialized()) {
+            EventManager.instance.initialize(this);
         }
         if (AdManager.instance.isDisabled()) {
             navigationView.getMenu().findItem(R.id.remove_ads).setVisible(false);
