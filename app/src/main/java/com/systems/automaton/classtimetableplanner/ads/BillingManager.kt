@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 import com.android.billingclient.api.*
 import com.systems.automaton.classtimetableplanner.BuildConfig
 import com.systems.automaton.classtimetableplanner.R
@@ -87,8 +88,18 @@ class BillingManager {
                 if (purchaseItem != null) {
                     AdManager.instance.disableAds()
 
+                    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+                    val editor = sharedPrefs.edit()
+                    editor.putBoolean(context.getString(R.string.sp_remove_ads), true)
+                    editor.apply()
+
                     // TESTING: consume the purchase if we refunded.
                     //testingConsumePurchase(purchaseItem)
+                } else {
+                    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+                    val editor = sharedPrefs.edit()
+                    editor.putBoolean(context.getString(R.string.sp_remove_ads), false)
+                    editor.apply()
                 }
             } else {
                 Log.d(TAG, "checkPurchases has billingResult of ${billingResult.responseCode} -- ${billingResult.debugMessage}")
@@ -97,6 +108,24 @@ class BillingManager {
     }
 
     fun buy(activity: Activity) {
+        (activity as Context).getActivity()
+
+        val context = activity as Context
+        context.getActivity()?.let {
+            it.runOnUiThread {
+                AdManager.instance.disableAds()
+                it.recreate()
+                Toast.makeText(context, context.getString(R.string.thank_you_purchase), Toast.LENGTH_SHORT).show()
+
+                val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+                val editor = sharedPrefs.edit()
+                editor.putBoolean(context.getString(R.string.sp_remove_ads), true)
+                editor.apply()
+            }
+        }
+
+        return
+
         productDetails?.let {
             val productDetailsParams = BillingFlowParams.ProductDetailsParams.newBuilder()
                 .setProductDetails(it)

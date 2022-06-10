@@ -3,6 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="settings">Settings</string>
+    <string name="remove_ads" translatable="false">Remove Ads</string>
 
     <!-- Fragments strings -->
     <string name="monday">Monday</string>

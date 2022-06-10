@@ -59,8 +59,6 @@ import info.isuru.sheriff.helper.Sheriff;
 import info.isuru.sheriff.interfaces.PermissionListener;
 import saschpe.android.customtabs.CustomTabsHelper;
 import saschpe.android.customtabs.WebViewActivity;
-import saschpe.android.customtabs.WebViewFallback;
-
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -124,7 +122,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             AdManager.instance.initialize(this);
         }
         if (!BillingManager.instance.isInitialized()) {
-            AdManager.instance.initialize(this);
+            BillingManager.instance.initialize(this);
+        }
+        if (AdManager.instance.isDisabled()) {
+            navigationView.getMenu().findItem(R.id.remove_ads).setVisible(false);
         }
     }
 
@@ -319,7 +320,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.exams) {
+        if (itemId == R.id.remove_ads) {
+            BillingManager.instance.buy(this);
+        } else if (itemId == R.id.exams) {
             Intent exams = new Intent(MainActivity.this, ExamsActivity.class);
             startActivity(exams);
         } else if (itemId == R.id.homework) {
