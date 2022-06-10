@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.HomeworkAdapter;
+import com.systems.automaton.classtimetableplanner.ads.AdManager;
 import com.systems.automaton.classtimetableplanner.model.Homework;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
 import com.systems.automaton.classtimetableplanner.utils.AlertDialogsHelper;
@@ -53,6 +54,7 @@ public class HomeworkActivity extends AppCompatActivity {
         setupAdapter();
         setupListViewMultiSelect();
         setupCustomDialog();
+        AdManager.instance.createAdView(getApplicationContext(), findViewById(R.id.ad_container));
     }
 
     private void setupAdapter() {

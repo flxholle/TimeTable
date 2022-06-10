@@ -35,4 +35,12 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
+    <RelativeLayout
+        android:id="@+id/ad_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:background="@android:color/transparent">
+    </RelativeLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

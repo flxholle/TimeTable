@@ -16,6 +16,7 @@ import com.github.tlaabs.timetableview.Schedule;
 import com.github.tlaabs.timetableview.Time;
 import com.github.tlaabs.timetableview.TimetableView;
 import com.systems.automaton.classtimetableplanner.R;
+import com.systems.automaton.classtimetableplanner.ads.AdManager;
 import com.systems.automaton.classtimetableplanner.fragments.WeekdayFragment;
 import com.systems.automaton.classtimetableplanner.model.Week;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
@@ -94,6 +95,8 @@ public class SummaryActivity extends AppCompatActivity {
             setupCourseTableLibrary1();
         else
             setupTimetableLibrary2();
+
+        AdManager.instance.createAdView(getApplicationContext(), findViewById(R.id.ad_container));
     }
 
     @Override

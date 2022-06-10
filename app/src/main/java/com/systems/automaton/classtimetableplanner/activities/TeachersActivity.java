@@ -17,6 +17,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.TeachersAdapter;
+import com.systems.automaton.classtimetableplanner.ads.AdManager;
 import com.systems.automaton.classtimetableplanner.model.Teacher;
 import com.systems.automaton.classtimetableplanner.utils.AlertDialogsHelper;
 import com.systems.automaton.classtimetableplanner.utils.DbHelper;
@@ -45,6 +46,7 @@ public class TeachersActivity extends AppCompatActivity {
         setupAdapter();
         setupListViewMultiSelect();
         setupCustomDialog();
+        AdManager.instance.createAdView(getApplicationContext(), findViewById(R.id.ad_container));
     }
 
     private void setupAdapter() {
