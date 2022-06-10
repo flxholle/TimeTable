@@ -110,22 +110,6 @@ class BillingManager {
     fun buy(activity: Activity) {
         (activity as Context).getActivity()
 
-        val context = activity as Context
-        context.getActivity()?.let {
-            it.runOnUiThread {
-                AdManager.instance.disableAds()
-                it.recreate()
-                Toast.makeText(context, context.getString(R.string.thank_you_purchase), Toast.LENGTH_SHORT).show()
-
-                val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-                val editor = sharedPrefs.edit()
-                editor.putBoolean(context.getString(R.string.sp_remove_ads), true)
-                editor.apply()
-            }
-        }
-
-        return
-
         productDetails?.let {
             val productDetailsParams = BillingFlowParams.ProductDetailsParams.newBuilder()
                 .setProductDetails(it)
