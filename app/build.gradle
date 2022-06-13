@@ -9,8 +9,8 @@ android {
         applicationId "com.systems.automaton.classtimetableplanner"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 19
-        versionName "1.9"
+        versionCode 20
+        versionName "2.0"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {

@@ -239,7 +239,12 @@ public class PreferenceUtil {
 
     public static void cancelAlarm(@NonNull Context context, @NonNull Class<?> cls, int id) {
         Intent intent = new Intent(context, cls);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        }
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Objects.requireNonNull(am).cancel(pendingIntent);
         pendingIntent.cancel();
