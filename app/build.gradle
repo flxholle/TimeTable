@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.mikepenz.aboutlibraries.plugin'
+//apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 
@@ -9,8 +9,8 @@ android {
         applicationId "com.systems.automaton.classtimetableplanner"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 20
-        versionName "2.0"
+        versionCode 21
+        versionName "2.1"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -27,7 +27,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -39,7 +39,7 @@ dependencies {
     implementation 'me.jfenn.ColorPickerDialog:base:0.2.2'
     implementation 'com.github.quwepiro:SQLite2XL:88883cf56d'
     implementation 'saschpe.android:customtabs:3.0.2'
-    implementation "com.mikepenz:aboutlibraries:8.9.4"
+    //implementation "com.mikepenz:aboutlibraries:8.9.4"
     implementation 'com.github.stephenvinouze:shapetextdrawable:1.0.0'
     implementation 'com.github.Pradyuman7:ChocoBar:V1.7'
     implementation 'com.github.IamIsPra:Sheriff:1.0.2'
@@ -52,7 +52,9 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
 
     implementation 'com.android.billingclient:billing:5.0.0'
-    implementation 'com.google.android.gms:play-services-ads:21.0.0'
+    implementation 'com.google.android.gms:play-services-ads:21.2.0'
     implementation platform('com.google.firebase:firebase-bom:29.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 }

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -119,7 +120,13 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         intent.setAction(action);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        }
+        return pendingIntent;
     }
 
     static void updateAppWidgetConfig(@NonNull AppWidgetManager appWidgetManager, int appWidgetId, int backgroundColor, int timeStyle, int profile, @NonNull Context context) {
@@ -202,7 +209,12 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
 
         Intent intent = new Intent(context, DayAppWidgetProvider.class);
         intent.setAction(ACTION_NEW_DAY);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        }
 
         Calendar midnight = Calendar.getInstance(Locale.getDefault());
         midnight.set(Calendar.HOUR_OF_DAY, 0);
