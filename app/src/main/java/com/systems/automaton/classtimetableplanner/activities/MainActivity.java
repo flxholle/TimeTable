@@ -34,7 +34,7 @@ import com.ajts.androidmads.library.ExcelToSQLite;
 import com.ajts.androidmads.library.SQLiteToExcel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.mikepenz.aboutlibraries.LibsBuilder;
+//import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pd.chocobar.ChocoBar;
 import com.systems.automaton.classtimetableplanner.R;
 import com.systems.automaton.classtimetableplanner.adapters.FragmentsTabAdapter;
@@ -306,14 +306,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (item.getItemId() == R.id.action_remove_all) {
             deleteAll();
         } else if (item.getItemId() == R.id.action_about_libs) {
-            new LibsBuilder()
-                    .withActivityTitle(getString(R.string.about_libs_title))
-                    .withAboutIconShown(true)
-                    .withFields(R.string.class.getFields())
-                    .withLicenseShown(true)
-                    .withAboutDescription(getString(R.string.nav_drawer_description))
-                    .withAboutAppName(getString(R.string.app_name))
-                    .start(this);
+            openUrlInChromeCustomTab("https://github.com/Automaton-Systems/class-timetable-planner");
+//            new LibsBuilder()
+//                    .withActivityTitle(getString(R.string.about_libs_title))
+//                    .withAboutIconShown(true)
+//                    .withFields(R.string.class.getFields())
+//                    .withLicenseShown(true)
+//                    .withAboutDescription(getString(R.string.nav_drawer_description))
+//                    .withAboutAppName(getString(R.string.app_name))
+//                    .start(this);
         } else if (item.getItemId() == R.id.action_profiles) {
             Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
             startActivity(intent);

@@ -162,7 +162,7 @@ public class NotificationUtil {
     }
 
     private static void sendNotification(@NonNull Context context, boolean alert, @Nullable NotificationCompat.Builder notificationBuilder, int id) {
-        if (notificationBuilder == null || !PreferenceUtil.isNotification(context) || Build.VERSION.SDK_INT < 21)
+        if (notificationBuilder == null || !PreferenceUtil.isNotification(context))
             return;
 
 
@@ -172,7 +172,12 @@ public class NotificationUtil {
         Intent notificationIntent = new Intent(context, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addNextIntentWithParentStack(notificationIntent);
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        }
 
         if (alert)
             createNotificationChannelLoud(context);
@@ -196,7 +201,12 @@ public class NotificationUtil {
             //Dismiss button intent
             Intent buttonIntent = new Intent(context, NotificationDismissButtonReceiver.class);
             buttonIntent.putExtra(NotificationDismissButtonReceiver.EXTRA_NOTIFICATION_ID, id);
-            PendingIntent btPendingIntent = PendingIntent.getBroadcast(context, UUID.randomUUID().hashCode(), buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent btPendingIntent;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                btPendingIntent = PendingIntent.getBroadcast(context, UUID.randomUUID().hashCode(), buttonIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+            } else {
+                btPendingIntent = PendingIntent.getBroadcast(context, UUID.randomUUID().hashCode(), buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            }
 
             mNotifyBuilder.setOngoing(true);
             mNotifyBuilder.addAction(R.drawable.ic_close_black_24dp, context.getString(R.string.notification_dismiss), btPendingIntent);
