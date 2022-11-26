@@ -958,7 +958,7 @@ public class AlertDialogsHelper {
         final EditText phone_number = alertLayout.findViewById(R.id.phonenumber_dialog);
 //        editTextHashs.put(R.string.phone_number, phone_number);
         final EditText email = alertLayout.findViewById(R.id.email_dialog);
-        editTextHashs.put(R.string.email, email);
+//        editTextHashs.put(R.string.email, email);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         final Teacher teacher = adapter.get(listposition);
 
@@ -1028,7 +1028,7 @@ public class AlertDialogsHelper {
         final EditText phone_number = alertLayout.findViewById(R.id.phonenumber_dialog);
 //        editTextHashs.put(R.string.phone_number, phone_number);
         final EditText email = alertLayout.findViewById(R.id.email_dialog);
-        editTextHashs.put(R.string.email, email);
+//      editTextHashs.put(R.string.email, email);
         final Button select_color = alertLayout.findViewById(R.id.select_color);
         select_color.setTextColor(ColorPalette.pickTextColorBasedOnBgColorSimple(((ColorDrawable) select_color.getBackground()).getColor(), Color.WHITE, Color.BLACK));
         final Teacher teacher = new Teacher();
