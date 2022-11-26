@@ -86,6 +86,18 @@ public class AlertDialogsHelper {
         to_hour.setText("" + WeekUtils.getMatchingScheduleEnd(week.getToTime(), activity));
         select_color.setBackgroundColor(week.getColor() != 0 ? week.getColor() : Color.WHITE);
 
+        if (PreferenceUtil.showTimes(activity)) {
+            from_time.setVisibility(View.VISIBLE);
+            to_time.setVisibility(View.VISIBLE);
+            from_hour.setVisibility(View.GONE);
+            to_hour.setVisibility(View.GONE);
+        } else {
+            from_time.setVisibility(View.VISIBLE);
+            to_time.setVisibility(View.VISIBLE);
+            from_hour.setVisibility(View.VISIBLE);
+            to_hour.setVisibility(View.VISIBLE);
+        }
+
         from_time.setOnClickListener(v -> {
             int mHour = Integer.parseInt(week.getFromTime().substring(0, week.getFromTime().indexOf(":")));
             int mMinute = Integer.parseInt(week.getFromTime().substring(week.getFromTime().indexOf(":") + 1));
