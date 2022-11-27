@@ -41,6 +41,7 @@ import com.ulan.timetable.adapters.FragmentsTabAdapter;
 import com.ulan.timetable.fragments.WeekdayFragment;
 import com.ulan.timetable.profiles.ProfileManagement;
 import com.ulan.timetable.receivers.DoNotDisturbReceiversKt;
+import com.ulan.timetable.receivers.MidnightReceiver;
 import com.ulan.timetable.utils.AlertDialogsHelper;
 import com.ulan.timetable.utils.DbHelper;
 import com.ulan.timetable.utils.NotificationUtil;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initAll() {
         NotificationUtil.sendNotificationCurrentLesson(this, false);
         PreferenceUtil.setDoNotDisturb(this, PreferenceUtil.doNotDisturbDontAskAgain(this));
+        PreferenceUtil.setOneTimeAlarm(this, MidnightReceiver.class, MidnightReceiver.Companion.getHour(), MidnightReceiver.Companion.getMinutes(), 0, MidnightReceiver.Companion.getMidnightRecieverID());
         initSpinner();
 
         setupWeeksTV();
