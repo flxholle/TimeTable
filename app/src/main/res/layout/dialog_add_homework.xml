@@ -46,9 +46,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".7"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:singleLine="true" />
+            android:inputType="textMultiLine"
+            android:lines="2"
+            android:scrollbars="vertical" />
     </LinearLayout>
 
     <LinearLayout
