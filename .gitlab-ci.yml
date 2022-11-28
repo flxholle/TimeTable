@@ -44,10 +44,10 @@ assembleDebug:
   - wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip
   # move to the archive at ANDROID_HOME
   - pushd $ANDROID_HOME
-  - unzip cmdline-tools.zip
-  - ls -l
+  - unzip -d cmdline-tools cmdline-tools.zip
+  - mv cmdline-tools/cmdline-tools/ cmdline-tools/latest/
   - popd
-  - export PATH=$PATH:${ANDROID_HOME}/cmdline-tools/bin/
+  - export PATH=$PATH:${ANDROID_HOME}/cmdline-tools/latest/bin/
 
   # Nothing fancy here, just checking sdkManager version
   - sdkmanager --version
