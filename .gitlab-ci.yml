@@ -61,6 +61,7 @@ assembleDebug:
   # Not necessary, but just for surity
   - chmod +x ./gradlew
   script:
+    - gradle --version
     - gradle wrapper
     - ./gradlew assembleDebug
   artifacts:
