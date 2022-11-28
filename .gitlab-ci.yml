@@ -30,40 +30,18 @@ build_badges:
         - badges
     when: always
 
-
 assembleDebug:
-  interruptible: true
+  image: cimg/android
   stage: build
-  image: circleci/android
   before_script:
-  - apt-get --quiet update --yes
-  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 gradle
-
-  - export ANDROID_HOME="${PWD}/android-home"
-  - install -d $ANDROID_HOME
-  - wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip
-  # move to the archive at ANDROID_HOME
-  - pushd $ANDROID_HOME
-  - unzip -d cmdline-tools cmdline-tools.zip
-  - mv cmdline-tools/cmdline-tools/ cmdline-tools/latest/
-  - popd
-  - export PATH=$PATH:${ANDROID_HOME}/cmdline-tools/latest/bin/
-
-  # Nothing fancy here, just checking sdkManager version
-  - sdkmanager --version
-
-  # use yes to accept all licenses
-  - yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses || true
-  - sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
-  - sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
-  - sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}"
-
-  # Not necessary, but just for surity
-  - chmod +x ./gradlew
+    - chmod +x ./gradlew
+  cache:
+    paths:
+      - .gradle/wrapper
+      - .gradle/caches
   script:
-    - gradle wrapper
     - ./gradlew assembleDebug
+    - cp app/build/outputs/apk/debug/app-debug.apk app-debug.apk
   artifacts:
     paths:
-      - app/build/outputs/
-
+      - app-debug.apk
