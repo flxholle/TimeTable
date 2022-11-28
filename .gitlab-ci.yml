@@ -31,7 +31,7 @@ build_badges:
     when: always
 
 assembleDebug:
-  image: cimg/android
+  image: seanghay/android-ci
   stage: build
   before_script:
     - chmod +x ./gradlew
