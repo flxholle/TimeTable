@@ -45,6 +45,7 @@ assembleDebug:
   # move to the archive at ANDROID_HOME
   - pushd $ANDROID_HOME
   - unzip cmdline-tools.zip
+  - ls -l
   - popd
   - export PATH=$PATH:${ANDROID_HOME}/cmdline-tools/bin/
 
