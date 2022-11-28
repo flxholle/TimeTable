@@ -64,11 +64,6 @@ assembleDebug:
     - gradle --version
     - gradle wrapper
     - ./gradlew assembleDebug
-    - cd app/build/outputs/
-    - cd app/build/outputs/apk/
-    - ls -l
-    - cd app/build/outputs/apk/debug/
-    - ls -l
     - mv app/build/outputs/apk/debug/app-debug.apk app-debug.apk
   artifacts:
     paths:
