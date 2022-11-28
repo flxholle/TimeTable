@@ -37,7 +37,7 @@ assembleDebug:
   image: openjdk:8-jdk
   before_script:
   - apt-get --quiet update --yes
-  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 sdkmanager
 
   - export ANDROID_HOME="${PWD}/android-home"
   - install -d $ANDROID_HOME
