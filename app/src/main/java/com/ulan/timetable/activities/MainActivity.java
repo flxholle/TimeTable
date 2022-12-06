@@ -348,6 +348,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (itemId == R.id.summary) {
             Intent teacher = new Intent(MainActivity.this, SummaryActivity.class);
             startActivity(teacher);
+        } else if (itemId == R.id.buymeacoffee) {
+            openUrlInChromeCustomTab("https://www.buymeacoffee.com/asdoi");
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

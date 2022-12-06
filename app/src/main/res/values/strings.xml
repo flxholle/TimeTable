@@ -252,4 +252,6 @@
     <string name="preferred_profile_explanation">Mark a profile with a star.
         \nThis profile is automatically displayed when the app is started.
         \nIn addition, based on this profile data, notifications are sent at the beginning of the lessons and the smartphone is set to \"Do Not Disturb\" mode.</string>
+
+    <string name="buy_me_a_coffee">Buy me a coffee</string>
 </resources>

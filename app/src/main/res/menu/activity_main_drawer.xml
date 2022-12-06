@@ -2,7 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group android:id="@+id/menu_top"
+    <group
+        android:id="@+id/menu_top"
         android:checkableBehavior="none">
         <item
             android:id="@+id/schoolwebsitemenu"
@@ -39,6 +40,10 @@
     <group
         android:id="@+id/menu_down"
         android:checkableBehavior="none">
+        <item
+            android:id="@+id/buymeacoffee"
+            android:icon="@drawable/ic_baseline_coffee_24"
+            android:title="@string/buy_me_a_coffee" />
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black_24dp"
