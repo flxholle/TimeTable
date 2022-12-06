@@ -8,8 +8,8 @@ android {
         applicationId "com.asdoi.timetable"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 16
-        versionName "1.6"
+        versionCode 17
+        versionName "1.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -25,6 +25,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     namespace 'com.ulan.timetable'
+    buildToolsVersion '33.0.1'
 }
 
 dependencies {
