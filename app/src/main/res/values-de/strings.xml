@@ -276,4 +276,7 @@
     <string name="preferred_profile_explanation">Markiere ein Profil mit einem Stern.
         \nDieses Profil wird automatisch beim Starten der App angezeigt.
         \nAußerdem werden auf Basis dieses Profils die Benachrichtigungen am Stundenbeginn gesendet und das Smartphone in den Nicht-Stören Modus versetzt.</string>
+    <string name="buy_me_a_coffee">Spendiere mir einen Kaffee</string>
+    <string name="start_week_on_sunday_summary">Gerade/Ungerade Wochen werden schon am Sonntag gewechselt und Freitag und Samstag zählen nun als Wochenende.</string>
+    <string name="start_week_on_sunday">Wochenbeginn am Sonntag</string>
 </resources>
