@@ -73,4 +73,6 @@ lint/tmp/
 
 /**/*/res/values/secrets.xml
 *.aab
+*.apk
+*.ap_
 google-services.json
