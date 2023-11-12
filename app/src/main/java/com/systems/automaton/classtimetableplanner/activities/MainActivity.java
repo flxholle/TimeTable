@@ -44,6 +44,7 @@ import com.systems.automaton.classtimetableplanner.ads.EventManager;
 import com.systems.automaton.classtimetableplanner.fragments.WeekdayFragment;
 import com.systems.automaton.classtimetableplanner.profiles.ProfileManagement;
 import com.systems.automaton.classtimetableplanner.receivers.DoNotDisturbReceiversKt;
+import com.systems.automaton.classtimetableplanner.receivers.MidnightReceiver;
 import com.systems.automaton.classtimetableplanner.utils.AlertDialogsHelper;
 import com.systems.automaton.classtimetableplanner.utils.DbHelper;
 import com.systems.automaton.classtimetableplanner.utils.NotificationUtil;

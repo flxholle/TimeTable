@@ -1,9 +1,9 @@
-package com.ulan.timetable.receivers
+package com.systems.automaton.classtimetableplanner.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.ulan.timetable.utils.PreferenceUtil
+import com.systems.automaton.classtimetableplanner.utils.PreferenceUtil
 
 class MidnightReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

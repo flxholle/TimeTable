@@ -76,3 +76,5 @@ lint/tmp/
 *.apk
 *.ap_
 google-services.json
+
+**/.DS_Store

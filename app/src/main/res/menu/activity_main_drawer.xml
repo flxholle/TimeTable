@@ -42,6 +42,7 @@
         android:checkableBehavior="none">
         <item
             android:id="@+id/buymeacoffee"
+            android:visible="false"
             android:icon="@drawable/ic_baseline_coffee_24"
             android:title="@string/buy_me_a_coffee" />
         <item

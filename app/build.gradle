@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
     defaultConfig {
         applicationId "com.systems.automaton.classtimetableplanner"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 25
-        versionName "2.5"
+        versionCode 26
+        versionName "2.6"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -24,8 +24,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    namespace 'com.ulan.timetable'
-    buildToolsVersion '33.0.1'
 }
 
 dependencies {
