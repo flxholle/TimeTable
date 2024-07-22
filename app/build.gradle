@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdk 33
+    compileSdk 34
     defaultConfig {
         applicationId "com.systems.automaton.classtimetableplanner"
         minSdkVersion 21
-        targetSdkVersion 33
-        versionCode 26
-        versionName "2.6"
+        targetSdkVersion 34
+        versionCode 27
+        versionName "2.7"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:0.9.6'
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
 
-    implementation 'com.android.billingclient:billing:5.0.0'
+    implementation 'com.android.billingclient:billing:7.0.0'
     implementation 'com.google.android.gms:play-services-ads:21.2.0'
     implementation platform('com.google.firebase:firebase-bom:29.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
