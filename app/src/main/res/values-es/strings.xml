@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cronograma</string>
+    <string name="app_name">Class Timetable Planner</string>
     <string name="navigation_drawer_open">Abrir caja de navegación</string>
     <string name="navigation_drawer_close">Cerrar caja de navegación</string>
     <string name="settings">Ajustes</string>

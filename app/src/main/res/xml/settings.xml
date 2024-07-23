@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_baseline_notifications_active_24"
         android:key="notification_settings"
         android:title="@string/notification_settings"
-        app:fragment="com.ulan.timetable.fragments.NotificationSettingsFragment" />
+        app:fragment="com.systems.automaton.classtimetableplanner.fragments.NotificationSettingsFragment" />
 
     <Preference
         android:icon="@drawable/ic_access_time_black_24dp"
